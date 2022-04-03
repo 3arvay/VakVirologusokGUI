@@ -17,8 +17,8 @@ public class Gloves extends Gear
     /**
     * Leírás:
     * visszakenés műveletét valósítja meg akkor, ha egy virológus visel kesztyűt és megtámadják, azaz a támadón érvényesül a támadó ágensének hatása.
-    * @param Virologist v
-    * @param Agent a
+    * @param //virologist v
+    * @param //agent a
     * @return Boolean
     */
     @Override
@@ -32,7 +32,7 @@ public class Gloves extends Gear
     /**
     * Leírás:
     * A kesztyű felszerelés felvételét valósítja meg, felveszi a virológus a felszerelései közé.
-    * @param Virologist v
+    * @param //Virologist v
     * @return Gear gear
     */
     @Override
@@ -46,11 +46,11 @@ public class Gloves extends Gear
     /**
     * Leírás:
     * Az ellopás műveletet valósítja meg, a kesztyűt az adott virológustól.
-    * @param Virologist v
+    * @param //Virologist v
     * @return Gear gear
     */
     @Override
-    public Gear StealAway(Virologist v)
+    public Gear StealAway(Virologist v, Virologist v2)
     {
         return v.RemoveGear(this);
     }

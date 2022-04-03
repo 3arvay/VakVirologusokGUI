@@ -9,8 +9,8 @@ public abstract class Gear
     /**
     * Leírás:
     * A különböző felszerelések használatát valósítják meg a leszármazottjai, absztrakt metódus.
-    * @param Virologist v
-    * @param Agent a
+    * @param  v
+    * @param  a
     * @return Booelean
     */
     public abstract Boolean Use(Virologist v, Agent a);
@@ -18,7 +18,7 @@ public abstract class Gear
     /**
     * Leírás:
     * Az egyes felszerelések felvételi metódusait valósítják meg a leszármazottjai, absztrakt metódus.
-    * @param Virologist v
+    * @param  v
     * @return Gear gear
     */
     public abstract Gear PickUp(Virologist v);
@@ -26,10 +26,10 @@ public abstract class Gear
     /**
     * Leírás:
     * Az egyes virológustól való ellopás műveleteket valósítják meg a leszármazottjai, absztrakt metódus
-    * @param Virologist v
+    * @param  v
     * @return Gear gear
     */
-    public abstract Gear StealAway(Virologist v);
+    public abstract Gear StealAway(Virologist v, Virologist v2);
 
     /**
     * Leírás:
@@ -44,7 +44,7 @@ public abstract class Gear
     /**
     * Leírás:
     * beállítja az id tagváltozó értékét
-    * @param int i
+    * @param  i
     */
     public void SetID(int i)
     {

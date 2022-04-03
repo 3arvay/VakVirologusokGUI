@@ -26,30 +26,32 @@ public class Bag extends Gear
     /**
      * Leírás: Felvételkor megnöveli az nyersanyagok férőhelyét a virológusnál.
      *
-     * @param Virologist v: Aki a zsákot felveszi
-     * @param Agent a
+     * @param  v: Aki a zsákot felveszi
+     * @param  a:
      * @return Boolean
      */
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
-        Main.printSeq(4,"call", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v),"a"});
+        /*Main.printSeq(4,"call", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v),"a"});
         v.ExtendCapacity(size);
         Main.printSeq(4,"answer", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v),"a"});
-        return true;
+        */
+        return false;
     }
 
     /**
      * Leírás: felvételkor átadja a zsákot mint felszerelést a virológusnak.
      *
-     * @param Virologist v: Aki a zsákot felveszi
+     * @param  v: Aki a zsákot felveszi
      * @return Gear: A felvett Bag objektum
      */
     @Override
     public Gear PickUp(Virologist v)
     {
         Main.printSeq(3,"call", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
-        this.Use(v,null);
+        //Use(v,null);
+        v.ExtendCapacity(size);
         Main.printSeq(3,"answer", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
         return this;
     }
@@ -57,13 +59,15 @@ public class Bag extends Gear
     /**
      * Leírás: Ellopja a zsákot az adott virológustól.
      *
-     * @param Virologist v: Akitől a zsákot elveszik
+     * @param v Virologist: Akitől a zsákot elveszik
      * @return Gear: Az elvett Bag objektum
      */
     @Override
-    public Gear StealAway(Virologist v)
+    public Gear StealAway(Virologist v, Virologist v2)
     {
-        v.LowerCapacity(size);
-        return v.RemoveGear(this);
+        v2.LowerCapacity(size);
+        v.ExtendCapacity(size);
+        v2.RemoveGear(this);
+        return this;
     }
 }

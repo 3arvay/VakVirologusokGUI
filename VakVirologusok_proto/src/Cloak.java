@@ -19,8 +19,8 @@ public class Cloak extends Gear
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
      *
-     * @param Virologist v: A Cloak-ot viselő virológus
-     * @param Agent a: Ágens amivel megtámadták
+     * @param  v: A Cloak-ot viselő virológus
+     * @param  a: Ágens amivel megtámadták
      * @return Boolean: true, ha sikeres a védelem; false, ha nem
      */
     @Override
@@ -36,7 +36,7 @@ public class Cloak extends Gear
     /**
      * Leírás: felvételkor visszaadja a köpenyt mint felszerelést a virológusnak.
      *
-     * @param Virologist v: Aki felveszi az objektumot
+     * @param  v: Aki felveszi az objektumot
      * @return Cloak: A felvett köpeny objektum
      */
     @Override
@@ -50,11 +50,11 @@ public class Cloak extends Gear
     /**
      * Leírás: Az ellopás műveletet a köpenyt az adott virológustól.
      *
-     * @param Virologist v: Akitől elveszik az objektumot
+     * @param  v: Akitől elveszik az objektumot
      * @return Gear: Az ellopott köpeny objektum
      */
     @Override
-    public Gear StealAway(Virologist v)
+    public Gear StealAway(Virologist v, Virologist v2)
     {
         return v.RemoveGear(this);
     }
