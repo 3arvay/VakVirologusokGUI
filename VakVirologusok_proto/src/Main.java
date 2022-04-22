@@ -1,19 +1,69 @@
+import javax.lang.model.element.VariableElement;
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
+
     public static Map<Object, String> nameMap = new HashMap<>();
+    public static Map<String, Object> varMap = new HashMap<>();
+
+    public static void order(String orderText)  {
+        String[] orderElements = orderText.split("[ ]");
+        switch (orderElements[0]){
+            case "add":
+                try {
+                    Class variable = Class.forName(orderElements[1]);
+                    varMap.put(orderElements[2], variable);
+                }
+                catch(ClassNotFoundException e)
+                {
+                    System.out.println("Hibás osztálytípust adtál meg.");
+                    e.printStackTrace();
+                }
+                return;
+            case "place":
+                try
+                {
+                    if(orderElements[1].equals("v\\d+"))
+                    {
+
+                    }
+                    else if(orderElements[1].equals("b\\d+"))
+                    {
+
+                    }
+                }
+                catch(IllegalArgumentException e)
+                {
+
+                }
+            case "neighbour":
+            case "move":
+            case "attack":
+            case "steal":
+            case "learn":
+            case "give":
+            case "set":
+            case "craft":
+            case "stat":
+            case "step":
+            default:
+        }
+    }
+
+
 
     /**
     * Leírás: 
     * szekvencia diagram kiíró függvény.
-    * @param int level
-    * @param String callAnswer
-    * @param String caller
-    * @param String function
-    * @param String[] parameters
+    * @param level
+    * @param callAnswer
+    * @param caller
+    * @param function
+    * @param parameters
     */
     public static void printSeq(int level, String callAnswer, String caller, String function, String[] parameters) {
         for (int i = 0; i < level; i++) {
@@ -35,7 +85,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello Vak Virológusok!");
+        order("add Field f1");
 
         int answer;
         while (true) {
