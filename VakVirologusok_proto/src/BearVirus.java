@@ -1,4 +1,14 @@
 public class BearVirus extends Agent{
+
+    /**
+     * Leírás: BearVirus ágens konstruktora
+     */
+    BearVirus() {
+        useTime = -1;
+        nucleotidCost = 0;
+        aminoacidCost = 0;
+    }
+
     @Override
     public VAttribute AllotAttribute(Agent a) {
         return null;

@@ -4,6 +4,15 @@
 public class Immunity extends Agent
 {
     /**
+     * Leírás: Immunity ágens konstruktora
+     */
+    Immunity() {
+        useTime = 5;
+        nucleotidCost = 85;
+        aminoacidCost = 80;
+    }
+
+    /**
     * Leírás:   Visszadja az ősosztálybeli useTime tagváltozó értékét
     *
     * @return useTime, a fennmaradt felhasználhatósági idő
