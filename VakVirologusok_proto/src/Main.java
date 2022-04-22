@@ -9,6 +9,8 @@ public class Main {
 
     public static Map<Object, String> nameMap = new HashMap<>();
     public static Map<String, Object> varMap = new HashMap<>();
+    public static Map<String, Field> fields = new HashMap<>();
+    public static Map<String, Virologist> virologists = new HashMap<>();
 
     public static void order(String orderText)  {
         String[] orderElements = orderText.split("[ ]");
@@ -27,20 +29,84 @@ public class Main {
             case "place":
                 try
                 {
-                    if(orderElements[1].equals("v\\d+"))
+                    if(orderElements[1].equals("v\\d+_\\d"))
                     {
-
+                        Field f = (Field) varMap.get(orderElements[1]);
+                        f.standsHere.add((Virologist)varMap.get(orderElements[3]));
                     }
-                    else if(orderElements[1].equals("b\\d+")&&orderElements[1].equals("c\\d+")&&orderElements.equals("a\\d+")&&orderElements.equals(""))
+                    else if(orderElements[1].equals("b\\d+_\\d") || orderElements[1].equals("c\\d+_\\d")||
+                            orderElements[1].equals("ax\\d+_\\d") || orderElements[1].equals("g\\d+_\\d"))
                     {
-
+                        Shelter s = (Shelter) varMap.get(orderElements[2]);
+                        Gear g;
+                        switch(orderElements[1].charAt(0)){
+                            case 'a':
+                                g=(Axe)varMap.get(orderElements[1]);
+                                break;
+                            case 'b':
+                                g=(Bag)varMap.get(orderElements[1]);
+                                break;
+                            case 'c':
+                                g=(Cloak)varMap.get(orderElements[1]);
+                                break;
+                            default:
+                                g=(Gloves)varMap.get(orderElements[1]);
+                                break;
+                        }
+                        s.SetGear(g);
+                    }
+                    else if(orderElements[1].equals("s\\d+_\\d") || orderElements[1].equals("d\\d+_\\d")||
+                            orderElements[1].equals("a\\d+_\\d") || orderElements[1].equals("i\\d+_\\d"))
+                    {
+                        Laboratory l = (Laboratory) varMap.get(orderElements[2]);
+                        Agent g;
+                        switch(orderElements[1].charAt(0)){
+                            case 's':
+                                g=(Stun)varMap.get(orderElements[1]);
+                                break;
+                            case 'd':
+                                g=(Dance)varMap.get(orderElements[1]);
+                                break;
+                            case 'a':
+                                g=(Amnesia)varMap.get(orderElements[1]);
+                                break;
+                            default:
+                                g=(Immunity)varMap.get(orderElements[1]);
+                                break;
+                        }
+                        l.SetAgent(g);
+                    }
+                    else{
+                        throw new IllegalArgumentException();
                     }
                 }
                 catch(IllegalArgumentException e)
                 {
-
+                    System.out.println("Hibás argumentumot adtál meg.");
+                    e.printStackTrace();
                 }
+                return;
             case "neighbour":
+                try
+                {
+                    if( (orderElements[1].equals("f\\d+_\\d") || orderElements[1].equals("s\\d+_\\d") ||
+                        orderElements[1].equals("l\\d+_\\d")) || orderElements[1].equals("w\\d+_\\d") &&
+                        (orderElements[2].equals("f\\d+_\\d") || orderElements[2].equals("s\\d+_\\d") ||
+                        orderElements[2].equals("l\\d+_\\d")) || orderElements[2].equals("w\\d+_\\d"))
+                    {
+                        Field f1 = (Field) varMap.get(orderElements[1]);
+                        Field f2 = (Field) varMap.get(orderElements[2]);
+                        f1.Neighbours.add(f2);
+                    }
+                    else
+                    {
+                        throw new IllegalArgumentException();
+                    }
+                }
+                catch (IllegalArgumentException e)
+                {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
             case "move":
             case "attack":
             case "steal":
@@ -86,7 +152,13 @@ public class Main {
 
     public static void main(String[] args) {
         order("add Field f1");
+        Shelter s = new Shelter();
+        varMap.put("s1_1",s);
+        Field f = (Field) varMap.get("s1_1");
+        Field[] fields = new Field[]{s,f};
 
+        System.out.println(varMap.get("s1_1").getClass().getSimpleName());
+/*
         int answer;
         while (true) {
             Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -814,5 +886,6 @@ public class Main {
                     break;
             }
         }
+    */
     }
 }
