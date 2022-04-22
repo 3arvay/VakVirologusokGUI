@@ -9,7 +9,7 @@ public class Laboratory extends Field
     /**
     * Leírás: Virológus lépését valósítja meg a labor mezőre, és ha még számára ismeretlen az ott található genetikai kód, akkor megtanulja.
     *
-    * @param Virologist v: Az a virológus aki rálép erre a raktár mezőre
+    * @param v: Az a virológus aki rálép erre a raktár mezőre
     */
     @Override
     public void AddVirologist(Virologist v)
@@ -23,7 +23,7 @@ public class Laboratory extends Field
     /**
     * Leírás:  Inicializáláskor egy adott genetikai kódot jelentő ágenst helyez el a laboratóriumban.
     *
-    * @param Agent a: Beállítja, hogy milyen ágenst lehet megtanulni abban a laborban
+    * @param a: Beállítja, hogy milyen ágenst lehet megtanulni abban a laborban
     */
     public void SetAgent(Agent a)
     {

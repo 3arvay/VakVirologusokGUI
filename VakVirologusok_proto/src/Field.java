@@ -24,7 +24,7 @@ public class Field
     /**
     * Leírás:
     * Adott mezőhöz szomszédos mezőket rendel hozzá.
-    * @param Field f
+    * @param f
     */
     public void AddNeighbour(Field f)
     {
@@ -36,7 +36,7 @@ public class Field
     /**
     * Leírás:
     * Már létező mezőhöz ad hozzá egy virológust. Ez a függvény hívódik ha a játékos lépteti a virológust.
-    * @param Virologist v
+    * @param v
     */
     public void AddVirologist(Virologist v)
     {
@@ -48,7 +48,7 @@ public class Field
     /**
     * Leírás:
     * Eltávolítja a virológust a mezőről, ha a játékos átlépett egy másik mezőre.
-    * @param Virologist v
+    * @param v
     */
     public void RemoveVirologist(Virologist v)
     {
@@ -60,7 +60,7 @@ public class Field
     /**
     * Leírás:
     * Vissza ad egy szomszédos mezőt ami nem a paraméterben levő mező.
-    * @param Field f1
+    * @param f1
     * @return Field temp
     */
     public Field GetRandomNeighbour(Field f1){
@@ -79,7 +79,7 @@ public class Field
     /**
     * Leírás:
     * A vitus táncos mozgást valósítja meg.
-    * @param Field f2
+    * @param f2
     */
     public void GetMeSomewhere(Field f2)
     {

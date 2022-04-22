@@ -14,9 +14,11 @@ public class Main {
 
     public static void order(String orderText)  {
         String[] orderElements = orderText.split("[ ]");
-        switch (orderElements[0]){
+        switch (orderElements[0])
+        {
             case "add":
-                try {
+                try
+                {
                     Class variable = Class.forName(orderElements[1]);
                     varMap.put(orderElements[2], variable);
                 }
@@ -82,8 +84,7 @@ public class Main {
                 }
                 catch(IllegalArgumentException e)
                 {
-                    System.out.println("Hibás argumentumot adtál meg.");
-                    e.printStackTrace();
+                    System.out.println("Hibás argumentumot adtál meg.\n"+orderElements[1]+" hibás formátum");
                 }
                 return;
             case "neighbour":
@@ -107,10 +108,92 @@ public class Main {
                 {
                     System.out.println("Hibás argumentumot adtál meg");
                 }
+                return;
             case "move":
+                try
+                {
+                    if((orderElements[2].equals("f\\d+_\\d") || orderElements[2].equals("s\\d+_\\d") ||
+                        orderElements[2].equals("l\\d+_\\d")) || orderElements[2].equals("w\\d+_\\d"))
+                    {
+                        Field f = (Field) varMap.get(orderElements[1]);
+                        Virologist v = (Virologist) varMap.get(orderElements[2]);
+                        f.standsHere.add(v);
+                    }
+                    else
+                    {
+                        throw new IllegalArgumentException();
+                    }
+                }
+                catch(IllegalArgumentException e)
+                {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+                return;
             case "attack":
+                try
+                {
+                    if(orderElements[1].equals("v\\d+_\\d") && orderElements[2].equals("v\\d+_\\d") &&
+                    (orderElements[3].equals("s\\d+_\\d") || orderElements[3].equals("d\\d+_\\d") ||
+                    orderElements[3].equals("a\\d+_\\d") || orderElements[3].equals("i\\d+_\\d")))
+                    {
+                        Virologist v1 = (Virologist) varMap.get(orderElements[1]);
+                        Virologist v2 = (Virologist) varMap.get(orderElements[2]);
+                        Agent a;
+                        switch(orderElements[3].charAt(0))
+                        {
+                            case 's':
+                                a = (Stun) varMap.get(orderElements[3]);
+                            case 'd':
+                                a = (Dance) varMap.get(orderElements[3]);
+                            case 'a':
+                                a = (Amnesia) varMap.get(orderElements[3]);
+                            default:
+                                a = (Immunity) varMap.get(orderElements[3]);
+                        }
+                        v1.UseAgent(a,v2);
+                    }
+                    else
+                    {
+                        throw new IllegalArgumentException();
+                    }
+                }
+                catch(IllegalArgumentException e)
+                {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+                return;
             case "steal":
+                try
+                {
+                    if(orderElements[1].equals("v\\d+_\\d") && orderElements[1].equals("v\\d+_\\d") &&
+                    (orderElements[2].equals("material") || orderElements[2].equals("gear")))
+                    {
+                        Virologist v1 = (Virologist) varMap.get(orderElements[1]);
+                        Virologist v2 = (Virologist) varMap.get(orderElements[2]);
+                        if (orderElements.equals("material")) {
+                            v1.Steal(v1, "material");
+                        } else {
+                            v1.Steal(v1, "gear");
+                        }
+                    }
+                    else
+                    {
+                        throw new IllegalArgumentException();
+                    }
+                }
+                catch(IllegalArgumentException e)
+                {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
             case "learn":
+                try
+                {
+
+                }
+                catch(IllegalArgumentException e)
+                {
+
+                }
             case "give":
             case "set":
             case "craft":
