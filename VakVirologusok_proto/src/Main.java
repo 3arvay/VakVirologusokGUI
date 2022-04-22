@@ -31,7 +31,7 @@ public class Main {
                     {
 
                     }
-                    else if(orderElements[1].equals("b\\d+"))
+                    else if(orderElements[1].equals("b\\d+")&&orderElements[1].equals("c\\d+")&&orderElements.equals("a\\d+")&&orderElements.equals(""))
                     {
 
                     }
