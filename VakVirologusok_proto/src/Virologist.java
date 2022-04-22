@@ -59,12 +59,26 @@ public class Virologist implements Timeable
     * @param  f2
     */
     public void Move(Field f2)
-    {   if (!attributeList.stream().anyMatch(x->x instanceof Dancing) & !attributeList.stream().anyMatch(x->x instanceof Stunned))
+    {
+        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) & !attributeList.stream().anyMatch(x->x instanceof Stunned))
         {
             Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
             this.f1.RemoveVirologist(this);
             f2.AddVirologist(this);
             Main.printSeq(0, "answer", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
+        }
+        else if(attributeList.stream().anyMatch(x->x instanceof BearMode))
+        {
+            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
+            this.f1.RemoveVirologist(this);
+            Field f3 = f2.GetRandomNeighbour(f1);
+            f3.AddBear(this);
+            for(int i = 0; i < f3.standsHere.size(); i++)
+            {
+                BearVirus bv = new BearVirus();
+                this.UnderAttack(bv,f3.standsHere.get(i));
+            }
+            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
         }
         else if(attributeList.stream().anyMatch(x->x instanceof Dancing))
         {

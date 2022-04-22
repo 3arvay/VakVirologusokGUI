@@ -24,7 +24,7 @@ public class Field
     /**
     * Leírás:
     * Adott mezőhöz szomszédos mezőket rendel hozzá.
-    * @param Field f
+    * @param f
     */
     public void AddNeighbour(Field f)
     {
@@ -36,7 +36,7 @@ public class Field
     /**
     * Leírás:
     * Már létező mezőhöz ad hozzá egy virológust. Ez a függvény hívódik ha a játékos lépteti a virológust.
-    * @param Virologist v
+    * @param v
     */
     public void AddVirologist(Virologist v)
     {
@@ -46,9 +46,22 @@ public class Field
     }
 
     /**
+     * Leírás:
+     * Már létező mezőhöz ad hozzá egy medve virológust. Ez a függvény hívódik ha a játékos lépteti a medve ágens hatása alatt levő virológust.
+     * @param v
+     */
+    public List<Virologist> AddBear(Virologist v)
+    {
+        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        AddVirologist(v);
+        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        return standsHere;
+    }
+
+    /**
     * Leírás:
     * Eltávolítja a virológust a mezőről, ha a játékos átlépett egy másik mezőre.
-    * @param Virologist v
+    * @param v
     */
     public void RemoveVirologist(Virologist v)
     {
@@ -60,7 +73,7 @@ public class Field
     /**
     * Leírás:
     * Vissza ad egy szomszédos mezőt ami nem a paraméterben levő mező.
-    * @param Field f1
+    * @param f1
     * @return Field temp
     */
     public Field GetRandomNeighbour(Field f1){
