@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Leírás:
@@ -37,7 +38,37 @@ public class Virologist implements Timeable
         agentList = new ArrayList<Agent>();
         f1=null;
     }
+    private void find(Object a, Map<String, Object> _varMap){
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(a)) {
+                System.out.println(entry.getKey() + ":");
+                break;
+            }
+        }
+    }
+    //stathoz kell
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey() + ":");
+                break;
+            }
+        }
+        System.out.println( "amountNucleotid:"+amountNucleotid+"\n"+
+                            "amountAminoacid:"+amountAminoacid+"\n"+
+                            "maxAmount:"+maxAmount);
 
+        int i = 0;
+        while (i < geneticCodeList.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(geneticCodeList.get(i))) {
+                    System.out.println("virologist" + Integer.toString(i + 1) + ":" + entry.getKey());
+                    i++;
+                    break;
+                }
+            }
+        }
+    }
     /**
     * Leírás:
     * Ez jelzi az idő múlását a virológus számára.

@@ -8,15 +8,15 @@ public class Shelter extends Field
     /**
      * Leírás: Virológus lépését valósítja meg a óvóhely mezőre, és felveszi az adott felszerelést, ha még nincs nála az adott típusból.
      *
-     * @param Virologist v: Aki a Shelter mezőre lép
+     * @param  v: Aki a Shelter mezőre lép
      */
     @Override
     public void AddVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        //Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.add(v);
         v.ReceiveGear(gear);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        //Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
     }
 
     /**
@@ -32,7 +32,7 @@ public class Shelter extends Field
     /**
      * Leírás: Inicializáláskor egy adott felszerelést helyez el az óvóhelyen.
      *
-     * @param Gear g: A Shelterre helyezendő Gear objektum
+     * @param  g: A Shelterre helyezendő Gear objektum
      */
     public void SetGear(Gear g)
     {

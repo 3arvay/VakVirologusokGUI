@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
 * Leírás: Egy ágensek hatásának a pillanatnyi aktivitását hajtják végre a leszármazottjai.
 *
@@ -44,9 +46,20 @@ public abstract class VAttribute implements Timeable
     /**
     * Leírás: Beállítja a durationtime tagváltozó értékét.
     *
-    * @param int duration: Egy szám amit majd a durationtime fog átvenni
+    * @param duration: Egy szám amit majd a durationtime fog átvenni
     */
     public void SetDurationTime(int duration){
         durationtime=duration;
+    }
+
+    public void listAttributes(Map<String, Object> _varMap)
+    {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        System.out.println( "durationTime:"+durationtime);
     }
 }

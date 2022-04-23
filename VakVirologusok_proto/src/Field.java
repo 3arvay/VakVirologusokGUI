@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
 * Leírás:
@@ -19,6 +17,35 @@ public class Field
     {
         standsHere = new ArrayList<Virologist>();
         Neighbours = new ArrayList<Field>();
+    }
+
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":"+"\n");
+                break;
+            }
+        }
+        int i = 0;
+        while (i < standsHere.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(standsHere.get(i))) {
+                    System.out.println("virologist" +Integer.toString(i+1) + ":" + entry.getKey());
+                    i++;
+                    break;
+                }
+            }
+        }
+        i = 0;
+        while (i < Neighbours.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(Neighbours.get(i))) {
+                    System.out.println("neighbour" + (i++) + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+        System.out.println();
     }
 
     /**

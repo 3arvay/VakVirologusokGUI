@@ -1,6 +1,7 @@
 /**
 * Leírás: A virológus egyik felszerelését, a köpenyt valósítja meg.
 */
+import java.util.Map;
 import java.util.Random;
 
 public class Cloak extends Gear
@@ -16,6 +17,15 @@ public class Cloak extends Gear
         chance = 82.3;
     }
 
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":"+"\n");
+                break;
+            }
+        }
+        System.out.println("id:"+id+"\n"+"chance:"+chance+"\n");
+    }
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
      *

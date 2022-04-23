@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
 * Leírás: A virológus egyik felszerelését, a zsákot valósítja meg.
 */
@@ -23,6 +25,15 @@ public class Bag extends Gear
         this.id = 2;
     }
 
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        System.out.println("id:"+id+"\n"+"size:"+size);
+    }
     /**
      * Leírás: Felvételkor megnöveli az nyersanyagok férőhelyét a virológusnál.
      *

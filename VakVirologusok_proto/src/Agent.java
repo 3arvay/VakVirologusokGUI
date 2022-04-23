@@ -1,17 +1,19 @@
+import java.util.Map;
+
 /**
 * Az ágenst valósítja meg és annak változóit.
 */
 public abstract class Agent
 {
     protected int useTime =0;
-    private int nucleotidCost;
-    private int aminoacidCost;
+    protected int nucleotidCost;
+    protected int aminoacidCost;
     private VAttribute vAttribute;
     
     /**
      * Leírás: Ágens hatásának kezdetét kiváltó metódus
      *
-     * @param Agent a: Ágens amivel támadnak
+     * @param a: Ágens amivel támadnak
      * @return VAttribute: az ágens által kifejtett hatás
      */
     public abstract VAttribute AllotAttribute(Agent a);
@@ -19,15 +21,15 @@ public abstract class Agent
     /**
      * Leírás: Az ágens hatása lejár
      *
-     * @param Virologist v: A kenhető ágenst tároló virológus
+     * @param v: A kenhető ágenst tároló virológus
      */
     public abstract void KillAgent(Virologist v);
     
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
      *
-     * @param Virologist v: A kenhető ágenst tároló virológus
-     * @param Agent a: A klónozandó ágens
+     * @param v: A kenhető ágenst tároló virológus
+     * @param a: A klónozandó ágens
      * @return Agent: Az újonnan létrehozott ágens
      */
     public abstract Agent Clone(Virologist v, Agent a);
@@ -57,5 +59,17 @@ public abstract class Agent
     public int GetAminoacidCost()
     {
         return aminoacidCost;
+    }
+
+    public void listAttributes(Map<String, Object> _varMap)
+    {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        System.out.println( "useTime:"+useTime+"nucleotidCost:"+nucleotidCost+
+                "aminoacidCost:"+aminoacidCost);
     }
 }
