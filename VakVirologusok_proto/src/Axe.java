@@ -11,6 +11,11 @@ public class Axe extends Gear
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
+        if (this.durability > 0)
+        {
+            this.durability--;
+            v.YourKilled();
+        }
         return null;
     }
 

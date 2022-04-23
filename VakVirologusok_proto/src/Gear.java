@@ -5,6 +5,7 @@
 public abstract class Gear
 {
     protected int id;
+    //protected int useage;
 
     /**
     * Leírás:

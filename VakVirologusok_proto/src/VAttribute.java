@@ -10,25 +10,29 @@ public abstract class VAttribute implements Timeable
     * Leírás: Az absztrakt osztály függvénye, a leszármazottjai valósítják meg, lefuttatják a destruktort és visszavonja a hozzátartozó hatást.
     *
     */
-    public void AttributeChanges(){
+    public abstract void AttributeChanges(Virologist v);
+    /*{
         Main.printSeq(1, "call", Main.nameMap.get(this), "AttributeChanges", new String[]{""});
         Main.printSeq(2, "call", "v", "RemoveAttribute", new String[]{"v"});
         Main.printSeq(2, "answer", "v", "RemoveAttribute", new String[]{"v"});
         Main.printSeq(1, "answer", Main.nameMap.get(this), "AttributeChanges", new String[]{""});
 
-    }
+    }*/
     
     /**
     * Leírás: Az idő folyamatos múlását folytatja.
     *
     */
-    public void Time(){
-        Main.printSeq(0, "call", Main.nameMap.get(this), "Time", new String[]{""});
+    public void Time()
+    {
+        /*Main.printSeq(0, "call", Main.nameMap.get(this), "Time", new String[]{""});
         durationtime-=1;
-        if(durationtime==0){
+        if(durationtime == 0)
+        {
             AttributeChanges();
         }
         Main.printSeq(0, "answer", Main.nameMap.get(this), "Time", new String[]{""});
+         */
     }
     
     /**
@@ -44,7 +48,7 @@ public abstract class VAttribute implements Timeable
     /**
     * Leírás: Beállítja a durationtime tagváltozó értékét.
     *
-    * @param int duration: Egy szám amit majd a durationtime fog átvenni
+    * @param duration: Egy szám amit majd a durationtime fog átvenni
     */
     public void SetDurationTime(int duration){
         durationtime=duration;
