@@ -27,11 +27,11 @@ public class Cloak extends Gear
     public void listAttributes(Map<String, Object> _varMap) {
         for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
             if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":"+"\n");
+                System.out.println(entry.getKey()+":");
                 break;
             }
         }
-        System.out.println("id:"+id+"\n"+"chance:"+chance+"\n");
+        System.out.println("id:"+id+"\n"+"chance:"+chance);
     }
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.

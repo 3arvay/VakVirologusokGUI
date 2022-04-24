@@ -32,7 +32,7 @@ public class Main {
                 return (Cloak) varMap.get(gearName);
             case'b':
                 return (Bag) varMap.get(gearName);
-            case'a':
+            case'a': // ???
                 return (Axe) varMap.get(gearName);
             default:
                 return (Gloves) varMap.get(gearName);
@@ -114,7 +114,7 @@ public class Main {
                 ((Virologist) varMap.get(params[1])).listAttributes(varMap);
             } else if (params[0].equals("set")) {
                 try {
-                    if (params[2].equals("amountAminoacid") || params[2].equals("amountNukleotid") ||
+                    if (params[2].equals("amountAminoacid") || params[2].equals("amountNucleotid") ||
                             params[2].equals("maxAmount")) {
                         ((Virologist) varMap.get(params[1])).setter(params[2], params[3]);
                     } else {
@@ -310,11 +310,11 @@ public class Main {
                     return;
                 case "steal":
                     try {
-                        if (orderElements[1].matches("v\\d+_\\d") && orderElements[1].matches("v\\d+_\\d") &&
-                                (orderElements[2].matches("material") || orderElements[2].matches("gear"))) {
+                        if (orderElements[1].matches("v\\d+_\\d") && orderElements[2].matches("v\\d+_\\d") &&
+                                (orderElements[3].matches("material") || orderElements[3].matches("gear"))) {
                             Virologist v1 = (Virologist) varMap.get(orderElements[1]);
                             Virologist v2 = (Virologist) varMap.get(orderElements[2]);
-                            if (orderElements[2].matches("material")) {
+                            if (orderElements[3].matches("material")) {
                                 v1.Steal(v2, "material");
                             } else {
                                 v1.Steal(v2, "gear");

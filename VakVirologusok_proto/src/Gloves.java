@@ -40,8 +40,9 @@ public class Gloves extends Gear
         {
             v.SpecialAttack(a);
             this.durability--;
+            return true;
         }
-        return null;
+        return false;
     }
 
     /**

@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
  * Leírás: Balta felszerelés megvalósítása
  */
@@ -13,6 +15,16 @@ public class Axe extends Gear {
         this.id = 3;
     }
 
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        System.out.println("id:"+id+"\n"+"durability:"+durability);
+    }
+
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
@@ -20,8 +32,9 @@ public class Axe extends Gear {
         {
             this.durability--;
             v.YourKilled();
+            return true;
         }
-        return null;
+        return false;
     }
 
     /**

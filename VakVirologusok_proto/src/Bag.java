@@ -62,7 +62,7 @@ public class Bag extends Gear
     /**
      * Leírás: Ellopja a zsákot az adott virológustól.
      *
-     * @param v Virologist: Akitől a zsákot elveszik
+     * @param v2 Virologist: Akitől a zsákot elveszik
      * @return Gear: Az elvett Bag objektum
      */
     @Override

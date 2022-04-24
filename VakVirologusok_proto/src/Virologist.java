@@ -158,7 +158,7 @@ public class Virologist implements Timeable
     {
         if((v.amountAminoacid - a.GetAminoacidCost()>=0) && (v.amountNucleotid - a.GetNucleotidCost()>=0))
         {
-            v.agentList.add(a.Clone(v,a));
+            agentList.add(a.Clone(v,a));
         }
     }
 
@@ -182,16 +182,16 @@ public class Virologist implements Timeable
     */
     public void Steal(Virologist v2, String opt)
     {
-        if (opt.equals("Gear"))
+        if (opt.equals("gear"))
         {
-            Gear g = v2.StealGear(this);
+            Gear g = this.StealGear(v2);
             if (g!=null)
             {
                 gearList.add(g);
             }
 
         }
-        else if (opt.equals("Material"))
+        else if (opt.equals("material"))
         {
             StealMaterial(v2);
         }
@@ -219,18 +219,13 @@ public class Virologist implements Timeable
     */
     public Gear StealGear(Virologist v)
     {
-        if (attributeList.stream().anyMatch(x -> x instanceof Stunned))
+        if (v.attributeList.stream().anyMatch(x -> x instanceof Stunned))
         {
-            for(Gear g : gearList)
+            for(Gear g : v.gearList)
             {
                 if (g != null)
                 {
-                    Main.printSeq(2, "call", Main.nameMap.get(g), "StealAway", new String[]{Main.nameMap.get(this)});
-                    Gear temp = g.StealAway(v,this);
-                    Main.printSeq(2, "answer", Main.nameMap.get(g), "StealAway", new String[]{""});
-                    //v.gearList.add(temp.GetID(), temp);
-                    Main.printSeq(1, "answer", Main.nameMap.get(this), "StealGear", new String[]{""});
-                    return temp;
+                    return g.StealAway(this, v);
                 }
             }
         }
@@ -247,9 +242,7 @@ public class Virologist implements Timeable
     {
         if (gear.GetID()==2)
         {
-            Main.printSeq(3, "call", Main.nameMap.get(this), "LowerCapacity", new String[]{"bSize"});
             gear.Use(this,null);
-            Main.printSeq(3, "answer", Main.nameMap.get(this), "LowerCapacity", new String[]{""});
         }
         return gearList.remove(gear.GetID());
     }
@@ -281,34 +274,39 @@ public class Virologist implements Timeable
     */
     public void UnderAttack(Agent a, Virologist v)
     {
-        if(!(v.attributeList.stream().anyMatch(x->x instanceof Immune))) {
-            if (gearList.stream().anyMatch(x -> x instanceof Gloves)) {
-                this.gearList.get(0).Use(v, a);
-            } else if (gearList.stream().anyMatch(x -> x instanceof Cloak)) {
-                this.gearList.get(1).Use(this, a);
-            } else if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe)) {
-                this.gearList.get(3).Use(v, a);
-            } else {
-                VAttribute asd = a.AllotAttribute(a);
-                String VAname = "";
-                for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-                    if (entry.getValue().equals(a)) {
-                        char temp = entry.getKey().charAt(0);
-                        switch (temp) {
-                            case 's':
-                                VAname  = temp+"t"+entry.getKey().substring(1);
-                                break;
-                            case 'd':
-                                VAname  = temp+"i"+entry.getKey().substring(1);
-                                break;
-                            default:
-                                VAname  = temp+"m"+entry.getKey().substring(1);
-                                break;
-                        }
+        if(!(this.attributeList.stream().anyMatch(x->x instanceof Immune))) {
+            if (gearList.stream().anyMatch(x -> x instanceof Gloves) && this.gearList.get(0).Use(v, a)) {
+                return;
+            }
+            if (gearList.stream().anyMatch(x -> x instanceof Cloak) && this.gearList.get(1).Use(this, a)) {
+                return;
+            }
+            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && this.gearList.get(3).Use(v, a)) {
+                return;
+            }
+            VAttribute asd = a.AllotAttribute(a);
+            String VAname = "";
+            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+                if (entry.getValue().equals(a)) {
+                    char temp = entry.getKey().charAt(0);
+                    switch (temp) {
+                        case 's':
+                            VAname  = temp+"t"+entry.getKey().substring(1);
+                            break;
+                        case 'd':
+                            VAname  = temp+"i"+entry.getKey().substring(1);
+                            break;
+                        default:
+                            VAname  = temp+"m"+entry.getKey().substring(1);
+                            break;
                     }
                 }
+            }
+            if (asd != null) {
                 Main.varMap.put(VAname, asd);
                 this.attributeList.add(asd);
+            } else {
+                this.geneticCodeList.clear();
             }
         }
     }
@@ -393,8 +391,8 @@ public class Virologist implements Timeable
     */
     public void CostTakeAway(Virologist v,Agent a)
     {
-        v.amountNucleotid -= a.GetNucleotidCost();
-        v.amountAminoacid -= a.GetAminoacidCost();
+        amountNucleotid -= a.GetNucleotidCost();
+        amountAminoacid -= a.GetAminoacidCost();
     }
 
     /**
