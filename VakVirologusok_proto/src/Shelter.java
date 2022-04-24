@@ -6,6 +6,8 @@ import java.util.Map;
 public class Shelter extends Field
 {
     private Gear gear;
+
+    // ToDo init konstruktor
     
     /**
      * Leírás: Virológus lépését valósítja meg a óvóhely mezőre, és felveszi az adott felszerelést, ha még nincs nála az adott típusból.
@@ -15,10 +17,8 @@ public class Shelter extends Field
     @Override
     public void AddVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.add(v);
         v.ReceiveGear(gear);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
     }
 
     /**
@@ -34,14 +34,11 @@ public class Shelter extends Field
     /**
      * Leírás: Inicializáláskor egy adott felszerelést helyez el az óvóhelyen.
      *
-     * @param Gear g: A Shelterre helyezendő Gear objektum
+     * @param g: A Shelterre helyezendő Gear objektum
      */
     public void SetGear(Gear g)
     {
         gear=g;
-        Main.printSeq(0,"call", Main.nameMap.get(this), "SetGear", new String[]{Main.nameMap.get(g)});
-        Main.printSeq(0,"answer", Main.nameMap.get(this), "SetGear", new String[]{Main.nameMap.get(g)});
-
     }
 
 

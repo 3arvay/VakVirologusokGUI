@@ -38,7 +38,7 @@ public class Gloves extends Gear
     public Boolean Use(Virologist v, Agent a) {
         if (this.durability > 0)
         {
-            v.GloveAttack(a);
+            v.SpecialAttack(a);
             this.durability--;
         }
         return null;
@@ -53,8 +53,6 @@ public class Gloves extends Gear
     @Override
     public Gear PickUp(Virologist v)
     {
-        Main.printSeq(3,"call", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
-        Main.printSeq(3,"answer", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
         return this;
     }
 

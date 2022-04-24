@@ -113,37 +113,6 @@ public class Virologist implements Timeable
 
 
     }
-    /**
-    * Leírás:
-    * Ez jelzi az idő múlását a virológus számára.
-    */
-    public void Time()
-    {
-        for(Agent a : this.agentList)
-        {
-            if (a.GetUseTime() == 0)
-            {
-                a.KillAgent(this);
-            }
-        }
-
-        for(VAttribute va : this.attributeList)
-        {
-            if (va.durationtime == 0)
-            {
-                va.AttributeChanges(this);
-            }
-        }
-
-        /*
-        Main.printSeq(0,"call",Main.nameMap.get(this),"Time",new String[] {""});
-        for (Agent a: agentList){
-            if(a.GetUseTime()<1){
-                a.KillAgent(this);
-                Main.printSeq(0,"answer",Main.nameMap.get(this),"Time",new String[] {""});
-            }
-        }*/
-    }
 
     /**
     * Leírás:
@@ -154,73 +123,62 @@ public class Virologist implements Timeable
     {
         if (!attributeList.stream().anyMatch(x->x instanceof Dancing) & !attributeList.stream().anyMatch(x->x instanceof Stunned))
         {
-            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
             this.f1.RemoveVirologist(this);
             f2.AddVirologist(this);
-            Main.printSeq(0, "answer", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
         }
         else if(attributeList.stream().anyMatch(x->x instanceof BearMode))
         {
-            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
             this.f1.RemoveVirologist(this);
             Field f3 = f2.GetRandomNeighbour(f1);
-            f3.AddBear(this);
-            for(int i = 0; i < f3.standsHere.size(); i++)
-            {
+            List<Virologist> attackThese= f3.AddBear(this);
+            for(Virologist v :  attackThese){
                 BearVirus bv = new BearVirus();
-                this.UnderAttack(bv);
+                v.UnderAttack(bv, this);
             }
-            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
+
         }
         else if(attributeList.stream().anyMatch(x->x instanceof Dancing))
         {
-            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
             this.f1.RemoveVirologist(this);
             Field f3 = f2.GetRandomNeighbour(f1);
             f3.AddVirologist(this);
-            Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
         }
     }
 
-/**
-* Leírás:
-* A felhasználó által kiválasztott ágenst készíti el, feltéve, hogy ismeri annak az ágensnek a genetikai kódját és van elég alapanyaga.
-* @param  v
-* @param  a
-*/
+    /**
+    * Leírás:
+    * A felhasználó által kiválasztott ágenst készíti el, feltéve, hogy ismeri annak az ágensnek a genetikai kódját és van elég alapanyaga.
+    * @param  v
+    * @param  a
+    */
     public void CraftAgent(Virologist v,Agent a)
     {
-        Main.printSeq(0,"call",Main.nameMap.get(this),"CraftAgent",new String[] {Main.nameMap.get(v),Main.nameMap.get(a)});
         if((v.amountAminoacid - a.GetAminoacidCost()>=0) && (v.amountNucleotid - a.GetNucleotidCost()>=0))
         {
             v.agentList.add(a.Clone(v,a));
         }
-        Main.printSeq(0,"answer",Main.nameMap.get(this),"CraftAgent",new String[] {""});
-
     }
 
-/**
-* Leírás:
-* A virológus ágenst ken egy másik virológusra.
-* @param  a
-* @param  v
-*/
+    /**
+    * Leírás:
+    * A virológus ágenst ken egy másik virológusra.
+    * @param  a
+    * @param  v
+    */
     public void UseAgent(Agent a, Virologist v)
     {
-        Main.printSeq(0,"call", Main.nameMap.get(this), "UseAgent", new String[]{Main.nameMap.get(a), Main.nameMap.get(v)});
         v.UnderAttack(a, this);
-        Main.printSeq(0,"answer", Main.nameMap.get(this), "UseAgent", new String[]{""});
+        this.agentList.remove(a);
     }
 
-/**
-* Leírás:
-* Másik virológustól lop, miközben az le van bénítva.
-* @param  v2
-* @param  opt
-*/
+    /**
+    * Leírás:
+    * Másik virológustól lop, miközben az le van bénítva.
+    * @param  v2
+    * @param  opt
+    */
     public void Steal(Virologist v2, String opt)
     {
-        Main.printSeq(0, "call", Main.nameMap.get(this), "Steal", new String[]{Main.nameMap.get(v2), "opt"});
         if (opt.equals("Gear"))
         {
             Gear g = v2.StealGear(this);
@@ -234,38 +192,32 @@ public class Virologist implements Timeable
         {
             StealMaterial(v2);
         }
-        Main.printSeq(0, "answer", Main.nameMap.get(this), "Steal", new String[]{""});
     }
 
-/**
-* Leírás:
-* Alapanyagot lop egy lebénult virológustól.
-* @param  v
-*/
+    /**
+    * Leírás:
+    * Alapanyagot lop egy lebénult virológustól.
+    * @param  v
+    */
     public void StealMaterial(Virologist v)
     {
-        Main.printSeq(1, "call", Main.nameMap.get(v), "StealMaterial", new String[]{Main.nameMap.get(this)});
         int tempAmino=v.GetAmountAminoacid();
         int tempNucleo=v.GetAmountNucleotid();
         v.SetAmountAminoacid(Math.min(v.GetMaxAmount(),amountAminoacid+v.GetAmountAminoacid()));
         v.SetAmountNucleotid(Math.min(v.GetMaxAmount(),amountNucleotid+v.GetAmountNucleotid()));
         SetAmountAminoacid(amountAminoacid-(v.GetAmountAminoacid()-tempAmino));
         SetAmountNucleotid(amountNucleotid-(v.GetAmountNucleotid()-tempNucleo));
-        Main.printSeq(1, "answer", Main.nameMap.get(v), "StealMaterial", new String[]{""});
-
     }
 
-/**
-* Leírás:
-* Felszerelést lop egy lebénult virológustól.
-* @param  v
-*/
-
+    /**
+    * Leírás:
+    * Felszerelést lop egy lebénult virológustól.
+    * @param  v
+    */
     public Gear StealGear(Virologist v)
     {
         if (attributeList.stream().anyMatch(x -> x instanceof Stunned))
         {
-            Main.printSeq(1, "call", Main.nameMap.get(this), "StealGear", new String[]{Main.nameMap.get(this)});
             for(Gear g : gearList)
             {
                 if (g != null)
@@ -278,20 +230,18 @@ public class Virologist implements Timeable
                     return temp;
                 }
             }
-            Main.printSeq(1, "answer", Main.nameMap.get(this), "StealGear", new String[]{""});
         }
         return null;
     }
-/**
-* Leírás:
-* Kiveszi a felszerelést a virológus felszerelései közül.
-* @param  gear
-* @return Gear geartemp
-*/
+
+    /**
+    * Leírás:
+    * Kiveszi a felszerelést a virológus felszerelései közül.
+    * @param  gear
+    * @return Gear geartemp
+    */
     public Gear RemoveGear(Gear gear)
     {
-        Main.printSeq(3, "call", Main.nameMap.get(this), "RemoveGear", new String[]{Main.nameMap.get(gear)});
-        Main.printSeq(3, "answer", Main.nameMap.get(this), "RemoveGear", new String[]{""});
         if (gear.GetID()==2)
         {
             Main.printSeq(3, "call", Main.nameMap.get(this), "LowerCapacity", new String[]{"bSize"});
@@ -320,172 +270,122 @@ public class Virologist implements Timeable
         this.f1.VirologistKilled(this);
     }
 
-/**
-* Leírás:
-*  Egy ágenst kenését valósítja meg egy másik virológusra.
-* @param  a
-* @param  v
-*/
+    /**
+    * Leírás:
+    *  Egy ágenst kenését valósítja meg egy másik virológusra.
+    * @param  a
+    * @param  v
+    */
     public void UnderAttack(Agent a, Virologist v)
     {
-        if(!(v.attributeList.stream().anyMatch(x->x instanceof Immune)))
-        {
-            if(gearList.stream().anyMatch(x->x instanceof Gloves))
-            {
+        if(!(v.attributeList.stream().anyMatch(x->x instanceof Immune))) {
+            if (gearList.stream().anyMatch(x -> x instanceof Gloves)) {
                 this.gearList.get(0).Use(v, a);
-            }
-            else if (gearList.stream().anyMatch(x->x instanceof Cloak))
-            {
+            } else if (gearList.stream().anyMatch(x -> x instanceof Cloak)) {
                 this.gearList.get(1).Use(this, a);
-            }
-            else if (a instanceof BearVirus && gearList.stream().anyMatch(x->x instanceof Axe))
-            {
+            } else if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe)) {
                 this.gearList.get(3).Use(v, a);
-            }
-            else
-            {
+            } else {
                 this.attributeList.add(a.AllotAttribute(a));
             }
         }
-
-        /*
-        Main.printSeq(1,"call", Main.nameMap.get(this), "UnderAttack", new String[]{Main.nameMap.get(a), Main.nameMap.get(v)});
-        if(!gearList.isEmpty()) {
-            if(gearList.get(0) != null) {
-                gearList.get(0).Use(v,a);
-                Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});
-                return;
-            } else if (gearList.get(1) != null) {
-                if(gearList.get(1).Use(v,a)) {
-                    Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});
-                    return;
-                }
-            }
-        }
-        if(!attributeList.isEmpty()) {
-            if(attributeList.stream().anyMatch(x->x instanceof Immune)){
-                Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});
-                return;
-            }
-        }
-        else {
-            attributeList.add(a.AllotAttribute(a) );
-        }
-
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});*/
     }
 
-/**
-* Leírás:
-* Átadja a virológusnak a letapogatott genetikai kódot.
-* @param  geneticCode
-*/
+    /**
+    * Leírás:
+    * Átadja a virológusnak a letapogatott genetikai kódot.
+    * @param  geneticCode
+    */
     public void ReceiveGeneticCode(Agent geneticCode)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "ReceiveGeneticCode", new String[]{Main.nameMap.get(geneticCode)});
         if(!HasThisAgent(geneticCode))
             LearnGeneticCode(geneticCode);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "ReceiveGeneticCode", new String[]{Main.nameMap.get(geneticCode)});
     }
 
-/**
-* Leírás:
-* Átadja a virológusnak a felvenni kívánt felszerelést.
-* @param  gear
-*/
+    /**
+    * Leírás:
+    * Átadja a virológusnak a felvenni kívánt felszerelést.
+    * @param  gear
+    */
     public void ReceiveGear(Gear gear)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "RecieveGear", new String[]{Main.nameMap.get(gear)});
         if(!HasThisGear(gear))
         {
             gearList.add(gear.GetID(),gear.PickUp(this));
         }
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "RecieveGear", new String[]{Main.nameMap.get(gear)});
     }
-
 
     public void ReceiveAgent(Agent agent)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "ReceiveAgent", new String[]{Main.nameMap.get(agent)});
         if(!HasThisAgent(agent))
         {
             agentList.add(agent);
-
         }
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "ReceiveAgent", new String[]{Main.nameMap.get(agent)});
     }
 
-/**
-* Leírás:
-* Átadja a virológusnak az adott mezőről felszedett alapanyagot.
-* @param  material
-* @param  amount
-*/
+    /**
+    * Leírás:
+    * Átadja a virológusnak az adott mezőről felszedett alapanyagot.
+    * @param  material
+    * @param  amount
+    */
     public void MaterialPickedUp(String material, int amount)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "MaterialPickedUp", new String[]{"material","amount"});
         if (material.equals("aminosav")){
             amountAminoacid= Math.min(amountAminoacid + amount, maxAmount);
         }
         else if(material.equals("nukleotid")) this.amountNucleotid = Math.min(amountNucleotid + amount, maxAmount);
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "MaterialPickedUp", new String[]{"material","amount"});
     }
 
-/**
-* Leírás:
-* A visszakenés műveletét valósítja meg, azaz a rákent ágenst visszakeni a kenőjére.
-* @param  a
-*/
-    public void GloveAttack(Agent a)
+    /**
+    * Leírás:
+    * A visszakenés műveletét valósítja meg, azaz a rákent ágenst visszakeni a kenőjére.
+    * @param  a
+    */
+    public void SpecialAttack(Agent a)
     {
-        Main.printSeq(3,"call", Main.nameMap.get(this), "GloveAttack", new String[]{Main.nameMap.get(a)});
         attributeList.add(a.AllotAttribute(a));
-        Main.printSeq(3,"answer", Main.nameMap.get(this), "GloveAttack", new String[]{""});
     }
 
-/**
-* Leírás:
-* Megtanulja a virológus paraméterül kapott genetikai kódot.
-* @param  geneticCode
-*/
+    /**
+    * Leírás:
+    * Megtanulja a virológus paraméterül kapott genetikai kódot.
+    * @param  geneticCode
+    */
     public void LearnGeneticCode(Agent geneticCode)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "LearnGeneticCode", new String[]{Main.nameMap.get(geneticCode)});
         geneticCodeList.add(geneticCode);
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "LearnGeneticCode", new String[]{Main.nameMap.get(geneticCode)});
     }
 
-/**
-* Leírás:
-* Levonja az ágens előállításához szükséges nyersanyagok számát a virológustól, ha az rendelkezésre áll.
-* @param  v
-* @param  a
-*/
+    /**
+    * Leírás:
+    * Levonja az ágens előállításához szükséges nyersanyagok számát a virológustól, ha az rendelkezésre áll.
+    * @param  v
+    * @param  a
+    */
     public void CostTakeAway(Virologist v,Agent a)
     {
-        Main.printSeq(2,"call",Main.nameMap.get(this),"CostTakeAway",new String[] {Main.nameMap.get(v),Main.nameMap.get(a)});
         v.amountNucleotid -= a.GetNucleotidCost();
         v.amountAminoacid -= a.GetAminoacidCost();
-        Main.printSeq(2,"answer",Main.nameMap.get(this),"CostTakeAway",new String[] {""});
     }
 
-/**
-* Leírás:
-* Megvizsgálja, hogy van-e az adott ágense.
-* @param  a
-* @return Boolean
-*/
+    /**
+    * Leírás:
+    * Megvizsgálja, hogy van-e az adott ágense.
+    * @param  a
+    * @return Boolean
+    */
     public Boolean HasThisAgent(Agent a)
     {
         return geneticCodeList.contains(a);
     }
 
-/**
-* Leírás:
-* Megvizsgálja, hogy van-e az adott felszerelése.
-* @param  g
-* @return Boolean
-*/
+    /**
+    * Leírás:
+    * Megvizsgálja, hogy van-e az adott felszerelése.
+    * @param  g
+    * @return Boolean
+    */
     public Boolean HasThisGear(Gear g)
     {
         for (Gear gear: gearList)
@@ -501,101 +401,95 @@ public class Virologist implements Timeable
         return false;
     }
 
-/**
-* Leírás:
-* Ha egy adott ágens felhasználhatóságának ideje lejár, ez a metódus távolítja el azt a virológus megfelelő listájából.
-* @param  va
-*/
+    /**
+    * Leírás:
+    * Ha egy adott ágens felhasználhatóságának ideje lejár, ez a metódus távolítja el azt a virológus megfelelő listájából.
+    * @param  va
+    */
     public void RemoveAttribute(VAttribute va)
     {
         this.attributeList.remove(va);
     }
 
-/**
-* Leírás:
-* Megnöveli a virológust nyersanyag kapacitását.
-* @param  bSize
-*/
+    /**
+    * Leírás:
+    * Megnöveli a virológust nyersanyag kapacitását.
+    * @param  bSize
+    */
     public void ExtendCapacity(int bSize)
     {
-        Main.printSeq(5,"call", Main.nameMap.get(this), "ExtendCapacity", new String[]{"bSize"});
         this.maxAmount+=bSize;
-        Main.printSeq(5,"answer", Main.nameMap.get(this), "ExtendCapacity", new String[]{"bSize"});
     }
 
-/**
-* Leírás:
-* Csökkenti a virológust nyersanyag kapacitását
-* @param  bSize
-*/
+    /**
+    * Leírás:
+    * Csökkenti a virológust nyersanyag kapacitását
+    * @param  bSize
+    */
     public void LowerCapacity(int bSize)
     {
         maxAmount-=bSize;
-        amountNucleotid= Math.min(amountNucleotid, maxAmount);
-        amountAminoacid= Math.min(amountAminoacid, maxAmount);
     }
 
-/**
-* Leírás:
-* visszadja a amountAminoacid tagváltozó értékét.
-* @return int amountAminoacid
-*/
+    /**
+    * Leírás:
+    * visszadja a amountAminoacid tagváltozó értékét.
+    * @return int amountAminoacid
+    */
     public int GetAmountAminoacid()
     {
         return amountAminoacid;
     }
 
-/**
-* Leírás:
-* visszadja a amountNukleotid tagváltozó értékét.
-* @return int amountNucleotid
-*/
+    /**
+    * Leírás:
+    * visszadja a amountNukleotid tagváltozó értékét.
+    * @return int amountNucleotid
+    */
     public int GetAmountNucleotid()
     {
         return amountNucleotid;
     }
 
-/**
-* Leírás:
-* Beállítja az aminoacid értékét.
-* @param  aa
-*/
+    /**
+    * Leírás:
+    * Beállítja az aminoacid értékét.
+    * @param  aa
+    */
     public void SetAmountAminoacid(int aa)
     {
         amountAminoacid=aa;
     }
 
-/**
-* Leírás:
-* Beállítja nukleotid értékét
-* @param  an
-*/
+    /**
+    * Leírás:
+    * Beállítja nukleotid értékét
+    * @param  an
+    */
     public void SetAmountNucleotid(int an)
     {
         amountNucleotid=an;
     }
 
-/**
-* Leírás:
-* Visszadja a maxAmount tagváltozó értékét.
-* @return int maxAmount
-*/
+    /**
+    * Leírás:
+    * Visszadja a maxAmount tagváltozó értékét.
+    * @return int maxAmount
+    */
     public int GetMaxAmount()
     {
         return maxAmount;
     }
 
-/**
-* Leírás:
-* Beállítja azt a kezdő mezőt amin a Virológus áll.
-* @param  f1_
-*/
+    /**
+    * Leírás:
+    * Beállítja azt a kezdő mezőt amin a Virológus áll.
+    * @param  f1_
+    */
     public void SetInitialField(Field f1_)
     {
         f1 = f1_;
-        Main.printSeq(0,"call",Main.nameMap.get(this),"SetInitialField",new String[]{Main.nameMap.get(f1)});
         f1.AddVirologist(this);
-        Main.printSeq(0,"answer",Main.nameMap.get(this),"SetInitialField",new String[]{Main.nameMap.get(f1)});
     }
 
     /**
@@ -607,5 +501,19 @@ public class Virologist implements Timeable
     public Gear GetGear(int id)
     {
         return this.gearList.get(id);
+    }
+
+    public void RemoveAgent(Agent a) {
+        agentList.remove(a);
+    }
+
+    @Override
+    public void Time() {
+        for(Agent a : agentList) {
+            a.Step(this);
+        }
+        for(VAttribute va : attributeList) {
+            va.Step(this);
+        }
     }
 }

@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Cloak extends Gear
 {
-    private final double chance;
+    private double chance;
 
     /**
      * Leírás: Cloak objektum konstruktora
@@ -35,11 +35,8 @@ public class Cloak extends Gear
      */
     @Override
     public Boolean Use(Virologist v, Agent a) {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v), Main.nameMap.get(a)});
-
         Random rng = new Random();
         int result = rng.nextInt(100)+1;
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "Use", new String[]{""});
         return result <= chance;
     }
 
@@ -52,8 +49,6 @@ public class Cloak extends Gear
     @Override
     public Cloak PickUp(Virologist v)
     {
-        Main.printSeq(3,"call", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
-        Main.printSeq(3,"answer", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
         return this;
     }
 

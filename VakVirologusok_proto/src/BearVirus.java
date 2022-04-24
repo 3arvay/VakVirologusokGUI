@@ -12,26 +12,22 @@ public class BearVirus extends Agent{
     @Override
     public int GetUseTime()
     {
-        return this.useTime;
+        return useTime;
     }
 
     @Override
     public VAttribute AllotAttribute(Agent a)
     {
-        BearMode temp = new BearMode();
-        return temp;
+        return new BearMode();
     }
 
     @Override
     public Agent Clone(Virologist v, Agent a)
     {
         v.CostTakeAway(v,a);
-        BearVirus temp = new BearVirus();
-        return temp;
+        return new BearVirus();
     }
 
     @Override
-    public void KillAgent(Virologist v)
-    {
-    }
+    public void KillAgent(Virologist v) {}
 }

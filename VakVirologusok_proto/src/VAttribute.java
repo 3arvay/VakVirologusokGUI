@@ -4,7 +4,7 @@ import java.util.Map;
 * Leírás: Egy ágensek hatásának a pillanatnyi aktivitását hajtják végre a leszármazottjai.
 *
 */
-public abstract class VAttribute implements Timeable
+public abstract class VAttribute
 {
     protected int durationtime;
     
@@ -13,28 +13,18 @@ public abstract class VAttribute implements Timeable
     *
     */
     public abstract void AttributeChanges(Virologist v);
-    /*{
-        Main.printSeq(1, "call", Main.nameMap.get(this), "AttributeChanges", new String[]{""});
-        Main.printSeq(2, "call", "v", "RemoveAttribute", new String[]{"v"});
-        Main.printSeq(2, "answer", "v", "RemoveAttribute", new String[]{"v"});
-        Main.printSeq(1, "answer", Main.nameMap.get(this), "AttributeChanges", new String[]{""});
-
-    }*/
     
     /**
     * Leírás: Az idő folyamatos múlását folytatja.
     *
     */
-    public void Time()
+    public void Step(Virologist v)
     {
-        /*Main.printSeq(0, "call", Main.nameMap.get(this), "Time", new String[]{""});
         durationtime-=1;
         if(durationtime == 0)
         {
-            AttributeChanges();
+            AttributeChanges(v);
         }
-        Main.printSeq(0, "answer", Main.nameMap.get(this), "Time", new String[]{""});
-         */
     }
     
     /**

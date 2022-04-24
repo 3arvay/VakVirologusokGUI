@@ -10,7 +10,9 @@ public class Warehouse extends Field
 {
     private int amount;
     private String material;
-    
+
+    // ToDo init konstruktor
+
     /**
     * Leírás: A Warehouse konstruktora
     *
@@ -25,10 +27,8 @@ public class Warehouse extends Field
     @Override
     public List<Virologist> AddBear(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         SetAmount();
         AddVirologist(v);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         return standsHere;
     }
 
@@ -40,10 +40,8 @@ public class Warehouse extends Field
     @Override
     public void AddVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.add(v);
         v.MaterialPickedUp(material,amount);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
     }
 
     /**

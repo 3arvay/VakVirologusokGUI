@@ -9,7 +9,7 @@ public class Laboratory extends Field
     private Agent geneticCode;
     private boolean infecting;
 
-    public Laboratory(boolean infecting_, Agent geneticCode_){
+    public Laboratory(boolean infecting_, Agent geneticCode_) {
         infecting = infecting_;
         geneticCode = geneticCode_;
     }
@@ -22,13 +22,12 @@ public class Laboratory extends Field
     @Override
     public void AddVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.add(v);
         v.ReceiveGeneticCode(this.geneticCode);
         if(this.infecting)
         {
             BearVirus bv = new BearVirus();
-            v.UnderAttack(bv);
+            v.SpecialAttack(bv);
         }
     }
 
@@ -72,7 +71,7 @@ public class Laboratory extends Field
 
     }
 
-
+    // ToDo init konstuktor, random lab
 
 
     /**

@@ -1,10 +1,12 @@
 /**
- * Leírás: A virológus egyik felszerelését, a baltát valósítja meg.
+ * Leírás: Balta felszerelés megvalósítása
  */
-public class Axe extends Gear
-{
+public class Axe extends Gear {
     private int durability;
 
+    /**
+     *
+     */
     public Axe()
     {
         durability = 1;

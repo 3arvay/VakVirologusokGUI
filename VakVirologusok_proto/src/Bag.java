@@ -8,6 +8,13 @@ public class Bag extends Gear
     private int size;
 
     /**
+     * Leírás: Bag objektum konstruktora
+     */
+    Bag() {
+        id = 2;
+        size = 30;
+    }
+    /**
      * Leírás: visszadja a size tagváltozó értékét
      *
      * @return int: a size tagváltozó értéke
@@ -15,14 +22,6 @@ public class Bag extends Gear
     public int GetSize()
     {
         return size;
-    }
-
-    /**
-     * Leírás: Bag objektum konstruktora
-     */
-    public Bag()
-    {
-        this.id = 2;
     }
 
     public void listAttributes(Map<String, Object> _varMap) {
@@ -44,11 +43,7 @@ public class Bag extends Gear
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
-        /*Main.printSeq(4,"call", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v),"a"});
-        v.ExtendCapacity(size);
-        Main.printSeq(4,"answer", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v),"a"});
-        */
-        return false;
+        return null;
     }
 
     /**
@@ -60,10 +55,7 @@ public class Bag extends Gear
     @Override
     public Gear PickUp(Virologist v)
     {
-        Main.printSeq(3,"call", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
-        //Use(v,null);
         v.ExtendCapacity(size);
-        Main.printSeq(3,"answer", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
         return this;
     }
 

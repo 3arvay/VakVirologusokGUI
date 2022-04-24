@@ -1,11 +1,7 @@
-/**
-* Ez valósítja meg a Stun ágenst, ez kenhető virológusokra. Amelyik virológust ezzel megkenik az lebénul
-*/
-
 import java.util.Map;
 
 /**
- *
+ * Ez valósítja meg a Stun ágenst, ez kenhető virológusokra. Amelyik virológust ezzel megkenik az lebénul
  */
 public class Stun extends Agent
 {
@@ -26,9 +22,7 @@ public class Stun extends Agent
     @Override
     public int GetUseTime()
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        return this.useTime;
+        return useTime;
     }
     
     /**
@@ -40,10 +34,7 @@ public class Stun extends Agent
     @Override
     public Stunned AllotAttribute(Agent a)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "AllotAttribute", new String[]{Main.nameMap.get(a)});
-        Stunned temp = new Stunned();
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "AllotAttribute", new String[]{""});
-        return temp;
+        return new Stunned();
     }
     
     /**
@@ -56,12 +47,8 @@ public class Stun extends Agent
     @Override
     public Stun Clone(Virologist v,Agent s)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"Clone",new String[] {Main.nameMap.get(v),Main.nameMap.get(s)});
         v.CostTakeAway(v,s);
-        Stun temp = new Stun();
-        Main.nameMap.put(temp, "s");
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"Clone",new String[] {""});
-        return temp;
+        return new Stun();
 
     }
     
@@ -73,11 +60,6 @@ public class Stun extends Agent
     @Override
     public void KillAgent(Virologist v)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"KillAgent",new String[] {Main.nameMap.get(v)});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"KillAgent",new String[] {""});
-
-
+        v.RemoveAgent(this);
     }
-
-
 }

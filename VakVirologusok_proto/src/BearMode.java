@@ -17,8 +17,6 @@ public class BearMode extends VAttribute {
      *
      */
     @Override
-    public void AttributeChanges(Virologist v)
-    {
-    }
+    public void AttributeChanges(Virologist v) {}
 
 }

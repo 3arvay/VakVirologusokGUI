@@ -54,9 +54,7 @@ public class Field
     */
     public void AddNeighbour(Field f)
     {
-        Main.printSeq(0,"call", Main.nameMap.get(this), "AddNeighbour", new String[]{Main.nameMap.get(f)});
         Neighbours.add(f);
-        Main.printSeq(0,"answer", Main.nameMap.get(this), "AddNeighbour", new String[]{Main.nameMap.get(f)});
     }
 
     /**
@@ -66,9 +64,7 @@ public class Field
     */
     public void AddVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.add(v);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
     }
 
     /**
@@ -78,9 +74,7 @@ public class Field
      */
     public List<Virologist> AddBear(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         AddVirologist(v);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
         return standsHere;
     }
 
@@ -91,9 +85,7 @@ public class Field
     */
     public void RemoveVirologist(Virologist v)
     {
-        Main.printSeq(1,"call", Main.nameMap.get(this), "RemoveVirologist", new String[]{Main.nameMap.get(v)});
         standsHere.remove(v);
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "RemoveVirologist", new String[]{Main.nameMap.get(v)});
     }
 
     /**
@@ -102,8 +94,7 @@ public class Field
     * @param f1
     * @return Field temp
     */
-    public Field GetRandomNeighbour(Field f1){
-        Main.printSeq(1,"call", Main.nameMap.get(this), "GetRandomNeighbour", new String[]{Main.nameMap.get(f1)});
+    public Field GetRandomNeighbour(Field f1) {
 
         Random rand = new Random();
         Field temp=Neighbours.get(rand.nextInt(Neighbours.size()));
@@ -111,18 +102,7 @@ public class Field
         {
             temp=Neighbours.get(rand.nextInt(Neighbours.size()));
         }
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "GetRandomNeighbour", new String[]{""});
         return temp;
-    }
-
-    /**
-    * Leírás:
-    * A vitus táncos mozgást valósítja meg.
-    * @param f2
-    */
-    public void GetMeSomewhere(Field f2)
-    {
-
     }
 
     public void VirologistKilled(Virologist v1)

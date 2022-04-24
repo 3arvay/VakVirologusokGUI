@@ -20,9 +20,7 @@ public class Amnesia extends Agent
     @Override
     public int GetUseTime()
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        return this.useTime;
+        return useTime;
     }
 
     /**
@@ -34,8 +32,6 @@ public class Amnesia extends Agent
     @Override
     public VAttribute AllotAttribute(Agent a)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "AllotAttribute", new String[]{Main.nameMap.get(a)});
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "AllotAttribute", new String[]{""});
         return null;
     }
     
@@ -49,12 +45,8 @@ public class Amnesia extends Agent
     @Override
     public Amnesia Clone(Virologist v, Agent a)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"Clone",new String[] {Main.nameMap.get(v),Main.nameMap.get(a)});
         v.CostTakeAway(v,a);
-        Amnesia temp = new Amnesia();
-        Main.nameMap.put(temp, "a");
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"Clone",new String[] {""});
-        return temp;
+        return new Amnesia();
     }
     
     /**
@@ -65,7 +57,6 @@ public class Amnesia extends Agent
     @Override
     public void KillAgent(Virologist v)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"KillAgent",new String[] {Main.nameMap.get(v)});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"KillAgent",new String[] {""});
+        v.RemoveAgent(this);
     }
 }

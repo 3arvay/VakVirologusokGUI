@@ -20,9 +20,7 @@ public class Dance extends Agent
     @Override
     public int GetUseTime()
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"GetUseTime",new String[] {""});
-        return this.useTime;
+        return useTime;
     }
 
     /**
@@ -34,10 +32,7 @@ public class Dance extends Agent
     @Override
     public VAttribute AllotAttribute(Agent a)
     {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "AllotAttribute", new String[]{Main.nameMap.get(a)});
-        Dancing temp = new Dancing();
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "AllotAttribute", new String[]{""});
-        return temp;
+        return new Dancing();
     }
 
     /**
@@ -50,12 +45,8 @@ public class Dance extends Agent
     @Override
     public Dance Clone(Virologist v, Agent a)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"Clone",new String[] {Main.nameMap.get(v),Main.nameMap.get(a)});
         v.CostTakeAway(v,a);
-        Dance temp = new Dance();
-        Main.nameMap.put(temp, "d");
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"Clone",new String[] {""});
-        return temp;
+        return new Dance();
     }
 
     /**
@@ -66,7 +57,6 @@ public class Dance extends Agent
     @Override
     public void KillAgent(Virologist v)
     {
-        Main.printSeq(1,"call",Main.nameMap.get(this),"KillAgent",new String[] {Main.nameMap.get(v)});
-        Main.printSeq(1,"answer",Main.nameMap.get(this),"KillAgent",new String[] {""});
+        v.RemoveAgent(this);
     }
 }

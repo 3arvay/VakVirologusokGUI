@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
 * Az ágenst valósítja meg és annak változóit.
 */
@@ -69,5 +71,18 @@ public abstract class Agent
         }
         System.out.println( "useTime:"+useTime+"nucleotidCost:"+nucleotidCost+
                 "aminoacidCost:"+aminoacidCost);
+    }
+
+    /**
+     * Leírás: Az ágens felhasználhatósági ideje csökken
+     * @param v
+     */
+    public void Step(Virologist v)
+    {
+        useTime -= 1;
+        if(useTime == 0)
+        {
+            KillAgent(v);
+        }
     }
 }
