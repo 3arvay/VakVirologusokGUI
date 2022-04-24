@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.util.Random;
 
 /**
 * Leírás: Az óvóhely mező megvalósításáért felelős és számontartja az ott található felszerelés típusát.
@@ -7,7 +8,9 @@ public class Shelter extends Field
 {
     private Gear gear;
 
-    // ToDo init konstruktor
+    public Shelter() {
+        gear = new Gear[] {new Gloves(), new Cloak(), new Bag(), new Axe()} [new Random().nextInt(4)];
+    }
     
     /**
      * Leírás: Virológus lépését valósítja meg a óvóhely mezőre, és felveszi az adott felszerelést, ha még nincs nála az adott típusból.

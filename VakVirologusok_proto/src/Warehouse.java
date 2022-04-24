@@ -11,7 +11,6 @@ public class Warehouse extends Field
     private int amount;
     private String material;
 
-    // ToDo init konstruktor
 
     /**
     * Leírás: A Warehouse konstruktora

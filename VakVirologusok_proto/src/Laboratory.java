@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.util.Random;
 
 /**
 * Leírás: Megvalósítja a laboratórium mezőt. Számon tartja a laboratórium falára felkarcolt genetikai kódot.
@@ -9,9 +10,9 @@ public class Laboratory extends Field
     private Agent geneticCode;
     private boolean infecting;
 
-    public Laboratory(boolean infecting_, Agent geneticCode_) {
-        infecting = infecting_;
-        geneticCode = geneticCode_;
+    public Laboratory() {
+        geneticCode = new Agent[] {new Stun(), new Dance(), new Immunity(), new Amnesia()} [new Random().nextInt(4)];
+        infecting = new Random().nextBoolean();
     }
 
     /**
