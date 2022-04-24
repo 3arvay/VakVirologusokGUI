@@ -28,6 +28,7 @@ public class Laboratory extends Field
     public void AddVirologist(Virologist v)
     {
         standsHere.add(v);
+        v.SetF1(this);
         v.ReceiveGeneticCode(this.geneticCode);
         if(this.infecting)
         {

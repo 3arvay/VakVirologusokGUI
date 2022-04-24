@@ -16,9 +16,6 @@ public class Warehouse extends Field
 
     /**
     * Leírás: A Warehouse konstruktora
-    *
-    * @param amount_: Megadja mennyi darab anyag található ezen a mezőn
-    * @param material_: Megadja milyen fajta angya található a mezőn
     */
     public Warehouse(){
         amount=new Random().nextInt(200);
@@ -52,6 +49,7 @@ public class Warehouse extends Field
     public void AddVirologist(Virologist v)
     {
         standsHere.add(v);
+        v.SetF1(this);
         v.MaterialPickedUp(material,amount);
     }
 

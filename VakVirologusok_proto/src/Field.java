@@ -64,6 +64,7 @@ public class Field
     public void AddVirologist(Virologist v)
     {
         standsHere.add(v);
+        v.SetF1(this);
     }
 
     /**
@@ -94,14 +95,20 @@ public class Field
     * @return Field temp
     */
     public Field GetRandomNeighbour(Field f1) {
-
         Random rand = new Random();
         Field temp=Neighbours.get(rand.nextInt(Neighbours.size()));
-        while (!temp.equals(f1) && !temp.equals(this))
+        for(Field f : Neighbours) {
+            if(!f.equals(f1) && !f.equals(this)) {
+                return f;
+            }
+        }
+        return f1;
+        /*
+        while ( temp != f1 && temp != this)
         {
             temp=Neighbours.get(rand.nextInt(Neighbours.size()));
         }
-        return temp;
+        return temp;*/
     }
 
     public void VirologistKilled(Virologist v1)

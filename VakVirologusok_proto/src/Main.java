@@ -312,7 +312,7 @@ public class Main {
                             orderElements[2].matches("l\\d+_\\d")) || orderElements[2].matches("w\\d+_\\d")) {
                             //Field f = (Field) varMap.get(orderElements[2]);
                             //Virologist v = (Virologist) varMap.get(orderElements[1]);
-                            ((Field) varMap.get(orderElements[2])).AddVirologist(((Virologist) varMap.get(orderElements[1])));
+                            ((Virologist) varMap.get(orderElements[1])).Move((Field) varMap.get(orderElements[2]));
                             //f.AddVirologist(v);
                         } else {
                             throw new IllegalArgumentException();

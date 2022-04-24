@@ -21,6 +21,7 @@ public class Shelter extends Field
     public void AddVirologist(Virologist v)
     {
         standsHere.add(v);
+        v.SetF1(this);
         v.ReceiveGear(gear);
     }
 

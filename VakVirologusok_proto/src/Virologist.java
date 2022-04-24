@@ -40,6 +40,10 @@ public class Virologist implements Timeable
         f1=null;
     }
 
+    public void SetF1 (Field f) {
+        f1 = f;
+    }
+
     public void setter(String type, String value){
         if(type.equals("amountNucleotid")){
             amountNucleotid=Integer.parseInt(value);
@@ -108,13 +112,15 @@ public class Virologist implements Timeable
         }
 
         i = 1;
+        j=1;
         while (i <= attributeList.size()) {
             for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
                 if (entry.getValue().equals(attributeList.get(i-1))) {
-                    System.out.println("vattribute" + i++ + ":" + entry.getKey());
+                    System.out.println("vattribute" + j++ + ":" + entry.getKey());
                     break;
                 }
             }
+            i++;
         }
     }
 
@@ -125,26 +131,39 @@ public class Virologist implements Timeable
     */
     public void Move(Field f2)
     {
-        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) && !attributeList.stream().anyMatch(x->x instanceof Stunned))
-        {
-            this.f1.RemoveVirologist(this);
-            f2.AddVirologist(this);
-        }
-        else if(attributeList.stream().anyMatch(x->x instanceof BearMode))
+        if(attributeList.stream().anyMatch(x->x instanceof BearMode))
         {
             this.f1.RemoveVirologist(this);
             Field f3 = f1.GetRandomNeighbour(f2);
             List<Virologist> attackThese = f3.AddBear(this);
+            BearVirus bv = new BearVirus();
+            String temp = "-";
             for(Virologist v :  attackThese){
-                BearVirus bv = new BearVirus();
-                v.UnderAttack(bv, this);
+                if(!v.equals(this)){
+                    for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+                        if (entry.getValue().equals(this)) {
+                            temp = "bv"+entry.getKey().substring(1);
+                        }
+                    }
+                    if(!Main.varMap.containsValue(bv)) {
+                        Main.varMap.put(temp, bv);
+                    }
+                    v.UnderAttack(bv, this);
+                }
             }
+            return;
         }
-        else if(attributeList.stream().anyMatch(x->x instanceof Dancing))
+        if(attributeList.stream().anyMatch(x->x instanceof Dancing))
         {
             this.f1.RemoveVirologist(this);
-            Field f3 = f2.GetRandomNeighbour(f1);
+            Field f3 = f1.GetRandomNeighbour(f2);
             f3.AddVirologist(this);
+            return;
+        }
+        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) && !attributeList.stream().anyMatch(x->x instanceof Stunned))
+        {
+            this.f1.RemoveVirologist(this);
+            f2.AddVirologist(this);
         }
     }
 
@@ -315,8 +334,11 @@ public class Virologist implements Timeable
                         case 'd':
                             VAname  = temp+"i"+entry.getKey().substring(1);
                             break;
-                        default:
+                        case 'i':
                             VAname  = temp+"m"+entry.getKey().substring(1);
+                            break;
+                        default:
+                            VAname  = temp+"m"+entry.getKey().substring(2);
                             break;
                     }
                 }
