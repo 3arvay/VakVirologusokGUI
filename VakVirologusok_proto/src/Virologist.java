@@ -38,15 +38,22 @@ public class Virologist implements Timeable
         agentList = new ArrayList<Agent>();
         f1=null;
     }
-    private void find(Object a, Map<String, Object> _varMap){
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(a)) {
-                System.out.println(entry.getKey() + ":");
-                break;
-            }
+
+    public void setter(String type, String value){
+        if(type.equals("amountNucleotid")){
+            amountNucleotid=Integer.parseInt(value);
+        }
+        else if(type.equals("amountAminoacid")){
+            amountAminoacid=Integer.parseInt(value);
+        }
+        else if(type.equals("maxAmount")){
+            maxAmount=Integer.parseInt(value);
+        }
+        else{
+            System.out.println("Hibás paramétert adtál meg");
         }
     }
-    //stathoz kell
+
     public void listAttributes(Map<String, Object> _varMap) {
         for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
             if (entry.getValue().equals(this)) {
@@ -288,7 +295,12 @@ public class Virologist implements Timeable
         }
         Main.printSeq(2,"answer", Main.nameMap.get(this), "RecieveGear", new String[]{Main.nameMap.get(gear)});
     }
-
+    public void RecieveAttribute(VAttribute attribute){
+        if(attributeList.contains(attribute)){
+            attributeList.remove(attribute);
+        }
+        attributeList.add(attribute);
+    }
 /**
 * Leírás:
 * Átadja a virológusnak az adott mezőről felszedett alapanyagot.

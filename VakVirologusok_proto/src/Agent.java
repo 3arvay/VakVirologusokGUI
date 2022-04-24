@@ -9,7 +9,16 @@ public abstract class Agent
     protected int nucleotidCost;
     protected int aminoacidCost;
     private VAttribute vAttribute;
-    
+
+
+    public void setter(String value){
+        try{
+            useTime=Integer.parseInt(value);
+        }
+        catch(NumberFormatException e){
+            System.out.println("Hibás számformátumot adtál meg");
+        }
+    }
     /**
      * Leírás: Ágens hatásának kezdetét kiváltó metódus
      *

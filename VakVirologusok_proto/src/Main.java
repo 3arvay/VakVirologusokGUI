@@ -1,8 +1,5 @@
-import javax.lang.model.element.VariableElement;
-import java.io.Console;
-import java.lang.reflect.Array;
+
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -40,6 +37,20 @@ public class Main {
                 return (Gloves) varMap.get(gearName);
         }
     }
+
+    public static VAttribute attributeSwitch(String attributeName){
+        switch (attributeName.charAt(0)){
+            case'b':
+                return (BearMode) varMap.get(attributeName);
+            case'i':
+                return (Immune) varMap.get(attributeName);
+            case's':
+                return (Stunned) varMap.get(attributeName);
+            default:
+                return (Dancing) varMap.get(attributeName);
+        }
+    }
+
     //  Lehet majd megcsinálom ezzel
     public <T> boolean checkEquals(T actual, T []expected) {
         for(T value : expected) {
@@ -49,28 +60,149 @@ public class Main {
         }
         return false;
     }
-    /*
-        Vagy ezzel
-     if (Stream.of(b, c, d).anyMatch(x -> x.equals(a))) {
-    // ... do something ...
-}
-    */
-    public static void helperStatSet(String type, String varName) throws IllegalArgumentException{
-        if(varName.matches("f\\d+_\\d")){ ((Field)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("l\\d+_\\d")){  ((Laboratory)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("w\\d+_\\d")){  ((Warehouse)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("sh\\d+_\\d")){ ((Shelter)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("c\\d+_\\d")){  ((Cloak)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("v\\d+_\\d")){  ((Virologist)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("s\\d+_\\d")){  ((Stun)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("d\\d+_\\d")){  ((Dance)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("i\\d+_\\d")){  ((Immunity)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("a\\d+_\\d")){  ((Amnesia)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("bm\\d+_\\d")){ ((BearMode)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("st\\d+_\\d")){ ((Stunned)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("di\\d+_\\d")){ ((Dancing)varMap.get(varName)).listAttributes(varMap);}
-        else if(varName.matches("im\\d+_\\d")){ ((Immune)varMap.get(varName)).listAttributes(varMap);}
+
+    public static void helperStatSet(String[] params) throws IllegalArgumentException{
+        if(params[1].matches("f\\d+_\\d")){
+            if(params[0].equals("stat")) ((Field)varMap.get(params[1])).listAttributes(varMap);}
+        else if(params[1].matches("l\\d+_\\d")){
+            if(params[0].equals("stat")) {((Laboratory)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                try{
+                    if(params[2].equals("infecting")){
+                        ((Laboratory)varMap.get(params[1])).setter(params[3]);
+                    }
+                    else{ throw new IllegalArgumentException();}
+                }catch(IllegalArgumentException e){
+                    System.out.println("Hibás paramétert adtál meg");
+                }
+            }
+        }
+        else if(params[1].matches("w\\d+_\\d")) {
+            if(params[0].equals("stat")){((Warehouse) varMap.get(params[1])).listAttributes(varMap);}
+            else if (params[0].equals("set")) {
+                try {
+                    if (params[2].equals("material") || params[2].equals("amount")) {
+                        ((Warehouse) varMap.get(params[1])).setter(params[2], params[3]);
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+            }
+        }
+        else if(params[1].matches("sh\\d+_\\d")){
+            if(params[0].equals("stat")) ((Shelter)varMap.get(params[1])).listAttributes(varMap);}
+        else if(params[1].matches("c\\d+_\\d")){
+            if(params[0].equals("stat")) {
+                ((Cloak)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                try{
+                    if(params[2].equals("chance")){
+                        ((Cloak)varMap.get(params[1])).setter(params[3]);
+                    }
+                }
+                catch(IllegalArgumentException e){
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+            }
+        }
+        else if(params[1].matches("v\\d+_\\d")) {
+            if (params[0].equals("stat")) {
+                ((Virologist) varMap.get(params[1])).listAttributes(varMap);
+            } else if (params[0].equals("set")) {
+                try {
+                    if (params[2].equals("amountAminoacid") || params[2].equals("amountNukleotid") ||
+                            params[2].equals("maxAmount")) {
+                        ((Virologist) varMap.get(params[1])).setter(params[2], params[3]);
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+            }
+        }
+        else if(params[1].matches("s\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Stun)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                if(params[2].equals("useTime")){
+                    ((Stun)varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+
+        else if(params[1].matches("d\\d+_\\d")) {
+            if (params[0].equals("stat")) {
+                ((Dance) varMap.get(params[1])).listAttributes(varMap);
+            }
+            else if (params[0].equals("set")) {
+                if (params[2].equals("useTime")) {
+                    ((Dance) varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+        else if(params[1].matches("a\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Amnesia)varMap.get(params[1])).listAttributes(varMap);
+            }
+            else if(params[0].equals("set")){
+                if(params[2].equals("useTime")){
+                    ((Amnesia)varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+        else if(params[1].matches("i\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Immunity)varMap.get(params[1])).listAttributes(varMap);
+            }
+            else if(params[0].equals("set")){
+                if(params[2].equals("useTime")){
+                    ((Immunity)varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+        else if(params[1].matches("im\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Immune)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                if(params[2].equals("durationTime")){
+                    ((Immune)varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+        else if(params[1].matches("bm\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((BearMode)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                if(params[2].equals("durationTime")){
+                    ((BearMode)varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+        else if(params[1].matches("st\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Stunned)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                if(params[2].equals("durationTime")){
+                    ((Stunned)varMap.get(params[1])).setter(params[3]);
+                }
+            }}
+        else if(params[1].matches("di\\d+_\\d")){
+            if(params[0].equals("stat")){
+                ((Dancing)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                if(params[2].equals("durationTime")) {
+                    ((Dancing) varMap.get(params[1])).setter(params[3]);
+                }
+            }
+        }
+
         else{ throw new IllegalArgumentException(); }
+
+
     }
 
     public static boolean containsVars (String[] vars) throws IllegalArgumentException{
@@ -95,13 +227,7 @@ public class Main {
                         System.out.println(varMap.get(orderElements[2]).getClass().getSimpleName());
                     } catch (ClassNotFoundException e) {
                         System.out.println("Hibás osztálytípust adtál meg.");
-                    } catch (InstantiationException e ) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
+                    } catch (InstantiationException | IllegalAccessException |InvocationTargetException | NoSuchMethodException e) {
                         e.printStackTrace();
                     }
                     return;
@@ -186,9 +312,9 @@ public class Main {
                             Virologist v1 = (Virologist) varMap.get(orderElements[1]);
                             Virologist v2 = (Virologist) varMap.get(orderElements[2]);
                             if (orderElements[2].matches("material")) {
-                                v1.Steal(v1, "material");
+                                v1.Steal(v2, "material");
                             } else {
-                                v1.Steal(v1, "gear");
+                                v1.Steal(v2, "gear");
                             }
                         } else {
                             throw new IllegalArgumentException();
@@ -216,14 +342,17 @@ public class Main {
                         if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("s\\d+_\\d") || orderElements[2].matches("d\\d+_\\d") ||
                                         orderElements[2].matches("a\\d+_\\d") || orderElements[2].matches("i\\d+_\\d"))) {
-                            Virologist v = (Virologist) varMap.get(orderElements[1]);
-                            //v.RecieveAgent(agentSwitch(orderElements[2])); <-- kéne egy ilyen függvény, mert az agentList az privát
+                            //((Virologist) varMap.get(orderElements[1])).RecieveAgent(agentSwitch(orderElements[1]));
                         } else if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("b\\d+_\\d") || orderElements[2].matches("c\\d+_\\d") ||
                                         orderElements[2].matches("ax\\d+_\\d") || orderElements[2].matches("g\\d+_\\d"))) {
-                            Virologist v = (Virologist) varMap.get(orderElements[1]);
-                            v.ReceiveGear(gearSwitch(orderElements[2]));
-                        } else {
+                            ((Virologist) varMap.get(orderElements[1])).ReceiveGear(gearSwitch(orderElements[2]));
+                        } else if (orderElements[1].matches("v\\d+_\\d") &&
+                                (orderElements[2].matches("bm\\d+_\\d") || orderElements[2].matches("di\\d+_\\d") ||
+                                        orderElements[2].matches("im\\d+_\\d") || orderElements[2].matches("st\\d+_\\d"))) {
+                            ((Virologist) varMap.get(orderElements[1])).RecieveAttribute(attributeSwitch(orderElements[2]));
+                        }
+                        else {
                             throw new IllegalArgumentException();
                         }
                     } catch (IllegalArgumentException e) {
@@ -232,8 +361,10 @@ public class Main {
                     return;
                 case "set":
                     try {
-                        // egyelőre nem. :D
-                        helperStatSet("set",orderElements[1]);
+                        if (!containsVars(new String[]{orderElements[1]})) {
+                            throw new IllegalArgumentException();
+                        }
+                        helperStatSet(orderElements);
                     } catch (IllegalArgumentException e) {
                         System.out.println("Hibás argumentumot adtál meg");}
                     return;
@@ -242,7 +373,7 @@ public class Main {
                         if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("s\\d+_\\d") || orderElements[2].matches("d\\d+_\\d") ||
                                         orderElements[2].matches("a\\d+_\\d") || orderElements[2].matches("i\\d+_\\d"))) {
-                            Virologist v = (Virologist) varMap.get(orderElements[1]);
+                            Virologist v = ((Virologist) varMap.get(orderElements[1]));
                             v.CraftAgent(v, agentSwitch(orderElements[2]));
                         } else {
                             throw new IllegalArgumentException();
@@ -257,7 +388,7 @@ public class Main {
                             throw new IllegalArgumentException();
                         }
                         // egyelőre nem. :D
-                        helperStatSet("stat", orderElements[1]);
+                        helperStatSet(orderElements);
                     } catch (IllegalArgumentException e) {
                         System.out.println("Hibás argumentumot adtál meg");
                     }
@@ -310,20 +441,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //Testing
-        /*order("add Field f1");
-        Shelter s = new Shelter();
-        varMap.put("s1_1",s);
-        Field f = (Field) varMap.get("s1_1");
-        Field[] fields = new Field[]{s,f};
-        System.out.println(varMap.get("s1_1").getClass().getSimpleName());*/
         Scanner scanner = new Scanner(System.in);
         String orderRow=scanner.nextLine();
-        while(orderRow!="end"){
+        while(orderRow.equals("end")){
             order(orderRow);
             orderRow= scanner.nextLine();
         }
-
-        //Testing end
     }
 }

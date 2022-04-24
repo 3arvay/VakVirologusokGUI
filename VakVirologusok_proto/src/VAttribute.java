@@ -7,7 +7,16 @@ import java.util.Map;
 public abstract class VAttribute implements Timeable
 {
     protected int durationtime;
-    
+
+
+    public void setter(String value){
+        try{
+            durationtime=Integer.parseInt(value);
+        }
+        catch(NumberFormatException e){
+            System.out.println("Hibás számformátumot adtál meg");
+        }
+    }
     /**
     * Leírás: Az absztrakt osztály függvénye, a leszármazottjai valósítják meg, lefuttatják a destruktort és visszavonja a hozzátartozó hatást.
     *
