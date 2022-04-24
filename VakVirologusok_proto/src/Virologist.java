@@ -124,7 +124,7 @@ public class Virologist implements Timeable
     */
     public void Move(Field f2)
     {
-        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) & !attributeList.stream().anyMatch(x->x instanceof Stunned))
+        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) && !attributeList.stream().anyMatch(x->x instanceof Stunned))
         {
             this.f1.RemoveVirologist(this);
             f2.AddVirologist(this);
@@ -132,13 +132,12 @@ public class Virologist implements Timeable
         else if(attributeList.stream().anyMatch(x->x instanceof BearMode))
         {
             this.f1.RemoveVirologist(this);
-            Field f3 = f2.GetRandomNeighbour(f1);
-            List<Virologist> attackThese= f3.AddBear(this);
+            Field f3 = f1.GetRandomNeighbour(f2);
+            List<Virologist> attackThese = f3.AddBear(this);
             for(Virologist v :  attackThese){
                 BearVirus bv = new BearVirus();
                 v.UnderAttack(bv, this);
             }
-
         }
         else if(attributeList.stream().anyMatch(x->x instanceof Dancing))
         {
@@ -281,7 +280,8 @@ public class Virologist implements Timeable
             if (gearList.stream().anyMatch(x -> x instanceof Cloak) && this.gearList.get(1).Use(this, a)) {
                 return;
             }
-            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && this.gearList.get(3).Use(v, a)) {
+            if ( a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe)) {
+                gearList.get(3).Use(this, a);
                 return;
             }
             VAttribute asd = a.AllotAttribute(a);
@@ -370,7 +370,29 @@ public class Virologist implements Timeable
     */
     public void SpecialAttack(Agent a)
     {
-        attributeList.add(a.AllotAttribute(a));
+        VAttribute asd = a.AllotAttribute(a);
+        String VAname = "";
+        for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+            if (entry.getValue().equals(a)) {
+                char temp = entry.getKey().charAt(0);
+                switch (temp) {
+                    case 's':
+                        VAname  = temp+"t"+entry.getKey().substring(1);
+                        break;
+                    case 'd':
+                        VAname  = temp+"i"+entry.getKey().substring(1);
+                        break;
+                    case 'i':
+                        VAname  = temp+"m"+entry.getKey().substring(1);
+                        break;
+                    default:
+                        VAname  = temp+"m"+entry.getKey().substring(2);
+                        break;
+                }
+            }
+        }
+        Main.varMap.put(VAname, asd);
+        attributeList.add(asd);
     }
 
     /**

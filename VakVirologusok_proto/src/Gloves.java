@@ -68,4 +68,12 @@ public class Gloves extends Gear
     {
         return v.RemoveGear(this);
     }
+
+    public void setter(String value){
+        int newDurability=Integer.parseInt(value);
+        if(newDurability>=0&&newDurability<=3) {
+            durability=newDurability;
+        }
+        else{System.out.println("Hibás értéket adtál meg.");}
+    }
 }

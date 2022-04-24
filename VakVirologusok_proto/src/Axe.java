@@ -12,7 +12,15 @@ public class Axe extends Gear {
     public Axe()
     {
         durability = 1;
-        this.id = 3;
+        id = 3;
+    }
+
+    public void setter(String value){
+        int newDurability=Integer.parseInt(value);
+        if(newDurability>=0&&newDurability<=1) {
+            durability=newDurability;
+        }
+        else{System.out.println("Hibás értéket adtál meg.");}
     }
 
     public void listAttributes(Map<String, Object> _varMap) {
@@ -28,9 +36,9 @@ public class Axe extends Gear {
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
-        if (this.durability > 0)
+        if (durability > 0)
         {
-            this.durability--;
+            durability = 0;
             v.YourKilled();
             return true;
         }

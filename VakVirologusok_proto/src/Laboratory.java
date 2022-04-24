@@ -32,6 +32,11 @@ public class Laboratory extends Field
         if(this.infecting)
         {
             BearVirus bv = new BearVirus();
+            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+                if (entry.getValue().equals(this)) {
+                    Main.varMap.put("bv"+entry.getKey().substring(1), bv);
+                }
+            }
             v.SpecialAttack(bv);
         }
     }

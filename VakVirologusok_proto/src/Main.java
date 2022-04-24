@@ -32,7 +32,7 @@ public class Main {
                 return (Cloak) varMap.get(gearName);
             case'b':
                 return (Bag) varMap.get(gearName);
-            case'a': // ???
+            case'a':
                 return (Axe) varMap.get(gearName);
             default:
                 return (Gloves) varMap.get(gearName);
@@ -109,6 +109,37 @@ public class Main {
                 }
             }
         }
+
+        else if(params[1].matches("ax\\d+_\\d")){
+            if(params[0].equals("stat")) {
+                ((Axe)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                try{
+                    if(params[2].equals("durability")){
+                        ((Axe)varMap.get(params[1])).setter(params[3]);
+                    }
+                }
+                catch(IllegalArgumentException e){
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+            }
+        }
+
+        else if(params[1].matches("g\\d+_\\d")){
+            if(params[0].equals("stat")) {
+                ((Gloves)varMap.get(params[1])).listAttributes(varMap);}
+            else if(params[0].equals("set")){
+                try{
+                    if(params[2].equals("durability")){
+                        ((Gloves)varMap.get(params[1])).setter(params[3]);
+                    }
+                }
+                catch(IllegalArgumentException e){
+                    System.out.println("Hibás argumentumot adtál meg");
+                }
+            }
+        }
+
         else if(params[1].matches("v\\d+_\\d")) {
             if (params[0].equals("stat")) {
                 ((Virologist) varMap.get(params[1])).listAttributes(varMap);
@@ -459,8 +490,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        String i = "12";
         if (args.length > 0) {
-            switch (args[0]) {
+            //switch (args[0]) {
+            switch (i) {
                 case "1":
                     readFile("input/AddVirologist-input.txt");
                     break;
@@ -561,7 +594,7 @@ public class Main {
                     break;
             }
         }
-        /*
+
         Scanner scanner = new Scanner(System.in);
         String orderRow=scanner.nextLine();
         while(!orderRow.equals("end")) {
@@ -569,6 +602,6 @@ public class Main {
             orderRow= scanner.nextLine();
         }
 
-         */
+
     }
 }
