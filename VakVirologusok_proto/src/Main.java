@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
-
 public class Main {
 
     public static Map<Object, String> nameMap = new HashMap<>();
@@ -236,8 +234,9 @@ public class Main {
                         if (!containsVars(new String[]{orderElements[1], orderElements[2]}))
                             throw new IllegalArgumentException();
                         if (orderElements[1].matches("v\\d+_\\d")) {
-                            Field f = (Field) varMap.get(orderElements[2]);
-                            f.standsHere.add((Virologist) varMap.get(orderElements[1]));
+                            //Field f =
+                            ((Virologist) varMap.get(orderElements[1])).SetInitialField((Field) varMap.get(orderElements[2]));
+                            //f.standsHere.add((Virologist) varMap.get(orderElements[1]));
                         } else if (orderElements[1].matches("b\\d+_\\d") || orderElements[1].matches("c\\d+_\\d") ||
                                 orderElements[1].matches("ax\\d+_\\d") || orderElements[1].matches("g\\d+_\\d")) {
                             Shelter s = (Shelter) varMap.get(orderElements[2]);
@@ -342,7 +341,7 @@ public class Main {
                         if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("s\\d+_\\d") || orderElements[2].matches("d\\d+_\\d") ||
                                         orderElements[2].matches("a\\d+_\\d") || orderElements[2].matches("i\\d+_\\d"))) {
-                            ((Virologist) varMap.get(orderElements[1])).RecieveAgent(agentSwitch(orderElements[1]));
+                            ((Virologist) varMap.get(orderElements[1])).ReceiveAgent(agentSwitch(orderElements[2]));
                         } else if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("b\\d+_\\d") || orderElements[2].matches("c\\d+_\\d") ||
                                         orderElements[2].matches("ax\\d+_\\d") || orderElements[2].matches("g\\d+_\\d"))) {
@@ -350,7 +349,7 @@ public class Main {
                         } else if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("bm\\d+_\\d") || orderElements[2].matches("di\\d+_\\d") ||
                                         orderElements[2].matches("im\\d+_\\d") || orderElements[2].matches("st\\d+_\\d"))) {
-                            ((Virologist) varMap.get(orderElements[1])).RecieveAttribute(attributeSwitch(orderElements[2]));
+                            ((Virologist) varMap.get(orderElements[1])).ReceiveAttribute(attributeSwitch(orderElements[2]));
                         }
                         else {
                             throw new IllegalArgumentException();
@@ -441,6 +440,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+
+
         Scanner scanner = new Scanner(System.in);
         String orderRow=scanner.nextLine();
         while(!orderRow.equals("end")){

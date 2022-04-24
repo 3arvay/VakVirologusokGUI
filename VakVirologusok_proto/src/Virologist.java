@@ -115,10 +115,6 @@ public class Virologist implements Timeable
                 }
             }
         }
-
-
-
-
     }
 
     /**
@@ -293,7 +289,26 @@ public class Virologist implements Timeable
             } else if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe)) {
                 this.gearList.get(3).Use(v, a);
             } else {
-                this.attributeList.add(a.AllotAttribute(a));
+                VAttribute asd = a.AllotAttribute(a);
+                String VAname = "";
+                for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+                    if (entry.getValue().equals(a)) {
+                        char temp = entry.getKey().charAt(0);
+                        switch (temp) {
+                            case 's':
+                                VAname  = temp+"t"+entry.getKey().substring(1);
+                                break;
+                            case 'd':
+                                VAname  = temp+"i"+entry.getKey().substring(1);
+                                break;
+                            default:
+                                VAname  = temp+"m"+entry.getKey().substring(1);
+                                break;
+                        }
+                    }
+                }
+                Main.varMap.put(VAname, asd);
+                this.attributeList.add(asd);
             }
         }
     }
@@ -329,7 +344,7 @@ public class Virologist implements Timeable
             agentList.add(agent);
         }
     }
-    public void RecieveAttribute(VAttribute attribute){
+    public void ReceiveAttribute(VAttribute attribute){
         if(attributeList.contains(attribute)){
             attributeList.remove(attribute);
         }
