@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import java.util.List;
 
 import java.util.Map;
@@ -18,9 +20,19 @@ public class Warehouse extends Field
     * @param amount_: Megadja mennyi darab anyag található ezen a mezőn
     * @param material_: Megadja milyen fajta angya található a mezőn
     */
-    public Warehouse(int amount_,String material_){
-        amount=amount_;
-        material=material_;
+    public Warehouse(){
+        amount=new Random().nextInt(200);
+        material=new String[]{"nukleotid","aminoacid"}[new Random().nextInt(2)];
+    }
+
+    public void setter(String type, String value){
+        if(type.equals("amount")){
+            amount=Integer.parseInt(value);
+        }
+        else if(type.equals("material")){
+            material=value;
+        }
+        else{System.out.println("Hibás argumentumot adtál meg");}
     }
 
     @Override

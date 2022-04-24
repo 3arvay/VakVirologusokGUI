@@ -18,8 +18,12 @@ public class Laboratory extends Field
     /**
     * Leírás: Virológus lépését valósítja meg a labor mezőre, és ha még számára ismeretlen az ott található genetikai kód, akkor megtanulja.
     *
-    * @param v: Az a virológus aki rálép erre a raktár mezőre
+    * @param value: Az a virológus aki rálép erre a raktár mezőre
     */
+
+    public void setter(String value){
+        infecting=value.equals("true");
+    }
     @Override
     public void AddVirologist(Virologist v)
     {

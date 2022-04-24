@@ -13,8 +13,15 @@ public class Cloak extends Gear
      */
     public Cloak()
     {
-        this.id = 1;
+        id = 1;
         chance = 82.3;
+    }
+    public void setter(String value){
+        double newChance=Double.parseDouble(value);
+        if(newChance>=0&&newChance<=100){
+            chance=newChance;
+        }
+        else{System.out.println("Hibás értéket adtál meg.");}
     }
 
     public void listAttributes(Map<String, Object> _varMap) {
