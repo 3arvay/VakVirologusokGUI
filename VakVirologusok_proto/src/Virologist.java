@@ -44,13 +44,30 @@ public class Virologist implements Timeable
     */
     public void Time()
     {
+        for(Agent a : this.agentList)
+        {
+            if (a.GetUseTime() == 0)
+            {
+                a.KillAgent(this);
+            }
+        }
+
+        for(VAttribute va : this.attributeList)
+        {
+            if (va.durationtime == 0)
+            {
+                va.AttributeChanges(this);
+            }
+        }
+
+        /*
         Main.printSeq(0,"call",Main.nameMap.get(this),"Time",new String[] {""});
         for (Agent a: agentList){
             if(a.GetUseTime()<1){
                 a.KillAgent(this);
                 Main.printSeq(0,"answer",Main.nameMap.get(this),"Time",new String[] {""});
             }
-        }
+        }*/
     }
 
     /**
@@ -209,6 +226,25 @@ public class Virologist implements Timeable
         return gearList.remove(gear.GetID());
     }
 
+    /**
+     * Leírás:
+     * Eldobja a virológus a felszerelését ha elhasználódott
+     * @param gear
+     */
+    public void ThrowGear(Gear gear)
+    {
+        this.gearList.remove(gear);
+    }
+
+    /**
+     * Leírás:
+     * Leveszi a virológust a játékból, meghalás esetén
+     */
+    public void YourKilled()
+    {
+        this.f1.VirologistKilled(this);
+    }
+
 /**
 * Leírás:
 *  Egy ágenst kenését valósítja meg egy másik virológusra.
@@ -217,6 +253,27 @@ public class Virologist implements Timeable
 */
     public void UnderAttack(Agent a, Virologist v)
     {
+        if(!(v.attributeList.stream().anyMatch(x->x instanceof Immune)))
+        {
+            if(gearList.stream().anyMatch(x->x instanceof Gloves))
+            {
+                this.gearList.get(0).Use(v, a);
+            }
+            else if (gearList.stream().anyMatch(x->x instanceof Cloak))
+            {
+                this.gearList.get(1).Use(this, a);
+            }
+            else if (a instanceof BearVirus && gearList.stream().anyMatch(x->x instanceof Axe))
+            {
+                this.gearList.get(3).Use(v, a);
+            }
+            else
+            {
+                this.attributeList.add(a.AllotAttribute(a));
+            }
+        }
+
+        /*
         Main.printSeq(1,"call", Main.nameMap.get(this), "UnderAttack", new String[]{Main.nameMap.get(a), Main.nameMap.get(v)});
         if(!gearList.isEmpty()) {
             if(gearList.get(0) != null) {
@@ -240,7 +297,7 @@ public class Virologist implements Timeable
             attributeList.add(a.AllotAttribute(a) );
         }
 
-        Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});
+        Main.printSeq(1,"answer", Main.nameMap.get(this), "UnderAttack", new String[]{""});*/
     }
 
 /**
@@ -267,7 +324,6 @@ public class Virologist implements Timeable
         if(!HasThisGear(gear))
         {
             gearList.add(gear.GetID(),gear.PickUp(this));
-
         }
         Main.printSeq(2,"answer", Main.nameMap.get(this), "RecieveGear", new String[]{Main.nameMap.get(gear)});
     }
@@ -361,11 +417,11 @@ public class Virologist implements Timeable
 /**
 * Leírás:
 * Ha egy adott ágens felhasználhatóságának ideje lejár, ez a metódus távolítja el azt a virológus megfelelő listájából.
-* @param  v
+* @param  va
 */
-    public void RemoveAttribute(Virologist v)
+    public void RemoveAttribute(VAttribute va)
     {
-
+        this.attributeList.remove(va);
     }
 
 /**
@@ -453,5 +509,16 @@ public class Virologist implements Timeable
         Main.printSeq(0,"call",Main.nameMap.get(this),"SetInitialField",new String[]{Main.nameMap.get(f1)});
         f1.AddVirologist(this);
         Main.printSeq(0,"answer",Main.nameMap.get(this),"SetInitialField",new String[]{Main.nameMap.get(f1)});
+    }
+
+    /**
+     * Leírás:
+     * Visszaadja a virológus felszerelését
+     * @param id
+     * @return gear
+     */
+    public Gear GetGear(int id)
+    {
+        return this.gearList.get(id);
     }
 }

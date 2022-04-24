@@ -4,13 +4,15 @@
 */
 public class Gloves extends Gear
 {
-   
+    private int durability;
+
     /**
     * Leírás:
     * Gloves konstruktora
     */
     public Gloves()
     {
+        durability = 3;
         this.id = 0;
     }
 
@@ -23,9 +25,11 @@ public class Gloves extends Gear
     */
     @Override
     public Boolean Use(Virologist v, Agent a) {
-        Main.printSeq(2,"call", Main.nameMap.get(this), "Use", new String[]{Main.nameMap.get(v), Main.nameMap.get(a)});
-        v.GloveAttack(a);
-        Main.printSeq(2,"answer", Main.nameMap.get(this), "Use", new String[]{""});
+        if (this.durability > 0)
+        {
+            v.GloveAttack(a);
+            this.durability--;
+        }
         return null;
     }
 
@@ -33,7 +37,7 @@ public class Gloves extends Gear
     * Leírás:
     * A kesztyű felszerelés felvételét valósítja meg, felveszi a virológus a felszerelései közé.
     * @param v
-    * @return Gear gear
+    * @return gear
     */
     @Override
     public Gear PickUp(Virologist v)

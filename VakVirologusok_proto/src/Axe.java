@@ -3,8 +3,22 @@
  */
 public class Axe extends Gear
 {
+    private int durability;
+
+    public Axe()
+    {
+        durability = 1;
+        this.id = 3;
+    }
+
     @Override
-    public Boolean Use(Virologist v, Agent a) {
+    public Boolean Use(Virologist v, Agent a)
+    {
+        if (this.durability > 0)
+        {
+            this.durability--;
+            v.YourKilled();
+        }
         return null;
     }
 
@@ -16,8 +30,6 @@ public class Axe extends Gear
      */
     @Override
     public Gear PickUp(Virologist v) {
-        Main.printSeq(3,"call", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
-        Main.printSeq(3,"answer", Main.nameMap.get(this), "PickUp", new String[]{Main.nameMap.get(v)});
         return this;
     }
 

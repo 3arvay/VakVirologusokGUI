@@ -98,4 +98,9 @@ public class Field
     {
 
     }
+
+    public void VirologistKilled(Virologist v1)
+    {
+        standsHere.remove(v1);
+    }
 }
