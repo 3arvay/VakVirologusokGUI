@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
 * Leírás: A raktár mező megvalósításáért felelős.
 *
@@ -17,7 +19,17 @@ public class Warehouse extends Field
         amount=amount_;
         material=material_;
     }
-    
+
+    @Override
+    public List<Virologist> AddBear(Virologist v)
+    {
+        Main.printSeq(1,"call", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        SetAmount();
+        AddVirologist(v);
+        Main.printSeq(1,"answer", Main.nameMap.get(this), "AddVirologist", new String[]{Main.nameMap.get(v)});
+        return standsHere;
+    }
+
     /**
     * Leírás: A Virológus lépését valósítja meg a raktármezőre, és automatikusan odaadja a felvehető mennyiségű anyagot a paraméterül kapott virológusnak.
     *
@@ -40,6 +52,11 @@ public class Warehouse extends Field
     public int GetAmount()
     {
         return amount;
+    }
+
+    public void SetAmount()
+    {
+        amount = 0;
     }
 
 }

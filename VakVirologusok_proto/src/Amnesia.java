@@ -20,7 +20,7 @@ public class Amnesia extends Agent
     /**
      * Leírás: Amnesia hatásának kezdetét kiváltó metódus
      *
-     * @param Agent a: Ágens amivel támadnak
+     * @param a: Ágens amivel támadnak
      * @return VAttribute: az ágens által kifejtett hatás
      */
     @Override
@@ -34,8 +34,8 @@ public class Amnesia extends Agent
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
      *
-     * @param Virologist v: A kenhető ágenst tároló virológus
-     * @param Agent a: A klónozandó ágens
+     * @param v: A kenhető ágenst tároló virológus
+     * @param a: A klónozandó ágens
      * @return Agent: Az újonnan létrehozott ágens
      */
     @Override
@@ -52,7 +52,7 @@ public class Amnesia extends Agent
     /**
      * Leírás: Az ágens hatása lejár.
      *
-     * @param Virologist v: A kenhető ágenst tároló virológus
+     * @param v: A kenhető ágenst tároló virológus
      */
     @Override
     public void KillAgent(Virologist v)

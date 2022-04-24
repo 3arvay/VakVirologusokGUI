@@ -76,7 +76,7 @@ public class Virologist implements Timeable
             for(int i = 0; i < f3.standsHere.size(); i++)
             {
                 BearVirus bv = new BearVirus();
-                this.UnderAttack(bv,f3.standsHere.get(i));
+                this.UnderAttack(bv);
             }
             Main.printSeq(0, "call", Main.nameMap.get(this), "Move", new String[]{Main.nameMap.get(f2)});
         }
@@ -99,7 +99,7 @@ public class Virologist implements Timeable
     public void CraftAgent(Virologist v,Agent a)
     {
         Main.printSeq(0,"call",Main.nameMap.get(this),"CraftAgent",new String[] {Main.nameMap.get(v),Main.nameMap.get(a)});
-        if((v.amountAminoacid - a.GetAminoacidCost()>=0))
+        if((v.amountAminoacid - a.GetAminoacidCost()>=0) && (v.amountNucleotid - a.GetNucleotidCost()>=0))
         {
             v.agentList.add(a.Clone(v,a));
         }

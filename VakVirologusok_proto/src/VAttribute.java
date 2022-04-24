@@ -44,7 +44,7 @@ public abstract class VAttribute implements Timeable
     /**
     * Leírás: Beállítja a durationtime tagváltozó értékét.
     *
-    * @param int duration: Egy szám amit majd a durationtime fog átvenni
+    * @param duration: Egy szám amit majd a durationtime fog átvenni
     */
     public void SetDurationTime(int duration){
         durationtime=duration;

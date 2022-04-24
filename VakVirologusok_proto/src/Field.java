@@ -92,7 +92,7 @@ public class Field
     /**
     * Leírás:
     * A vitus táncos mozgást valósítja meg.
-    * @param Field f2
+    * @param f2
     */
     public void GetMeSomewhere(Field f2)
     {

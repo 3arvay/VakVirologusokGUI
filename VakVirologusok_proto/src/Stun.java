@@ -22,7 +22,7 @@ public class Stun extends Agent
     /**
     * Leírás: Ágens hatásának kezdetét kiváltó metódus
     *
-    * @param Agent a: Ágens amivel támadnak
+    * @param a: Ágens amivel támadnak
     * @return VAttribute temp: Az ágens által kifejtett hatás
     */
     @Override
@@ -37,8 +37,8 @@ public class Stun extends Agent
     /**
     * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
     *
-    * @param Virologist v: Az a virológus aki elkészíti az ágenst
-    * @param Agent s: A Stun ágens amit leklónoz
+    * @param v: Az a virológus aki elkészíti az ágenst
+    * @param s: A Stun ágens amit leklónoz
     * @return Agent temp: Az újonnan létrejött Stun ágens
     */
     @Override
@@ -56,7 +56,7 @@ public class Stun extends Agent
     /**
     * Leírás: Az ágenshatása lejár
     *
-    * @param Virologist v: Az a virológus akinél lejár az ágens hatása
+    * @param v: Az a virológus akinél lejár az ágens hatása
     */
     @Override
     public void KillAgent(Virologist v)
