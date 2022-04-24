@@ -3,7 +3,15 @@
 */
 public class Amnesia extends Agent
 {
-    
+    /**
+     * Leírás: Amnesia ágens konstruktora
+     */
+    Amnesia() {
+        useTime = 4;
+        nucleotidCost = 60;
+        aminoacidCost = 65;
+    }
+
     /**
     * Leírás: visszadja a useTime tagváltozó értékét.
     *

@@ -3,6 +3,14 @@
 */
 public class Dance extends Agent
 {
+    /**
+     * Leírás: Dance ágens konstruktora
+     */
+    Dance() {
+        useTime = 8;
+        nucleotidCost = 70;
+        aminoacidCost =  40;
+    }
 
     /**
     * Leírás: visszadja a useTime tagváltozó értékét

@@ -7,6 +7,15 @@
 public class Stun extends Agent
 {
     /**
+     * Leírás: Stun ágens konstruktora
+     */
+    Stun() {
+        useTime = 7;
+        nucleotidCost = 65;
+        aminoacidCost = 30;
+    }
+
+    /**
     * Leírás: Az ágens felhasználható idejét adja vissza
     *
     * @return int UseTime: Az ágens felhasználható ideje

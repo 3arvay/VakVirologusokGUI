@@ -3,9 +3,9 @@
 */
 public abstract class Agent
 {
-    protected int useTime =0;
-    private int nucleotidCost;
-    private int aminoacidCost;
+    protected int useTime;
+    protected int nucleotidCost;
+    protected int aminoacidCost;
     private VAttribute vAttribute;
     
     /**

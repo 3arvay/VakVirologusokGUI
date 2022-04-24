@@ -5,14 +5,10 @@
 public class Stunned extends VAttribute
 {
     /**
-    * Leírás: Ez a Stunned osztály konstruktora
-    *
-    * @return VAttribute Stunned
-    */
+     * Leírás: Stunned attribútum konstruktora
+     */
     Stunned() {
-        Main.nameMap.put(this, "st");
-        Main.printSeq(3,"call", Main.nameMap.get(this), this.getClass().getSimpleName(), new String[]{""});
-        Main.printSeq(3,"answer", Main.nameMap.get(this), this.getClass().getSimpleName(), new String[]{""});
+        durationtime = 3;
     }
 
     @Override

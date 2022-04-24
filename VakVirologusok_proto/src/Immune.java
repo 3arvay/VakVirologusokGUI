@@ -5,14 +5,10 @@
 public class Immune extends VAttribute
 {
     /**
-    * Leírás:
-    *       Immune osztály konstruktora, létrehoz egy immunitás tulajdonságot
-    * @return vattribute ,immune VAttribute létrehozása történik meg általa.
+    * Leírás: Immune attribútum konstruktora
     */
     Immune() {
-        Main.nameMap.put(this, "im");
-        Main.printSeq(3,"call", Main.nameMap.get(this), this.getClass().getSimpleName(), new String[]{""});
-        Main.printSeq(3,"answer", Main.nameMap.get(this), this.getClass().getSimpleName(), new String[]{""});
+        durationtime = 5;
     }
 
     @Override
