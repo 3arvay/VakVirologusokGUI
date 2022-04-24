@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
 * Leírás: Az óvóhely mező megvalósításáért felelős és számontartja az ott található felszerelés típusát.
 */
@@ -39,6 +41,45 @@ public class Shelter extends Field
         gear=g;
         Main.printSeq(0,"call", Main.nameMap.get(this), "SetGear", new String[]{Main.nameMap.get(g)});
         Main.printSeq(0,"answer", Main.nameMap.get(this), "SetGear", new String[]{Main.nameMap.get(g)});
+
+    }
+
+
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        int i = 1;
+        while (i <= Neighbours.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(Neighbours.get(i-1))) {
+                    System.out.println("neighbour" + i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+        i = 1;
+        while (i <= standsHere.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(standsHere.get(i-1))) {
+                    System.out.println("virologist" +i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+
+
+        String gear_temp = null;
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(gear)) {
+                gear_temp=entry.getKey();
+                break;
+            }
+        }
+        System.out.println("gear:"+gear_temp);
 
     }
 }

@@ -165,9 +165,9 @@ public class Main {
                     return;
                 case "neighbour":
                     try {
-                        if ((orderElements[1].matches("f\\d_\\d") || orderElements[1].matches("s\\d+_\\d") ||
+                        if ((orderElements[1].matches("f\\d_\\d") || orderElements[1].matches("sh\\d+_\\d") ||
                                 orderElements[1].matches("l\\d+_\\d")) || orderElements[1].matches("w\\d+_\\d") &&
-                                (orderElements[2].matches("f\\d_\\d") || orderElements[2].matches("s\\d+_\\d") ||
+                                (orderElements[2].matches("f\\d_\\d") || orderElements[2].matches("sh\\d+_\\d") ||
                                         orderElements[2].matches("l\\d+_\\d")) || orderElements[2].matches("w\\d+_\\d")) {
                             Field f1 = (Field) varMap.get(orderElements[1]);
                             Field f2 = (Field) varMap.get(orderElements[2]);
@@ -218,9 +218,9 @@ public class Main {
                             Virologist v1 = (Virologist) varMap.get(orderElements[1]);
                             Virologist v2 = (Virologist) varMap.get(orderElements[2]);
                             if (orderElements[2].matches("material")) {
-                                v1.Steal(v1, "material");
+                                v1.Steal(v2, "material");
                             } else {
-                                v1.Steal(v1, "gear");
+                                v1.Steal(v2, "gear");
                             }
                         } else {
                             throw new IllegalArgumentException();
@@ -228,6 +228,7 @@ public class Main {
                     } catch (IllegalArgumentException e) {
                         System.out.println("Hibás argumentumot adtál meg");
                     }
+                    return;
                 case "learn":
                     try {
                         if (orderElements[1].matches("v\\d+_\\d") &&
@@ -248,7 +249,7 @@ public class Main {
                                 (orderElements[2].matches("s\\d+_\\d") || orderElements[2].matches("d\\d+_\\d") ||
                                         orderElements[2].matches("a\\d+_\\d") || orderElements[2].matches("i\\d+_\\d"))) {
                             Virologist v = (Virologist) varMap.get(orderElements[1]);
-                            //v.RecieveAgent(agentSwitch(orderElements[2])); <-- kéne egy ilyen függvény, mert az agentList az privát
+                            v.ReceiveAgent(agentSwitch(orderElements[2]));
                         } else if (orderElements[1].matches("v\\d+_\\d") &&
                                 (orderElements[2].matches("b\\d+_\\d") || orderElements[2].matches("c\\d+_\\d") ||
                                         orderElements[2].matches("ax\\d+_\\d") || orderElements[2].matches("g\\d+_\\d"))) {

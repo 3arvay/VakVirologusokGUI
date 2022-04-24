@@ -22,25 +22,24 @@ public class Field
     public void listAttributes(Map<String, Object> _varMap) {
         for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
             if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":"+"\n");
+                System.out.println(entry.getKey()+":");
                 break;
             }
         }
-        int i = 0;
-        while (i < standsHere.size()) {
+        int i = 1;
+        while (i <= standsHere.size()) {
             for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(standsHere.get(i))) {
-                    System.out.println("virologist" +Integer.toString(i+1) + ":" + entry.getKey());
-                    i++;
+                if (entry.getValue().equals(standsHere.get(i-1))) {
+                    System.out.println("virologist" +i++ + ":" + entry.getKey());
                     break;
                 }
             }
         }
-        i = 0;
+        i = 1;
         while (i < Neighbours.size()) {
             for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(Neighbours.get(i))) {
-                    System.out.println("neighbour" + (i++) + ":" + entry.getKey());
+                if (entry.getValue().equals(Neighbours.get(i-1))) {
+                    System.out.println("neighbour" + i++ + ":" + entry.getKey());
                     break;
                 }
             }
