@@ -58,4 +58,16 @@ public abstract class Agent
     {
         return aminoacidCost;
     }
+
+    public void listAttributes(Map<String, Object> _varMap)
+    {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        System.out.println( "useTime:"+useTime+"nucleotidCost:"+nucleotidCost+
+                "aminoacidCost:"+aminoacidCost);
+    }
 }

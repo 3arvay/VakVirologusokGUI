@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
 * Leírás:
 * Egy kesztyűt, mint felszerelés valósítja meg.
@@ -16,6 +18,15 @@ public class Gloves extends Gear
         this.id = 0;
     }
 
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":"+"\n");
+                break;
+            }
+        }
+        System.out.println("id:"+id+"\n"+"durability:"+durability+"\n");
+    }
     /**
     * Leírás:
     * visszakenés műveletét valósítja meg akkor, ha egy virológus visel kesztyűt és megtámadják, azaz a támadón érvényesül a támadó ágensének hatása.

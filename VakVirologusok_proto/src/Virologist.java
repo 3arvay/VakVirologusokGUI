@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Leírás:
@@ -37,7 +38,81 @@ public class Virologist implements Timeable
         agentList = new ArrayList<Agent>();
         f1=null;
     }
+    private void find(Object a, Map<String, Object> _varMap){
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(a)) {
+                System.out.println(entry.getKey() + ":");
+                break;
+            }
+        }
+    }
+    //stathoz kell
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey() + ":");
+                break;
+            }
+        }
+        System.out.println( "amountNucleotid:"+amountNucleotid+"\n"+
+                            "amountAminoacid:"+amountAminoacid+"\n"+
+                            "maxAmount:"+maxAmount);
 
+        String field_temp = null;
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(f1)) {
+                field_temp=entry.getKey();
+                break;
+            }
+        }
+        System.out.println("myField:"+field_temp);
+
+        int i = 1;
+        while (i <= geneticCodeList.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(geneticCodeList.get(i-1))) {
+                    System.out.println("geneticCode" + i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+
+        i = 1;
+        while (i <= agentList.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(agentList.get(i-1))) {
+                    System.out.println("agent" + i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+
+        i = 1;
+        int j=1;
+        while (i <= gearList.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (!(gearList.get(i-1)==null)&& entry.getValue().equals(gearList.get(i-1))) {
+                    System.out.println("gear" + j++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+            i++;
+        }
+
+        i = 1;
+        while (i <= attributeList.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(attributeList.get(i-1))) {
+                    System.out.println("vattribute" + i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+
+
+
+
+    }
     /**
     * Leírás:
     * Ez jelzi az idő múlását a virológus számára.
@@ -326,6 +401,18 @@ public class Virologist implements Timeable
             gearList.add(gear.GetID(),gear.PickUp(this));
         }
         Main.printSeq(2,"answer", Main.nameMap.get(this), "RecieveGear", new String[]{Main.nameMap.get(gear)});
+    }
+
+
+    public void ReceiveAgent(Agent agent)
+    {
+        Main.printSeq(2,"call", Main.nameMap.get(this), "ReceiveAgent", new String[]{Main.nameMap.get(agent)});
+        if(!HasThisAgent(agent))
+        {
+            agentList.add(agent);
+
+        }
+        Main.printSeq(2,"answer", Main.nameMap.get(this), "ReceiveAgent", new String[]{Main.nameMap.get(agent)});
     }
 
 /**

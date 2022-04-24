@@ -1,5 +1,7 @@
 import java.util.List;
 
+import java.util.Map;
+
 /**
 * Leírás: A raktár mező megvalósításáért felelős.
 *
@@ -57,6 +59,39 @@ public class Warehouse extends Field
     public void SetAmount()
     {
         amount = 0;
+    }
+
+
+    public void listAttributes(Map<String, Object> _varMap) {
+        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+            if (entry.getValue().equals(this)) {
+                System.out.println(entry.getKey()+":");
+                break;
+            }
+        }
+        int i = 1;
+        while (i <= Neighbours.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(Neighbours.get(i-1))) {
+                    System.out.println("neighbour" + i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+        i = 1;
+        while (i <= standsHere.size()) {
+            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
+                if (entry.getValue().equals(standsHere.get(i-1))) {
+                    System.out.println("virologist" +i++ + ":" + entry.getKey());
+                    break;
+                }
+            }
+        }
+
+
+        System.out.println( "amount:"+amount+"\n"+
+                "material:"+material);
+
     }
 
 }

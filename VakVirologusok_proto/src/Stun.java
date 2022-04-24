@@ -1,6 +1,9 @@
 /**
 * Ez valósítja meg a Stun ágenst, ez kenhető virológusokra. Amelyik virológust ezzel megkenik az lebénul
 */
+
+import java.util.Map;
+
 /**
  *
  */
@@ -75,4 +78,6 @@ public class Stun extends Agent
 
 
     }
+
+
 }
