@@ -492,8 +492,7 @@ public class Main {
     public static void main(String[] args) {
         String i = "12";
         if (args.length > 0) {
-            //switch (args[0]) {
-            switch (i) {
+            switch (args[0]) {
                 case "1":
                     readFile("input/AddVirologist-input.txt");
                     break;
@@ -594,14 +593,13 @@ public class Main {
                     break;
             }
         }
-
+        /*
         Scanner scanner = new Scanner(System.in);
         String orderRow=scanner.nextLine();
         while(!orderRow.equals("end")) {
             order(orderRow);
             orderRow= scanner.nextLine();
         }
-
-
+        */
     }
 }

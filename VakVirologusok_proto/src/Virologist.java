@@ -32,6 +32,7 @@ public class Virologist implements Timeable
                 add(null);
                 add(null);
                 add(null);
+                add(null);
             }
         };
         attributeList=new ArrayList<VAttribute>();
@@ -157,7 +158,26 @@ public class Virologist implements Timeable
     {
         if((v.amountAminoacid - a.GetAminoacidCost()>=0) && (v.amountNucleotid - a.GetNucleotidCost()>=0))
         {
-            agentList.add(a.Clone(v,a));
+            Agent asd = a.Clone(v,a);
+            String Name = "";
+            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
+                if (entry.getValue().equals(a)) {
+                    char temp = entry.getKey().charAt(0);
+                    switch (temp) {
+                        case 's':
+                            Name  = temp+"t"+entry.getKey().substring(1);
+                            break;
+                        case 'd':
+                            Name  = temp+"i"+entry.getKey().substring(1);
+                            break;
+                        default:
+                            Name  = temp+"m"+entry.getKey().substring(1);
+                            break;
+                    }
+                }
+            }
+            Main.varMap.put(Name, asd);
+            agentList.add(asd);
         }
     }
 
@@ -280,8 +300,7 @@ public class Virologist implements Timeable
             if (gearList.stream().anyMatch(x -> x instanceof Cloak) && this.gearList.get(1).Use(this, a)) {
                 return;
             }
-            if ( a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe)) {
-                gearList.get(3).Use(this, a);
+            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && gearList.get(3).Use(this, a)) {
                 return;
             }
             VAttribute asd = a.AllotAttribute(a);

@@ -97,9 +97,8 @@ public class Field
 
         Random rand = new Random();
         Field temp=Neighbours.get(rand.nextInt(Neighbours.size()));
-        while (temp != f1 && temp != this)
+        while (!temp.equals(f1) && !temp.equals(this))
         {
-            System.out.println("\n\ntest");
             temp=Neighbours.get(rand.nextInt(Neighbours.size()));
         }
         return temp;
