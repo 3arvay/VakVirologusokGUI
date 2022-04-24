@@ -1,4 +1,7 @@
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -222,7 +225,7 @@ public class Main {
                             throw new IllegalArgumentException();
                         }
                         varMap.put(orderElements[2], Class.forName(orderElements[1]).getDeclaredConstructor(new Class[]{}).newInstance());
-                        System.out.println(varMap.get(orderElements[2]).getClass().getSimpleName());
+                        //System.out.println(varMap.get(orderElements[2]).getClass().getSimpleName());
                     } catch (ClassNotFoundException e) {
                         System.out.println("Hibás osztálytípust adtál meg.");
                     } catch (InstantiationException | IllegalAccessException |InvocationTargetException | NoSuchMethodException e) {
@@ -256,9 +259,9 @@ public class Main {
                     return;
                 case "neighbour":
                     try {
-                        if ((orderElements[1].matches("f\\d_\\d") || orderElements[1].matches("s\\d+_\\d") ||
+                        if ((orderElements[1].matches("f\\d+_\\d") || orderElements[1].matches("s\\d+_\\d") ||
                             orderElements[1].matches("l\\d+_\\d")) || orderElements[1].matches("w\\d+_\\d") &&
-                            (orderElements[2].matches("f\\d_\\d") || orderElements[2].matches("s\\d+_\\d") ||
+                            (orderElements[2].matches("f\\d+_\\d") || orderElements[2].matches("s\\d+_\\d") ||
                             orderElements[2].matches("l\\d+_\\d")) || orderElements[2].matches("w\\d+_\\d")) {
                             Field f1 = (Field) varMap.get(orderElements[1]);
                             Field f2 = (Field) varMap.get(orderElements[2]);
@@ -276,9 +279,10 @@ public class Main {
                     try {
                         if ((orderElements[2].matches("f\\d+_\\d") || orderElements[2].matches("s\\d+_\\d") ||
                             orderElements[2].matches("l\\d+_\\d")) || orderElements[2].matches("w\\d+_\\d")) {
-                            Field f = (Field) varMap.get(orderElements[1]);
-                            Virologist v = (Virologist) varMap.get(orderElements[2]);
-                            f.AddVirologist(v);
+                            //Field f = (Field) varMap.get(orderElements[2]);
+                            //Virologist v = (Virologist) varMap.get(orderElements[1]);
+                            ((Field) varMap.get(orderElements[2])).AddVirologist(((Virologist) varMap.get(orderElements[1])));
+                            //f.AddVirologist(v);
                         } else {
                             throw new IllegalArgumentException();
                         }
@@ -439,15 +443,132 @@ public class Main {
         }
     }
 
+    public static void readFile(String fileAddress){
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fileAddress));
+            String line = reader.readLine();
+            while (line != null) {
+                order(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-
-
-
+        if (args.length > 0) {
+            switch (args[0]) {
+                case "1":
+                    readFile("input/AddVirologist-input.txt");
+                    break;
+                case "2":
+                    readFile("input/PlaceAgentInLaboratory-input.txt");
+                    break;
+                case "3":
+                    readFile("input/PlaceGearInShelter-input.txt");
+                    break;
+                case "4":
+                    readFile("input/Neighbour-input.txt");
+                    break;
+                case "5":
+                    readFile("input/MoveToField-input.txt");
+                    break;
+                case "6":
+                    readFile("input/MoveToLaboratory-input.txt");
+                    break;
+                case "7":
+                    readFile("input/MoveToWarehouse-input.txt");
+                    break;
+                case "8":
+                    readFile("input/MoveToShelter-input.txt");
+                    break;
+                case "9":
+                    readFile("input/DanceMove-input.txt");
+                    break;
+                case "10":
+                    readFile("input/BearMove-input.txt");
+                    break;
+                case "11":
+                    readFile("input/BearMoveToWarehouse-input.txt");
+                    break;
+                case "12":
+                    readFile("input/BearMoveNextToAxeUser-input.txt");
+                    break;
+                case "13":
+                    readFile("input/AttackWithStun-input.txt");
+                    break;
+                case "14":
+                    readFile("input/AttackWithDance-input.txt");
+                    break;
+                case "15":
+                    readFile("input/AttackSelfWithImmunity-input.txt");
+                    break;
+                case "16":
+                    readFile("input/AttackWithAmnesia-input.txt");
+                    break;
+                case "17":
+                    readFile("input/AttackCloakUserProtected-input.txt");
+                    break;
+                case "18":
+                    readFile("input/AttackCloakUserNotProtected-input.txt");
+                    break;
+                case "19":
+                    readFile("input/AttackGloveUser-input.txt");
+                    break;
+                case "20":
+                    readFile("input/AttackGloveUserAsGloveUser-input.txt");
+                    break;
+                case "21":
+                    readFile("input/AttackImmuneVirologist-input.txt");
+                    break;
+                case "22":
+                    readFile("input/CraftAgent-input.txt");
+                    break;
+                case "23":
+                    readFile("input/StealMaterial-input.txt");
+                    break;
+                case "24":
+                    readFile("input/StealBag-input.txt");
+                    break;
+                case "25":
+                    readFile("input/CraftedAgentUseTimeRunsOut-input.txt");
+                    break;
+                case "26":
+                    readFile("input/VAttributeDurationTimeRunsOut-input.txt");
+                    break;
+                case "27":
+                    readFile("input/VirologistWins-input.txt");
+                    break;
+                case "28":
+                    readFile("input/AddLaboratoryNotInfected-input.txt");
+                    break;
+                case "29":
+                    readFile("input/AddLaboratoryInfected-input.txt");
+                    break;
+                case "m":
+                    Scanner scanner = new Scanner(System.in);
+                    String orderRow = scanner.nextLine();
+                    while (!orderRow.equals("end")) {
+                        order(orderRow);
+                        orderRow = scanner.nextLine();
+                    }
+                    break;
+                default:
+                    System.out.println("Not an option!");
+                    break;
+            }
+        }
+        /*
         Scanner scanner = new Scanner(System.in);
         String orderRow=scanner.nextLine();
-        while(!orderRow.equals("end")){
+        while(!orderRow.equals("end")) {
             order(orderRow);
             orderRow= scanner.nextLine();
         }
+
+         */
     }
 }

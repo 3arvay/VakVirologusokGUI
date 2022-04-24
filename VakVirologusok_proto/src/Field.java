@@ -36,7 +36,7 @@ public class Field
             }
         }
         i = 1;
-        while (i < Neighbours.size()) {
+        while (i <= Neighbours.size()) {
             for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
                 if (entry.getValue().equals(Neighbours.get(i-1))) {
                     System.out.println("neighbour" + i++ + ":" + entry.getKey());
@@ -44,7 +44,6 @@ public class Field
                 }
             }
         }
-        System.out.println();
     }
 
     /**
