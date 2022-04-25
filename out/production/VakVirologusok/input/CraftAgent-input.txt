@@ -1,0 +1,8 @@
+add Virologist v22_1
+add Stun s22_1
+learn v22_1 s22_1
+set v22_1 amountAminoacid 100
+set v22_1 amountNucleotid 100
+stat v22_1
+craft v22_1 s22_1
+stat v22_1

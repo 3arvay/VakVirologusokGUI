@@ -18,8 +18,8 @@ public class Warehouse extends Field
     * Leírás: A Warehouse konstruktora
     */
     public Warehouse(){
-        amount=new Random().nextInt(200);
-        material=new String[]{"nukleotid","aminoacid"}[new Random().nextInt(2)];
+        amount=1000;
+        material=new String[]{"nucleotid","aminoacid"}[new Random().nextInt(2)];
     }
 
     public void setter(String type, String value){
@@ -51,6 +51,12 @@ public class Warehouse extends Field
         standsHere.add(v);
         v.SetF1(this);
         v.MaterialPickedUp(material,amount);
+        if(material.equals("aminoacid")){
+            amount=Math.max(amount-(v.GetMaxAmount()-v.GetAmountAminoacid()),0);
+        }
+        else{
+            amount=Math.max(amount-(v.GetMaxAmount()-v.GetAmountAminoacid()),0);
+        }
     }
 
     /**
@@ -96,8 +102,8 @@ public class Warehouse extends Field
         }
 
 
-        System.out.println( "amount:"+amount+"\n"+
-                "material:"+material);
+        System.out.println( "amount:"+amount+"\r\n"+
+                            "material:"+material);
 
     }
 

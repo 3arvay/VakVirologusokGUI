@@ -1,0 +1,21 @@
+add Field f27_1
+add Laboratory l27_1
+add Virologist v27_1
+add Stun s27_1
+add Immunity i27_1
+add Dance d27_1
+add Amnesia a27_1
+neighbour f27_1 l27_1
+place s27_1 l27_1
+learn v27_1 i27_1
+learn v27_1 d27_1
+learn v27_1 a27_1
+place v27_1 f27_1
+set l27_1 infecting false
+stat f27_1
+stat l27_1
+stat v27_1
+move v27_1 l27_1
+stat f27_1
+stat l27_1
+stat v27_1

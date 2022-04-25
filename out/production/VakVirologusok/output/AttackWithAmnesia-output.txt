@@ -1,0 +1,22 @@
+v16_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f16_1
+agent1: a16_1
+v16_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f16_1
+geneticCode1: i16_1
+v16_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f16_1
+v16_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f16_1

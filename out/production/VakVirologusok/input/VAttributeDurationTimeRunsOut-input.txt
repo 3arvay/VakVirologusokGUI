@@ -1,0 +1,10 @@
+add Virologist v26_1
+add Stunned st26_1
+add Dancing di26_1
+set st26_1 durationTime 1
+set di26_1 durationTime 2
+give v26_1 st26_1
+give v26_1 di26_1
+stat v26_1
+step v26_1
+stat v26_1

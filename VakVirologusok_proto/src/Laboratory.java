@@ -67,8 +67,6 @@ public class Laboratory extends Field
                 }
             }
         }
-
-
         System.out.println( "infecting:"+infecting);
 
         String geneticCode_temp = null;
@@ -78,13 +76,9 @@ public class Laboratory extends Field
                 break;
             }
         }
-        System.out.println("geneticCode" +i++ + ":"+geneticCode_temp);
+        System.out.println("geneticCode" + ":"+geneticCode_temp);
 
     }
-
-    // ToDo init konstuktor, random lab
-
-
     /**
     * Leírás:  Inicializáláskor egy adott genetikai kódot jelentő ágenst helyez el a laboratóriumban.
     *

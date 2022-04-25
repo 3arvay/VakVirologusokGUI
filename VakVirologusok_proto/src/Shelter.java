@@ -71,8 +71,6 @@ public class Shelter extends Field
                 }
             }
         }
-
-
         String gear_temp = null;
         for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
             if (entry.getValue().equals(gear)) {

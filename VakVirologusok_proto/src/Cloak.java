@@ -31,7 +31,8 @@ public class Cloak extends Gear
                 break;
             }
         }
-        System.out.println("id:"+id+"\n"+"chance:"+chance);
+        System.out.println( "id:"+id+"\r\n"+
+                            "chance:"+chance);
     }
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.

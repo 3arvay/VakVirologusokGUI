@@ -1,0 +1,20 @@
+add Stun s20_1
+add Gloves g20_1
+add Virologist v20_1
+give v20_1 s20_1
+give v20_1 g20_1
+add Gloves g20_2
+add Virologist v20_2
+give v20_2 g20_2
+add Field f20_1
+place v20_1 f20_1
+place v20_2 f20_1
+stat v20_1
+stat v20_2
+stat g20_1
+stat g20_2
+attack v20_1 v20_2 s20_1
+stat v20_1
+stat v20_2
+stat g20_1
+stat g20_2

@@ -1,0 +1,31 @@
+f27_1:
+neighbour1: l27_1
+virologist1: v27_1
+l27_1:
+neighbour1: f27_1
+infecting: false
+geneticCode: s27_1
+v27_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f27_1
+geneticCode1: i27_1
+geneticCode2: d27_1
+geneticCode3: a27_1
+f27_1:
+neighbour1: l27_1
+l27_1:
+neighbour1: f27_1
+virologist1: v27_1
+infecting: false
+geneticCode: s27_1
+v27_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: l27_1
+geneticCode1: i27_1
+geneticCode2: d27_1
+geneticCode3: a27_1
+geneticCode4: s27_1

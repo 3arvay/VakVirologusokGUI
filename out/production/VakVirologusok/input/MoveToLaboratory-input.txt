@@ -1,0 +1,14 @@
+add Field f6_1
+add Laboratory l6_1
+add Virologist v6_1
+add Stun s6_1
+neighbour f6_1 l6_1
+place s6_1 l6_1
+place v6_1 f6_1
+stat f6_1
+stat l6_1
+stat v6_1
+move v6_1 l6_1
+stat f6_1
+stat l6_1
+stat v6_1

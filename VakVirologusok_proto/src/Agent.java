@@ -78,8 +78,9 @@ public abstract class Agent
                 break;
             }
         }
-        System.out.println( "useTime:"+useTime+"nucleotidCost:"+nucleotidCost+
-                "aminoacidCost:"+aminoacidCost);
+        System.out.println( "useTime:"+useTime+"\r\n"+
+                            "nucleotidCost:"+nucleotidCost+"\r\n"+
+                            "aminoacidCost:"+aminoacidCost);
     }
 
     /**

@@ -1,0 +1,16 @@
+add Stun s18_1
+add Virologist v18_1
+give v18_1 s18_1
+add Cloak c18_1
+set c18_1 chance 0
+add Virologist v18_2
+give v18_2 c18_1
+add Field f18_1
+place v18_1 f18_1
+place v18_2 f18_1
+stat v18_1
+stat v18_2
+stat c18_1
+attack v18_1 v18_2 s18_1
+stat v18_1
+stat v18_2

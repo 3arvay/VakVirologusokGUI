@@ -1,0 +1,13 @@
+v25_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: null
+agent1: s25_1
+agent2: d25_1
+v25_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: null
+agent2: d25_1

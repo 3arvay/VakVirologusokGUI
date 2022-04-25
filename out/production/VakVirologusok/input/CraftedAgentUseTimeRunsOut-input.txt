@@ -1,0 +1,10 @@
+add Virologist v25_1
+add Stun s25_1
+add Dance d25_1
+set s25_1 useTime 1
+set d25_1 useTime 2
+give v25_1 s25_1
+give v25_1 d25_1
+stat v25_1
+step v25_1
+stat v25_1

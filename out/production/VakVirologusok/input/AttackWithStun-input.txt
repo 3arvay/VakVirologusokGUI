@@ -1,0 +1,12 @@
+add Stun s13_1
+add Virologist v13_1
+give v13_1 s13_1
+add Virologist v13_2
+add Field f13_1
+place v13_1 f13_1
+place v13_2 f13_1
+stat v13_1
+stat v13_2
+attack v13_1 v13_2 s13_1
+stat v13_1
+stat v13_2

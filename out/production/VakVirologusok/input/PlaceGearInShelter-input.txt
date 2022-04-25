@@ -1,0 +1,4 @@
+add Shelter sh3_1
+add Bag b3_1
+place b3_1 sh3_1
+stat sh3_1

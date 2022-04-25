@@ -30,7 +30,8 @@ public class Axe extends Gear {
                 break;
             }
         }
-        System.out.println("id:"+id+"\n"+"durability:"+durability);
+        System.out.println( "id:"+id+"\r\n"+
+                            "durability:"+durability);
     }
 
     @Override

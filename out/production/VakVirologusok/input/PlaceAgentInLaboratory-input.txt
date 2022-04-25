@@ -1,0 +1,4 @@
+add Laboratory l2_1
+add Stun s2_1
+place s2_1 l2_1
+stat l2_1

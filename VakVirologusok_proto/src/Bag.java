@@ -12,7 +12,7 @@ public class Bag extends Gear
      */
     Bag() {
         id = 2;
-        size = 30;
+        size = 50;
     }
     /**
      * Leírás: visszadja a size tagváltozó értékét
@@ -31,7 +31,8 @@ public class Bag extends Gear
                 break;
             }
         }
-        System.out.println("id:"+id+"\n"+"size:"+size);
+        System.out.println( "id:"+id+"\r\n"+
+                            "size:"+size);
     }
     /**
      * Leírás: Felvételkor megnöveli az nyersanyagok férőhelyét a virológusnál.

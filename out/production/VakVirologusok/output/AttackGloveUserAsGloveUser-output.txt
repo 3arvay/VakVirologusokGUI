@@ -1,0 +1,38 @@
+v20_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f20_1
+agent1: s20_1
+gear1: g20_1
+v20_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f20_1
+gear1: g20_2
+g20_1:
+id: 0
+durability: 3
+g20_2:
+id: 0
+durability: 3
+v20_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f20_1
+gear1: g20_1
+vattribute: st20_1
+v20_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f20_1
+gear1: g20_2
+g20_1:
+id: 0
+durability: 3
+g20_2:
+id: 0
+durability: 2

@@ -1,0 +1,14 @@
+add Amnesia a16_1
+add Virologist v16_1
+give v16_1 a16_1
+add Immunity i16_1
+add Virologist v16_2
+learn v16_2 i16_1
+add Field f16_1
+place v16_1 f16_1
+place v16_2 f16_1
+stat v16_1
+stat v16_2
+attack v16_1 v16_2 a16_1
+stat v16_1
+stat v16_2

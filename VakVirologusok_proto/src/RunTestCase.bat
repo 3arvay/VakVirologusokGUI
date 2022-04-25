@@ -1,5 +1,5 @@
 @echo off
-javac Main.java
+javac Main.java -encoding UTF-8
 
 :loop
 

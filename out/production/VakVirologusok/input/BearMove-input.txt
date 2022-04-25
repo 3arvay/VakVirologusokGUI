@@ -1,0 +1,21 @@
+add Field f10_1
+add Field f10_2
+add Field f10_3
+neighbour f10_1 f10_2
+neighbour f10_1 f10_3
+add Virologist v10_1
+add Virologist v10_2
+add BearMode bm10_1
+give v10_1 bm10_1
+place v10_1 f10_1
+place v10_2 f10_3
+stat f10_1
+stat f10_2
+stat f10_3
+stat v10_1
+stat v10_2
+move v10_1 f10_2
+stat f10_1
+stat f10_3
+stat v10_1
+stat v10_2

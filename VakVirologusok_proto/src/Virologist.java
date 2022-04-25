@@ -66,11 +66,10 @@ public class Virologist implements Timeable
                 break;
             }
         }
-        System.out.println( "amountNucleotid:"+amountNucleotid+"\n"+
-                            "amountAminoacid:"+amountAminoacid+"\n"+
+        System.out.println( "amountNucleotid:"+amountNucleotid+"\r\n"+
+                            "amountAminoacid:"+amountAminoacid+"\r\n"+
                             "maxAmount:"+maxAmount);
-
-        String field_temp = null;
+        String field_temp = "null";
         for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
             if (entry.getValue().equals(f1)) {
                 field_temp=entry.getKey();
@@ -98,7 +97,6 @@ public class Virologist implements Timeable
                 }
             }
         }
-
         i = 1;
         int j=1;
         while (i <= gearList.size()) {
@@ -110,7 +108,6 @@ public class Virologist implements Timeable
             }
             i++;
         }
-
         i = 1;
         j=1;
         while (i <= attributeList.size()) {
@@ -131,6 +128,7 @@ public class Virologist implements Timeable
     */
     public void Move(Field f2)
     {
+        System.out.println("NEM MEGY BELE A REGULAR MOVEBA TE FASZ");
         if(attributeList.stream().anyMatch(x->x instanceof BearMode))
         {
             this.f1.RemoveVirologist(this);
@@ -160,9 +158,9 @@ public class Virologist implements Timeable
             f3.AddVirologist(this);
             return;
         }
-        if (!attributeList.stream().anyMatch(x->x instanceof Dancing) && !attributeList.stream().anyMatch(x->x instanceof Stunned))
+        if (/*!attributeList.stream().anyMatch(x->x instanceof Dancing) && */!attributeList.stream().anyMatch(x->x instanceof Stunned))
         {
-            this.f1.RemoveVirologist(this);
+            f1.RemoveVirologist(this);
             f2.AddVirologist(this);
         }
     }
@@ -181,18 +179,24 @@ public class Virologist implements Timeable
             String Name = "";
             for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
                 if (entry.getValue().equals(a)) {
-                    char temp = entry.getKey().charAt(0);
+                    Name  = entry.getKey().substring(0,entry.getKey().length()-2)+"_"+
+                            (Character.getNumericValue(entry.getKey().charAt(entry.getKey().length()-1))+1);
+                    /*char temp = entry.getKey().charAt(0);
                     switch (temp) {
                         case 's':
-                            Name  = temp+"t"+entry.getKey().substring(1);
+                            Name  = entry.getKey().substring(0,entry.getKey().length()-2)+
+                                    (Character.getNumericValue(entry.getKey().charAt(entry.getKey().length()-1))+1);
                             break;
                         case 'd':
-                            Name  = temp+"i"+entry.getKey().substring(1);
+                            Name  = temp+entry.getKey().substring(1);
+                            break;
+                        case 'i':
+                            Name  = temp+entry.getKey().substring(1);
                             break;
                         default:
-                            Name  = temp+"m"+entry.getKey().substring(1);
+                            Name  = temp+entry.getKey().substring(1);
                             break;
-                    }
+                    }*/
                 }
             }
             Main.varMap.put(Name, asd);
@@ -231,7 +235,7 @@ public class Virologist implements Timeable
         }
         else if (opt.equals("material"))
         {
-            StealMaterial(v2);
+            v2.StealMaterial(this);
         }
     }
 
@@ -319,7 +323,7 @@ public class Virologist implements Timeable
             if (gearList.stream().anyMatch(x -> x instanceof Cloak) && this.gearList.get(1).Use(this, a)) {
                 return;
             }
-            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && gearList.get(3).Use(this, a)) {
+            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && gearList.get(3).Use(v, a)) {
                 return;
             }
             VAttribute asd = a.AllotAttribute(a);
@@ -344,7 +348,14 @@ public class Virologist implements Timeable
                 }
             }
             if (asd != null) {
-                Main.varMap.put(VAname, asd);
+                if(!Main.varMap.containsKey(VAname)) {
+                    Main.varMap.put(VAname, asd);
+                }
+                else{
+                    int lastIndex=Character.getNumericValue(VAname.charAt(VAname.length()-1))+1;
+                    VAname=VAname.substring(0,VAname.length()-1)+lastIndex;
+                    Main.varMap.put(VAname,asd);
+                }
                 this.attributeList.add(asd);
             } else {
                 this.geneticCodeList.clear();
@@ -384,8 +395,8 @@ public class Virologist implements Timeable
         }
     }
     public void ReceiveAttribute(VAttribute attribute){
-        if(attributeList.contains(attribute)){
-            attributeList.remove(attribute);
+        if(!attributeList.contains(attribute)){
+            //attributeList.add(attribute);
         }
         attributeList.add(attribute);
     }
@@ -398,10 +409,11 @@ public class Virologist implements Timeable
     */
     public void MaterialPickedUp(String material, int amount)
     {
-        if (material.equals("aminosav")){
+        if (material.equals("aminoacid")){
             amountAminoacid= Math.min(amountAminoacid + amount, maxAmount);
         }
-        else if(material.equals("nukleotid")) this.amountNucleotid = Math.min(amountNucleotid + amount, maxAmount);
+        else if(material.equals("nucleotid"))
+            amountNucleotid = Math.min(amountNucleotid + amount, maxAmount);
     }
 
     /**

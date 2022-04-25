@@ -1,0 +1,24 @@
+add Field f12_1
+add Field f12_2
+add Field f12_3
+neighbour f12_1 f12_2
+neighbour f12_1 f12_3
+add Virologist v12_1
+add Virologist v12_2
+add Axe ax12_1
+add BearMode bm12_1
+give v12_2 ax12_1
+give v12_1 bm12_1
+place v12_1 f12_1
+place v12_2 f12_3
+stat f12_1
+stat f12_2
+stat f12_3
+stat v12_1
+stat v12_2
+stat ax12_1
+move v12_1 f12_2
+stat f12_1
+stat f12_3
+stat v12_2
+stat ax12_1

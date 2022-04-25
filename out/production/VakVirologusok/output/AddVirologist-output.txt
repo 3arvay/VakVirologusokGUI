@@ -1,0 +1,5 @@
+v1_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: null

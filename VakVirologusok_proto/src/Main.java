@@ -1,7 +1,5 @@
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,16 +51,6 @@ public class Main {
             default:
                 return (Dancing) varMap.get(attributeName);
         }
-    }
-
-    //  Lehet majd megcsinálom ezzel
-    public <T> boolean checkEquals(T actual, T []expected) {
-        for(T value : expected) {
-            if(value.equals(actual)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static void helperStatSet(String[] params) throws IllegalArgumentException{
@@ -311,12 +299,9 @@ public class Main {
                     return;
                 case "move":
                     try {
-                        if ((orderElements[2].matches("f\\d+_\\d") || orderElements[2].matches("s\\d+_\\d") ||
+                        if ((orderElements[2].matches("f\\d+_\\d") || orderElements[2].matches("sh\\d+_\\d") ||
                             orderElements[2].matches("l\\d+_\\d")) || orderElements[2].matches("w\\d+_\\d")) {
-                            //Field f = (Field) varMap.get(orderElements[2]);
-                            //Virologist v = (Virologist) varMap.get(orderElements[1]);
                             ((Virologist) varMap.get(orderElements[1])).Move((Field) varMap.get(orderElements[2]));
-                            //f.AddVirologist(v);
                         } else {
                             throw new IllegalArgumentException();
                         }
@@ -424,8 +409,22 @@ public class Main {
                         if (!containsVars(new String[]{orderElements[1]})) {
                             throw new IllegalArgumentException();
                         }
-                        // egyelőre nem. :D
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        PrintStream ps = new PrintStream(baos);
+                        PrintStream old = System.out;
+                        System.setOut(ps);
                         helperStatSet(orderElements);
+                        System.out.flush();
+                        System.setOut(old);
+                        String newString = baos.toString();
+                        System.out.print(newString);
+                        if(outPut.length()==0){
+                            outPut=newString;
+                        }
+                        else{
+                            outPut=outPut+newString;
+                        }
+
                     } catch (IllegalArgumentException e) {
                         System.out.println("Hibás argumentumot adtál meg");
                     }
@@ -496,17 +495,15 @@ public class Main {
         Path filePath = Path.of(fileAddress);
         try {
             String content = Files.readString(filePath);
+            outPut = outPut.substring(0,outPut.length()-2);
+            System.out.println("\n---------------------\n"+"Kimenet: \n"+outPut+"\n---------------------\n");
             System.out.println("Elvárt kimenet: \n"+content);
-            System.out.println("Kimenetünk:\n" +outPut);
-            /*outPut = outPut.substring(0,outPut.length()-1);
-            System.out.println("Kimenet: \n"+outPut);
-
             if(content.equals(outPut)){
                 System.out.println(testName+" teszt sikeres!");
             }
             else {
                 System.out.println(testName+" teszt sikertelen");
-            }*/
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -522,7 +519,7 @@ public class Main {
                     break;
                 case "2":
                     readFile("input/PlaceAgentInLaboratory-input.txt");
-                    compareOutput("Place agent in laboratory","output/PlaceAgentInLaboratory-input.txt");
+                    compareOutput("Place agent in laboratory","output/PlaceAgentInLaboratory-output.txt");
                     break;
                 case "3":
                     readFile("input/PlaceGearInShelter-input.txt");

@@ -1,0 +1,14 @@
+add Stun s21_1
+add Virologist v21_1
+give v21_1 s21_1
+add Immune im21_1
+add Virologist v21_2
+give v21_2 im21_1
+add Field f21_1
+place v21_1 f21_1
+place v21_2 f21_1
+stat v21_1
+stat v21_2
+attack v21_1 v21_2 s21_1
+stat v21_1
+stat v21_2

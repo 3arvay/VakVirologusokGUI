@@ -1,0 +1,14 @@
+add Field f7_1
+add Warehouse w7_1
+add Virologist v7_1
+neighbour f7_1 w7_1
+place v7_1 f7_1
+set w7_1 amount 1000
+set w7_1 material nucleotid
+stat f7_1
+stat w7_1
+stat v7_1
+move v7_1 w7_1
+stat f7_1
+stat w7_1
+stat v7_1

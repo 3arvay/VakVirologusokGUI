@@ -1,0 +1,30 @@
+f11_1:
+neighbour1: f11_2
+neighbour2: w11_1
+virologist1: v11_1
+f11_2:
+neighbour1: f11_1
+w11_1:
+neighbour1: f11_1
+amount: 100
+material: nucleotid
+v11_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f11_1
+vattribute1: bm11_1
+f11_1:
+neighbour1: f11_2
+neighbour2: w11_1
+w11_1:
+neighbour1: f11_1
+virologist1: v11_1
+amount: 0
+material: nucleotid
+v11_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: w11_1
+vattribute1: bm11_1

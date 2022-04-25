@@ -1,0 +1,8 @@
+add Immunity i15_1
+add Virologist v15_1
+give v15_1 i15_1
+add Field f15_1
+place v15_1 f15_1
+stat v15_1
+attack v15_1 v15_1 i15_1
+stat v15_1

@@ -1,0 +1,30 @@
+v19_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f19_1
+agent1: s19_1
+v19_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f19_1
+gear1: g19_1
+g19_1:
+id: 0
+durability: 3
+v19_1:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f19_1
+vattribute: st19_1
+v19_2:
+amountNucleotid: 0
+amountAminoacid: 0
+maxAmount: 100
+myField: f19_1
+gear1: g19_1
+g19_1:
+id: 0
+durability: 2
