@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ public class Main {
 
     public static Map<Object, String> nameMap = new HashMap<>();
     public static Map<String, Object> varMap = new HashMap<>();
+    public static String outPut = "";
 
     public static Agent agentSwitch(String agentName){
         switch(agentName.charAt(0))
@@ -489,96 +492,145 @@ public class Main {
         }
     }
 
+    public static void compareOutput(String testName, String fileAddress){
+        Path filePath = Path.of(fileAddress);
+        try {
+            String content = Files.readString(filePath);
+            System.out.println("Elvárt kimenet: \n"+content);
+            System.out.println("Kimenetünk:\n" +outPut);
+            /*outPut = outPut.substring(0,outPut.length()-1);
+            System.out.println("Kimenet: \n"+outPut);
+
+            if(content.equals(outPut)){
+                System.out.println(testName+" teszt sikeres!");
+            }
+            else {
+                System.out.println(testName+" teszt sikertelen");
+            }*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         String i = "12";
         if (args.length > 0) {
             switch (args[0]) {
                 case "1":
                     readFile("input/AddVirologist-input.txt");
+                    compareOutput("Add Virologist","output/AddVirologist-output.txt");
                     break;
                 case "2":
                     readFile("input/PlaceAgentInLaboratory-input.txt");
+                    compareOutput("Place agent in laboratory","output/PlaceAgentInLaboratory-input.txt");
                     break;
                 case "3":
                     readFile("input/PlaceGearInShelter-input.txt");
+                    compareOutput("Place gear in shelter","output/PlaceGearInShelter-output.txt");
                     break;
                 case "4":
                     readFile("input/Neighbour-input.txt");
+                    compareOutput("Neighbour","output/Neighbour-output.txt");
                     break;
                 case "5":
                     readFile("input/MoveToField-input.txt");
+                    compareOutput("Move to field","output/MoveToField-output.txt");
                     break;
                 case "6":
                     readFile("input/MoveToLaboratory-input.txt");
+                    compareOutput("Move to laboratory","output/MoveToLaboratory-output.txt");
                     break;
                 case "7":
                     readFile("input/MoveToWarehouse-input.txt");
+                    compareOutput("Move to warehouse","output/MoveToWarehouse-output.txt");
                     break;
                 case "8":
                     readFile("input/MoveToShelter-input.txt");
+                    compareOutput("Move to shelter","output/MoveToShelter-output.txt");
                     break;
                 case "9":
                     readFile("input/DanceMove-input.txt");
+                    compareOutput("Dance move","output/DanceMove-output.txt");
                     break;
                 case "10":
                     readFile("input/BearMove-input.txt");
+                    compareOutput("Bear move","output/BearMove-output.txt");
                     break;
                 case "11":
                     readFile("input/BearMoveToWarehouse-input.txt");
+                    compareOutput("Bear move to warehouse","output/BearMoveToWarehouse-output.txt");
                     break;
                 case "12":
                     readFile("input/BearMoveNextToAxeUser-input.txt");
+                    compareOutput("Bear move next to axe user","output/BearMoveNextToAxeUser-output.txt");
                     break;
                 case "13":
                     readFile("input/AttackWithStun-input.txt");
+                    compareOutput("Attack with stun","output/AttackWithStun-output.txt");
                     break;
                 case "14":
                     readFile("input/AttackWithDance-input.txt");
+                    compareOutput("Attack with dance","output/AttackWithDance-output.txt");
                     break;
                 case "15":
                     readFile("input/AttackSelfWithImmunity-input.txt");
+                    compareOutput("Attack self with immunity","output/AttackSelfWithImmunity-output.txt");
                     break;
                 case "16":
                     readFile("input/AttackWithAmnesia-input.txt");
+                    compareOutput("Attack with amnesia","output/AttackWithAmnesia-output.txt");
                     break;
                 case "17":
                     readFile("input/AttackCloakUserProtected-input.txt");
+                    compareOutput("Attack cloak user (protected)","output/AttackCloakUserProtected-output.txt");
                     break;
                 case "18":
                     readFile("input/AttackCloakUserNotProtected-input.txt");
+                    compareOutput("Attack cloak user (not protected)","output/AttackCloakUserNotProtected-output.txt");
                     break;
                 case "19":
                     readFile("input/AttackGloveUser-input.txt");
+                    compareOutput("Attack glove user","output/AttackGloveUser-output.txt");
                     break;
                 case "20":
                     readFile("input/AttackGloveUserAsGloveUser-input.txt");
+                    compareOutput("Attack glove user as glove user","output/AttackGloveUserAsGloveUser-output.txt");
                     break;
                 case "21":
                     readFile("input/AttackImmuneVirologist-input.txt");
+                    compareOutput("Attack immune virologist","output/AttackImmuneVirologist-output.txt");
                     break;
                 case "22":
                     readFile("input/CraftAgent-input.txt");
+                    compareOutput("Craft agent","output/CraftAgent-output.txt");
                     break;
                 case "23":
                     readFile("input/StealMaterial-input.txt");
+                    compareOutput("Steal material","output/StealMaterial-output.txt");
                     break;
                 case "24":
                     readFile("input/StealBag-input.txt");
+                    compareOutput("Steal bag","output/StealBag-output.txt");
                     break;
                 case "25":
                     readFile("input/CraftedAgentUseTimeRunsOut-input.txt");
+                    compareOutput("Crafted agent use time runs out","output/CraftedAgentUseTimeRunsOut-output.txt");
                     break;
                 case "26":
                     readFile("input/VAttributeDurationTimeRunsOut-input.txt");
+                    compareOutput("VAttribute duration time runs out","output/VAttributeDurationTimeRunsOut-output.txt");
                     break;
                 case "27":
                     readFile("input/VirologistWins-input.txt");
+                    compareOutput("Virologist wins","output/VirologistWins-output.txt");
                     break;
                 case "28":
                     readFile("input/AddLaboratoryNotInfected-input.txt");
+                    compareOutput("Add laboratory (not infected)","output/AddLaboratoryNotInfected-output.txt");
                     break;
                 case "29":
                     readFile("input/AddLaboratoryInfected-input.txt");
+                    compareOutput("Add laboratory (infected)","output/AddLaboratoryInfected-output.txt");
                     break;
                 case "m":
                     Scanner scanner = new Scanner(System.in);
