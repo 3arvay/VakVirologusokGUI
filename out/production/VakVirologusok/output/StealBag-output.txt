@@ -1,24 +1,24 @@
 v24_1:
-amountNucleotid: 20
-amountAminoacid: 30
-maxAmount: 100
-myField: f24_1
+amountNucleotid:20
+amountAminoacid:30
+maxAmount:100
+myField:f24_1
 v24_2:
-amountNucleotid: 120
-amountAminoacid: 120
-maxAmount: 150
-myField: f24_1
-gear1: b24_1
-vattribute1: st24_1
+amountNucleotid:120
+amountAminoacid:120
+maxAmount:150
+myField:f24_1
+gear1:b24_1
+vattribute1:st24_1
 v24_1:
-amountNucleotid: 20
-amountAminoacid: 30
-maxAmount: 150
-myField: f24_1
-gear1: b24_1
+amountNucleotid:20
+amountAminoacid:30
+maxAmount:150
+myField:f24_1
+gear1:b24_1
 v24_2:
-amountNucleotid: 100
-amountAminoacid: 100
-maxAmount: 100
-myField: f24_1
-vattribute1: st24_1
+amountNucleotid:100
+amountAminoacid:100
+maxAmount:100
+myField:f24_1
+vattribute1:st24_1

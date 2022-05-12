@@ -1,24 +1,24 @@
 f7_1:
-neighbour1: w7_1
-virologist1: v7_1
+neighbour1:w7_1
+virologist1:v7_1
 w7_1:
-neighbour1: f7_1
-amount: 1000
-material: nucleotid
+neighbour1:f7_1
+amount:1000
+material:nucleotid
 v7_1:
-amountNucleotid: 0
-amountAminoacid: 0
-maxAmount: 100
-myField: f7_1
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:f7_1
 f7_1:
-neighbour1: w7_1
+neighbour1:w7_1
 w7_1:
-neighbour1: f7_1
-virologist1: v7_1
-amount: 900
-material: nucleotid
+neighbour1:f7_1
+virologist1:v7_1
+amount:900
+material:nucleotid
 v7_1:
-amountNucleotid: 100
-amountAminoacid: 0
-maxAmount: 100
-myField: w7_1
+amountNucleotid:100
+amountAminoacid:0
+maxAmount:100
+myField:w7_1

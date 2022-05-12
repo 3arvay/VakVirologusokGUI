@@ -2,10 +2,10 @@ add Virologist v23_1
 add Virologist v23_2
 add Field f23_1
 add Stunned st23_1
-set v23_1 amountAminoacid 20
-set v23_1 amountNucleotid 30
-set v23_2 amountAminoacid 73
-set v23_2 amountNucleotid 71
+set v23_1 amountAminoacid 30
+set v23_1 amountNucleotid 20
+set v23_2 amountAminoacid 71
+set v23_2 amountNucleotid 73
 give v23_2 st23_1
 place v23_1 f23_1
 place v23_2 f23_1

@@ -128,7 +128,6 @@ public class Virologist implements Timeable
     */
     public void Move(Field f2)
     {
-        System.out.println("NEM MEGY BELE A REGULAR MOVEBA TE FASZ");
         if(attributeList.stream().anyMatch(x->x instanceof BearMode))
         {
             this.f1.RemoveVirologist(this);

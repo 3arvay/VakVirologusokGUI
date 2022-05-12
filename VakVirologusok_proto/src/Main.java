@@ -12,7 +12,12 @@ public class Main {
     public static Map<Object, String> nameMap = new HashMap<>();
     public static Map<String, Object> varMap = new HashMap<>();
     public static String outPut = "";
-
+    /**
+     * Leírás:
+     * Parancs segédfüggvény, visszad egy specitikus ágenst a kapott paraméter alapján
+     * @param agentName Az adott
+     * @return gear
+     */
     public static Agent agentSwitch(String agentName){
         switch(agentName.charAt(0))
         {
@@ -26,7 +31,12 @@ public class Main {
                 return (Immunity) varMap.get(agentName);
         }
     }
-
+    /**
+     * Leírás:
+     * Visszaadja a virológus felszerelését
+     * @param gearName
+     * @return gear
+     */
     public static Gear gearSwitch(String gearName){
         switch (gearName.charAt(0)){
             case'c':
@@ -39,7 +49,12 @@ public class Main {
                 return (Gloves) varMap.get(gearName);
         }
     }
-
+    /**
+     * Leírás:
+     * Visszaadja a virológus felszerelését
+     * @param id
+     * @return gear
+     */
     public static VAttribute attributeSwitch(String attributeName){
         switch (attributeName.charAt(0)){
             case'b':
@@ -52,7 +67,12 @@ public class Main {
                 return (Dancing) varMap.get(attributeName);
         }
     }
-
+    /**
+     * Leírás:
+     * Visszaadja a virológus felszerelését
+     * @param id
+     * @return gear
+     */
     public static void helperStatSet(String[] params) throws IllegalArgumentException{
         if(params[1].matches("f\\d+_\\d")){
             if(params[0].equals("stat")) ((Field)varMap.get(params[1])).listAttributes(varMap);}

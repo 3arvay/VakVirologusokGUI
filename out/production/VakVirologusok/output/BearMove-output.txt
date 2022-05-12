@@ -1,39 +1,39 @@
 f10_1:
-neighbour1: f10_2
-neighbour2: f10_3
-virologist1: v10_1
+neighbour1:f10_2
+neighbour2:f10_3
+virologist1:v10_1
 f10_2:
-neighbour1: f10_1
+neighbour1:f10_1
 f10_3:
-neighbour1: f10_1
-virologist1: v10_2
+neighbour1:f10_1
+virologist1:v10_2
 v10_1:
-amountNucleotid: 0
-amountAminoacid: 0
-maxAmount: 100
-myField: f10_1
-vattribute1: bm10_1
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:f10_1
+vattribute1:bm10_1
 v10_2:
-amountNucleotid: 0
-amountAminoacid: 0
-maxAmount: 100
-myField: f10_3
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:f10_3
 f10_1:
-neighbour1: f10_2
-neighbour2: f10_3
+neighbour1:f10_2
+neighbour2:f10_3
 f10_3:
-neighbour1: f10_1
-virologist1: v10_2
-virologist2: v10_1
+neighbour1:f10_1
+virologist1:v10_2
+virologist2:v10_1
 v10_1:
-amountNucleotid: 0
-amountAminoacid: 0
-maxAmount: 100
-myField: f10_3
-vattribute1: bm10_1
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:f10_3
+vattribute1:bm10_1
 v10_2:
-amountNucleotid: 0
-amountAminoacid: 0
-maxAmount: 100
-myField: f10_3
-vattribute1: bm10_2
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:f10_3
+vattribute1:bm10_2

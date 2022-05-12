@@ -1,13 +1,13 @@
 v22_1:
-amountNucleotid: 100
-amountAminoacid: 100
-maxAmount: 100
-myField: null
-geneticCode1: s22_1
+amountNucleotid:100
+amountAminoacid:100
+maxAmount:100
+myField:null
+geneticCode1:s22_1
 v22_1:
-amountNucleotid: 35
-amountAminoacid: 70
-maxAmount: 100
-myField: null
-geneticCode1: s22_1
-agent1: s22_2
+amountNucleotid:35
+amountAminoacid:70
+maxAmount:100
+myField:null
+geneticCode1:s22_1
+agent1:s22_2
