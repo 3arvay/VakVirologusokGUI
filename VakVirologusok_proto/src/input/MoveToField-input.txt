@@ -1,0 +1,12 @@
+add Field f5_1
+add Field f5_2
+add Virologist v5_1
+neighbour f5_1 f5_2
+place v5_1 f5_1
+stat f5_1
+stat f5_2
+stat v5_1
+move v5_1 f5_2
+stat f5_1
+stat f5_2
+stat v5_1

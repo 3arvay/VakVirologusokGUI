@@ -1,0 +1,18 @@
+add Virologist v24_1
+add Virologist v24_2
+add Field f24_1
+add Stunned st24_1
+add Bag b24_1
+give v24_2 st24_1
+give v24_2 b24_1
+set v24_1 amountAminoacid 30
+set v24_1 amountNucleotid 20
+set v24_2 amountAminoacid 120
+set v24_2 amountNucleotid 120
+place v24_1 f24_1
+place v24_2 f24_1
+stat v24_1
+stat v24_2
+steal v24_1 v24_2 gear
+stat v24_1
+stat v24_2

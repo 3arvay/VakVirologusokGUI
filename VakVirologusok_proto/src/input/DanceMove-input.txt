@@ -1,0 +1,17 @@
+add Field f9_1
+add Field f9_2
+add Field f9_3
+neighbour f9_1 f9_2
+neighbour f9_1 f9_3
+add Virologist v9_1
+add Dancing di9_1
+give v9_1 di9_1
+place v9_1 f9_1
+stat f9_1
+stat f9_2
+stat f9_3
+stat v9_1
+move v9_1 f9_2
+stat f9_1
+stat f9_3
+stat v9_1

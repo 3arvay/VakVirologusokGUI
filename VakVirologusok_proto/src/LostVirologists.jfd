@@ -1,0 +1,282 @@
+JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "fill,hidemode 3,alignx center"
+			"$columnConstraints": "[600,fill][237,fill]"
+			"$rowConstraints": "[]"
+		} ) {
+			name: "mailPanel"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$layoutConstraints": "fill,hidemode 3,align center center"
+				"$columnConstraints": "[600:600]"
+				"$rowConstraints": "[147][400,fill]"
+			} ) {
+				name: "leftPanel"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+				"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$layoutConstraints": "fill,hidemode 3"
+					"$columnConstraints": "[300,fill][300,fill]"
+					"$rowConstraints": "[33][40]"
+				} ) {
+					name: "panel23"
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 0"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "fieldPanel"
+					"background": sfield java.awt.Color gray
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "fieldLabel"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/Fields/Laboratory.jpg" )
+						"horizontalAlignment": 0
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 1,dock center"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$layoutConstraints": "fill,hidemode 3,align center center"
+				"$columnConstraints": "[250,fill]"
+				"$rowConstraints": "[200][25]0[166][90]"
+			} ) {
+				name: "rightPanel"
+				"background": new java.awt.Color( 102, 102, 102, 255 )
+				"border": #LineBorder0
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$layoutConstraints": "fill,hidemode 3,gap 0 0"
+					"$columnConstraints": "[60,fill][212,fill]"
+					"$rowConstraints": "[200][]"
+				} ) {
+					name: "rightHeaderPanel"
+					"background": new java.awt.Color( 153, 153, 153, 255 )
+					"border": #LineBorder0
+					"foreground": sfield java.awt.Color darkGray
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+						"$layoutConstraints": "fill,align center center,gap 0 0"
+						"$columnConstraints": "[60]"
+						"$rowConstraints": "[50][50][50][50]"
+					} ) {
+						name: "vattributePanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+							name: "bearModePanel"
+							"background": sfield java.awt.Color white
+							"foreground": new java.awt.Color( 255, 255, 255, 255 )
+							"border": #LineBorder0
+							"toolTipText": "BearMode"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "bearModeLabel"
+								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/BearMode.png" )
+								"horizontalAlignment": 0
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 0,alignx center,growx 0,width 50::50,height 50::50"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+							name: "dancingPanel"
+							"background": sfield java.awt.Color white
+							"border": #LineBorder0
+							"toolTipText": "Dancing"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "dancingLabel"
+								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Dancing.png" )
+								"horizontalAlignment": 0
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 1,alignx center,growx 0,width 50::50,height 50::50"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+							name: "stunnedPanel"
+							"background": new java.awt.Color( 255, 255, 255, 255 )
+							"border": #LineBorder0
+							"toolTipText": "Stunned"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "stunnedLabel"
+								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Stunned.png" )
+								"horizontalAlignment": 0
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 2,alignx center,growx 0,width 50::50,height 50::50"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+							name: "immunePanel"
+							"background": new java.awt.Color( 255, 255, 255, 255 )
+							"border": #LineBorder0
+							"toolTipText": "Immune"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "immuneLabel"
+								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Immune.png" )
+								"horizontalAlignment": 0
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 0 3,alignx center,growx 0,width 50::50,height 50::50"
+						} )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0,dock center"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "playerIconPanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						"border": #LineBorder0
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "playerIconLabel"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/Virologists/purpleVirologist_icon.png" )
+							"horizontalAlignment": 0
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 0,dock center"
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 0"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+					name: "itemsPanel"
+					"autoscrolls": true
+					"background": new java.awt.Color( 153, 153, 153, 255 )
+					"border": #LineBorder0
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "agentsButton"
+						"text": "Agents"
+						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "gearsButton"
+						"text": "Gears"
+						"foreground": sfield java.awt.Color white
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "materialsButton"
+						"text": "Materials"
+						"foreground": sfield java.awt.Color white
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 1,aligny center,growy 0"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "detailsPane"
+					"foreground": new java.awt.Color( 0, 0, 0, 255 )
+					"background": new java.awt.Color( 153, 153, 153, 255 )
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "detailTable"
+						"border": #LineBorder0
+						"background": new java.awt.Color( 102, 102, 102, 255 )
+						"foreground": sfield java.awt.Color black
+						"cellSelectionEnabled": true
+						"autoResizeMode": 4
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+							} )
+						}, new java.util.Vector {
+							add( "Amount" )
+							add( "Agent" )
+						}, new java.util.Vector {
+							add( class java.lang.Integer )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( false )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+						} )
+						"selectionForeground": new java.awt.Color( 255, 255, 255, 255 )
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 2,align center center,grow 0 0"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$layoutConstraints": "fill,hidemode 3,gap 0 0"
+					"$columnConstraints": "[fill][fill]"
+					"$rowConstraints": "[][][]"
+				} ) {
+					name: "buttonPanel"
+					"background": new java.awt.Color( 153, 153, 153, 255 )
+					"border": #LineBorder0
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button8"
+						"text": "Move"
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0 2 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "attackButton"
+						"text": "Attack"
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+						"foreground": sfield java.awt.Color white
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "craftButton"
+						"text": "Craft"
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+						"foreground": sfield java.awt.Color white
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "stealButton"
+						"text": "Steal"
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+						"foreground": sfield java.awt.Color white
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 2"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "dropButton"
+						"text": "Drop"
+						"background": new java.awt.Color( 153, 153, 153, 255 )
+						"foreground": sfield java.awt.Color white
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 2"
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 3"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 0"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 25, 60 )
+			"size": new java.awt.Dimension( 925, 575 )
+		} )
+	}
+}

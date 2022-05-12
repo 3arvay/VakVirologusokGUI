@@ -1,0 +1,3 @@
+l28_1:
+infecting:false
+geneticCode:s28_1

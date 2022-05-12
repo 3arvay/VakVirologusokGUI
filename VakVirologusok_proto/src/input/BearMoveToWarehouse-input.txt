@@ -1,0 +1,19 @@
+add Field f11_1
+add Field f11_2
+add Warehouse w11_1
+neighbour f11_1 f11_2
+neighbour f11_1 w11_1
+set w11_1 amount 100
+set w11_1 material nucleotid
+add Virologist v11_1
+add BearMode bm11_1
+give v11_1 bm11_1
+place v11_1 f11_1
+stat f11_1
+stat f11_2
+stat w11_1
+stat v11_1
+move v11_1 f11_2
+stat f11_1
+stat w11_1
+stat v11_1

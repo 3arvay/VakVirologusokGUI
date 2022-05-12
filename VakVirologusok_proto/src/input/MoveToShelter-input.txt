@@ -1,0 +1,14 @@
+add Field f8_1
+add Shelter sh8_1
+add Virologist v8_1
+add Gloves g8_1
+neighbour f8_1 sh8_1
+place g8_1 sh8_1
+place v8_1 f8_1
+stat f8_1
+stat sh8_1
+stat v8_1
+move v8_1 sh8_1
+stat f8_1
+stat sh8_1
+stat v8_1

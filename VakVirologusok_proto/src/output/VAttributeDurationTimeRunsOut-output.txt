@@ -1,0 +1,13 @@
+v26_1:
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:null
+vattribute1:st26_1
+vattribute2:di26_1
+v26_1:
+amountNucleotid:0
+amountAminoacid:0
+maxAmount:100
+myField:null
+vattribute1:di26_1

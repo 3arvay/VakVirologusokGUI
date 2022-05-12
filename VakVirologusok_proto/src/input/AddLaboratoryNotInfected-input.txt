@@ -1,0 +1,5 @@
+add Laboratory l28_1
+add Stun s28_1
+place s28_1 l28_1
+set l28_1 infecting false
+stat l28_1

@@ -1,0 +1,12 @@
+add Dance d14_1
+add Virologist v14_1
+give v14_1 d14_1
+add Virologist v14_2
+add Field f14_1
+place v14_1 f14_1
+place v14_2 f14_1
+stat v14_1
+stat v14_2
+attack v14_1 v14_2 d14_1
+stat v14_1
+stat v14_2

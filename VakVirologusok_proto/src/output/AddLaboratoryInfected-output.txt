@@ -1,0 +1,3 @@
+l29_1:
+infecting:true
+geneticCode:s29_1

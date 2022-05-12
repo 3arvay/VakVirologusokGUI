@@ -1,0 +1,5 @@
+add Field f4_1
+add Field f4_2
+neighbour f4_1 f4_2
+stat f4_1
+stat f4_2

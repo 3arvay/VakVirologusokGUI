@@ -1,0 +1,16 @@
+add Stun s17_1
+add Virologist v17_1
+give v17_1 s17_1
+add Cloak c17_1
+set c17_1 chance 100
+add Virologist v17_2
+give v17_2 c17_1
+add Field f17_1
+place v17_1 f17_1
+place v17_2 f17_1
+stat v17_1
+stat v17_2
+stat c17_1
+attack v17_1 v17_2 s17_1
+stat v17_1
+stat v17_2
