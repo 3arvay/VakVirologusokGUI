@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -8,8 +9,11 @@ import java.util.Random;
 public class Game
 {
     private int nPlayers = 0;
-    public List<Virologist> playersInGame;
-    private List<Field> fieldsInGame;
+    public List<Virologist> playersInGame = new ArrayList<>();
+    private List<Field> fieldsInGame = new ArrayList<>();
+
+    public Virologist currentVirologist;
+    public Field currentField;
 
     /**
     * Leírás: pályaelemek létrhozása
@@ -35,8 +39,7 @@ public class Game
         SetFields();
 
         int currentIndex = 0;
-        Virologist currentVirologist;
-        Field currentField;
+
 
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);
@@ -100,6 +103,5 @@ public class Game
                 }
             }
         }
-
     }
 }
