@@ -12,47 +12,81 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "fill,hidemode 3,align center center"
 				"$columnConstraints": "[600:600]"
-				"$rowConstraints": "[147][400,fill]"
+				"$rowConstraints": "[83][400,fill]"
 			} ) {
 				name: "leftPanel"
 				"foreground": new java.awt.Color( 0, 0, 0, 255 )
 				"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-					"$layoutConstraints": "fill,hidemode 3"
-					"$columnConstraints": "[300,fill][300,fill]"
-					"$rowConstraints": "[12][31]"
+					"$layoutConstraints": "fill,hidemode 3,align center center"
+					"$columnConstraints": "[300,fill]0[300,fill]"
+					"$rowConstraints": "0[19]0[31]0"
 				} ) {
 					name: "leftHeaderPanel"
-					"background": new java.awt.Color( 102, 102, 102, 255 )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "fieldsLabel"
-						"text": "Neighbour fields"
-						"foreground": new java.awt.Color( 0, 0, 0, 255 )
-						"horizontalAlignment": 0
-						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					"background": sfield java.awt.Color darkGray
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "neighboursLabelPanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "neighboursLabel"
+							"text": "Neighbour fields"
+							"foreground": new java.awt.Color( 0, 0, 0, 255 )
+							"horizontalAlignment": 0
+							"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+							"background": new java.awt.Color( 204, 204, 204, 255 )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 0 0,dock center,gapy null 0"
 					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "virologistsLabel"
-						"text": "Other players here"
-						"horizontalAlignment": 0
-						"foreground": new java.awt.Color( 0, 0, 0, 255 )
-						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "playersLabelPanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "virologistsLabel"
+							"text": "Other players here"
+							"horizontalAlignment": 0
+							"foreground": new java.awt.Color( 0, 0, 0, 255 )
+							"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+							"background": new java.awt.Color( 204, 204, 204, 255 )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 0"
+						"value": "cell 1 0,dock center,gapy null 0"
 					} )
-					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "fieldsComboBox"
-						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "fieldsPanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "fieldsComboBox"
+							"foreground": new java.awt.Color( 255, 255, 255, 255 )
+							"model": new javax.swing.DefaultComboBoxModel {
+								selectedItem: "Select a field and press \"Move\""
+								addElement( "Select a field and press \"Move\"" )
+							}
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 1"
+						"value": "cell 0 1,gapy 0"
 					} )
-					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "playersComboBox"
-						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "playersPanel"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "playersComboBox"
+							"foreground": new java.awt.Color( 255, 255, 255, 255 )
+							"model": new javax.swing.DefaultComboBoxModel {
+								selectedItem: "Select a player and press \"Attack\" or \"Steal\""
+								addElement( "Select a player and press \"Attack\" or \"Steal\"" )
+							}
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 1"
+						"value": "cell 1 1,gapy 0"
 					} )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 0"
@@ -316,8 +350,8 @@ new FormModel {
 				"value": "cell 1 0"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 25, 95 )
-			"size": new java.awt.Dimension( 925, 540 )
+			"location": new java.awt.Point( 25, 115 )
+			"size": new java.awt.Dimension( 925, 520 )
 		} )
 	}
 }

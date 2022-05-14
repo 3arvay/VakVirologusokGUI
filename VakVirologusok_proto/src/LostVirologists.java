@@ -62,10 +62,14 @@ public class LostVirologists extends JFrame {
         mailPanel = new JPanel();
         leftPanel = new JPanel();
         leftHeaderPanel = new JPanel();
-        fieldsLabel = new JLabel();
+        neighboursLabelPanel = new JPanel();
+        neighboursLabel = new JLabel();
+        playersLabelPanel = new JPanel();
         virologistsLabel = new JLabel();
-        fieldsComboBox = new JComboBox();
-        playersComboBox = new JComboBox();
+        fieldsPanel = new JPanel();
+        fieldsComboBox = new JComboBox<>();
+        playersPanel = new JPanel();
+        playersComboBox = new JComboBox<>();
         fieldPanel = new JPanel();
         fieldLabel = new JLabel();
         rightPanel = new JPanel();
@@ -96,11 +100,13 @@ public class LostVirologists extends JFrame {
 
         //======== mailPanel ========
         {
-            mailPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-            0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-            . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-            red) ,mailPanel. getBorder( )) ); mailPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-            beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            mailPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
+            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
+            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,mailPanel. getBorder
+            ( )) ); mailPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+            .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
+            ( ); }} );
             mailPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,alignx center",
                 // columns
@@ -118,42 +124,78 @@ public class LostVirologists extends JFrame {
                     // columns
                     "[600:600]",
                     // rows
-                    "[147]" +
+                    "[83]" +
                     "[400,fill]"));
 
                 //======== leftHeaderPanel ========
                 {
-                    leftHeaderPanel.setBackground(new Color(102, 102, 102));
+                    leftHeaderPanel.setBackground(Color.darkGray);
                     leftHeaderPanel.setLayout(new MigLayout(
-                        "fill,hidemode 3",
+                        "fill,hidemode 3,align center center",
                         // columns
-                        "[300,fill]" +
+                        "[300,fill]0" +
                         "[300,fill]",
                         // rows
-                        "[12]" +
-                        "[31]"));
+                        "0[19]0" +
+                        "[31]0"));
 
-                    //---- fieldsLabel ----
-                    fieldsLabel.setText("Neighbour fields");
-                    fieldsLabel.setForeground(Color.black);
-                    fieldsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                    fieldsLabel.setFont(fieldsLabel.getFont().deriveFont(fieldsLabel.getFont().getStyle() | Font.BOLD));
-                    leftHeaderPanel.add(fieldsLabel, "cell 0 0");
+                    //======== neighboursLabelPanel ========
+                    {
+                        neighboursLabelPanel.setBackground(new Color(204, 204, 204));
+                        neighboursLabelPanel.setLayout(new BorderLayout());
 
-                    //---- virologistsLabel ----
-                    virologistsLabel.setText("Other players here");
-                    virologistsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                    virologistsLabel.setForeground(Color.black);
-                    virologistsLabel.setFont(virologistsLabel.getFont().deriveFont(virologistsLabel.getFont().getStyle() | Font.BOLD));
-                    leftHeaderPanel.add(virologistsLabel, "cell 1 0");
+                        //---- neighboursLabel ----
+                        neighboursLabel.setText("Neighbour fields");
+                        neighboursLabel.setForeground(Color.black);
+                        neighboursLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        neighboursLabel.setFont(neighboursLabel.getFont().deriveFont(neighboursLabel.getFont().getStyle() | Font.BOLD));
+                        neighboursLabel.setBackground(new Color(204, 204, 204));
+                        neighboursLabelPanel.add(neighboursLabel, BorderLayout.CENTER);
+                    }
+                    leftHeaderPanel.add(neighboursLabelPanel, "cell 0 0,dock center,gapy null 0");
 
-                    //---- fieldsComboBox ----
-                    fieldsComboBox.setForeground(Color.white);
-                    leftHeaderPanel.add(fieldsComboBox, "cell 0 1");
+                    //======== playersLabelPanel ========
+                    {
+                        playersLabelPanel.setBackground(new Color(204, 204, 204));
+                        playersLabelPanel.setLayout(new BorderLayout());
 
-                    //---- playersComboBox ----
-                    playersComboBox.setForeground(Color.white);
-                    leftHeaderPanel.add(playersComboBox, "cell 1 1");
+                        //---- virologistsLabel ----
+                        virologistsLabel.setText("Other players here");
+                        virologistsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        virologistsLabel.setForeground(Color.black);
+                        virologistsLabel.setFont(virologistsLabel.getFont().deriveFont(virologistsLabel.getFont().getStyle() | Font.BOLD));
+                        virologistsLabel.setBackground(new Color(204, 204, 204));
+                        playersLabelPanel.add(virologistsLabel, BorderLayout.CENTER);
+                    }
+                    leftHeaderPanel.add(playersLabelPanel, "cell 1 0,dock center,gapy null 0");
+
+                    //======== fieldsPanel ========
+                    {
+                        fieldsPanel.setBackground(new Color(204, 204, 204));
+                        fieldsPanel.setLayout(new BorderLayout());
+
+                        //---- fieldsComboBox ----
+                        fieldsComboBox.setForeground(Color.white);
+                        fieldsComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+                            "Select a field and press \"Move\""
+                        }));
+                        fieldsPanel.add(fieldsComboBox, BorderLayout.CENTER);
+                    }
+                    leftHeaderPanel.add(fieldsPanel, "cell 0 1,gapy 0");
+
+                    //======== playersPanel ========
+                    {
+                        playersPanel.setBackground(new Color(204, 204, 204));
+                        playersPanel.setLayout(new BorderLayout());
+
+                        //---- playersComboBox ----
+                        playersComboBox.setForeground(Color.white);
+                        playersComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+                            "Select a player and press \"Attack\" or \"Steal\""
+                        }));
+                        playersPanel.add(playersComboBox, BorderLayout.CENTER);
+                    }
+                    leftHeaderPanel.add(playersPanel, "cell 1 1,gapy 0");
                 }
                 leftPanel.add(leftHeaderPanel, "cell 0 0");
 
@@ -422,10 +464,14 @@ public class LostVirologists extends JFrame {
     private JPanel mailPanel;
     private JPanel leftPanel;
     private JPanel leftHeaderPanel;
-    private JLabel fieldsLabel;
+    private JPanel neighboursLabelPanel;
+    private JLabel neighboursLabel;
+    private JPanel playersLabelPanel;
     private JLabel virologistsLabel;
-    private JComboBox fieldsComboBox;
-    private JComboBox playersComboBox;
+    private JPanel fieldsPanel;
+    private JComboBox<String> fieldsComboBox;
+    private JPanel playersPanel;
+    private JComboBox<String> playersComboBox;
     private JPanel fieldPanel;
     private JLabel fieldLabel;
     private JPanel rightPanel;
