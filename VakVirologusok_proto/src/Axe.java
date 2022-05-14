@@ -41,11 +41,13 @@ public class Axe extends Gear {
     /**
      * Leírás: Az ellopás műveletet a baltát az adott virológustól.
      *
-     * @param  v: Akitől elveszik az objektumot
+     * @param  v2: Akitől elveszik az objektumot
      * @return Gear: Az ellopott balta objektum
      */
     @Override
     public Gear StealAway(Virologist v, Virologist v2) {
-        return v.RemoveGear(this);
+        Gear temp = v2.gearList[3];
+        v2.gearList[3] = null;
+        return temp;
     }
 }

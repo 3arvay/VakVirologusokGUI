@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -56,7 +57,6 @@ public class Game
         SetFields();
 
         int currentIndex = 0;
-
 
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);
@@ -120,6 +120,5 @@ public class Game
                 }
             }
         }
-
     }
 }

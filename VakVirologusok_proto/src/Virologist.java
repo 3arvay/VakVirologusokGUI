@@ -13,7 +13,8 @@ public class Virologist implements Timeable
     private int maxAmount;
     private List<Agent> geneticCodeList;
     private List<Agent> agentList;
-    private List<Gear> gearList;
+    // private List<Gear> gearList;
+    Gear[] gearList;
     private List<VAttribute> attributeList;
     private Field f1;
 
@@ -26,6 +27,9 @@ public class Virologist implements Timeable
         amountAminoacid=0;
         maxAmount=100;
         geneticCodeList=new ArrayList<Agent>();
+        gearList = new Gear[]{null, null, null, null};
+
+        /*
         gearList=new ArrayList<Gear>()
         {
             {
@@ -34,7 +38,8 @@ public class Virologist implements Timeable
                 add(null);
                 add(null);
             }
-        };
+        };*/
+
         attributeList=new ArrayList<VAttribute>();
         agentList = new ArrayList<Agent>();
         f1=null;
@@ -42,21 +47,6 @@ public class Virologist implements Timeable
 
     public void SetF1 (Field f) {
         f1 = f;
-    }
-
-    public void setter(String type, String value){
-        if(type.equals("amountNucleotid")){
-            amountNucleotid=Integer.parseInt(value);
-        }
-        else if(type.equals("amountAminoacid")){
-            amountAminoacid=Integer.parseInt(value);
-        }
-        else if(type.equals("maxAmount")){
-            maxAmount=Integer.parseInt(value);
-        }
-        else{
-            System.out.println("Hibás paramétert adtál meg");
-        }
     }
 
     /**
@@ -130,10 +120,10 @@ public class Virologist implements Timeable
     {
         if (opt.equals("gear"))
         {
-            Gear g = this.StealGear(v2);
-            if (g!=null)
+            Gear g = v2.StealGear(this);
+            if (g != null)
             {
-                gearList.add(g);
+                gearList[g.GetID()] = g;
             }
 
         }
@@ -165,15 +155,21 @@ public class Virologist implements Timeable
     */
     public Gear StealGear(Virologist v)
     {
-        if (v.attributeList.stream().anyMatch(x -> x instanceof Stunned))
+        if (attributeList.stream().anyMatch(x -> x instanceof Stunned))
         {
+            for(int i = 0; i < 4; i++) {
+                if(gearList[i] != null) {
+                    return gearList[i].StealAway(v, this);
+                }
+            }
+            /*
             for(Gear g : v.gearList)
             {
                 if (g != null)
                 {
                     return g.StealAway(this, v);
                 }
-            }
+            }*/
         }
         return null;
     }
@@ -186,7 +182,9 @@ public class Virologist implements Timeable
     */
     public Gear RemoveGear(Gear gear)
     {
-        return gearList.remove(gear.GetID());
+        Gear temp = gearList[gear.GetID()];
+        gearList[gear.GetID()] = null;
+        return temp;
     }
 
     /**
@@ -196,7 +194,7 @@ public class Virologist implements Timeable
      */
     public void ThrowGear(Gear gear)
     {
-        this.gearList.remove(gear);
+        gearList[gear.GetID()] = null;
     }
 
     /**
@@ -217,13 +215,13 @@ public class Virologist implements Timeable
     public void UnderAttack(Agent a, Virologist v)
     {
         if(!(this.attributeList.stream().anyMatch(x->x instanceof Immune))) {
-            if (gearList.stream().anyMatch(x -> x instanceof Gloves) && this.gearList.get(0).Use(v, a)) {
+            if (gearList[0] != null && gearList[0].Use(v, a)) {
                 return;
             }
-            if (gearList.stream().anyMatch(x -> x instanceof Cloak) && this.gearList.get(1).Use(this, a)) {
+            if (gearList[1] != null && gearList[1].Use(this, a)) {
                 return;
             }
-            if (a instanceof BearVirus && gearList.stream().anyMatch(x -> x instanceof Axe) && gearList.get(3).Use(v, a)) {
+            if (a instanceof BearVirus && gearList[3] != null && gearList[3].Use(v, a)) {
                 return;
             }
             VAttribute asd = a.AllotAttribute(a);
@@ -256,7 +254,13 @@ public class Virologist implements Timeable
     {
         if(!HasThisGear(gear))
         {
-            gearList.add(gear.GetID(),gear.PickUp(this));
+            int gearcount = 0;
+            for(int i = 0; i < 4; i++) {
+                if(gearList[i] != null) gearcount++;
+            }
+            if(gearcount < 3) {
+                gearList[gear.GetID()] = gear.PickUp(this);
+            }
         }
     }
 
@@ -341,6 +345,8 @@ public class Virologist implements Timeable
     */
     public Boolean HasThisGear(Gear g)
     {
+        return gearList[g.GetID()] != null;
+        /*
         for (Gear gear: gearList)
         {
             if (gear!= null)
@@ -351,7 +357,7 @@ public class Virologist implements Timeable
                 }
             }
         }
-        return false;
+        return false;*/
     }
 
     /**
@@ -455,7 +461,8 @@ public class Virologist implements Timeable
      */
     public Gear GetGear(int id)
     {
-        return this.gearList.get(id);
+        return gearList[id];
+        //return this.gearList.get(id);
     }
 
     public void RemoveAgent(Agent a) {

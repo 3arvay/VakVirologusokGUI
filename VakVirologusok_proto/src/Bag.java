@@ -61,7 +61,8 @@ public class Bag extends Gear
     {
         v2.LowerCapacity(size);
         v.ExtendCapacity(size);
-        v2.RemoveGear(this);
-        return this;
+        Gear temp = v2.gearList[2];
+        v2.gearList[2] = null;
+        return temp;
     }
 }

@@ -15,7 +15,7 @@ public class Gloves extends Gear
     public Gloves()
     {
         durability = 3;
-        this.id = 0;
+        id = 0;
     }
 
     /**
@@ -57,7 +57,8 @@ public class Gloves extends Gear
     @Override
     public Gear StealAway(Virologist v, Virologist v2)
     {
-        return v.RemoveGear(this);
+        Gear temp = v2.gearList[0];
+        v2.gearList[0] = null;
+        return temp;
     }
-
 }
