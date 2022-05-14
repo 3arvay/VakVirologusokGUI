@@ -59,68 +59,6 @@ public class Virologist implements Timeable
         }
     }
 
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey() + ":");
-                break;
-            }
-        }
-        System.out.println( "amountNucleotid:"+amountNucleotid+"\r\n"+
-                            "amountAminoacid:"+amountAminoacid+"\r\n"+
-                            "maxAmount:"+maxAmount);
-        String field_temp = "null";
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(f1)) {
-                field_temp=entry.getKey();
-                break;
-            }
-        }
-        System.out.println("myField:"+field_temp);
-
-        int i = 1;
-        while (i <= geneticCodeList.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(geneticCodeList.get(i-1))) {
-                    System.out.println("geneticCode" + i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-
-        i = 1;
-        while (i <= agentList.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(agentList.get(i-1))) {
-                    System.out.println("agent" + i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-        i = 1;
-        int j=1;
-        while (i <= gearList.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (!(gearList.get(i-1)==null)&& entry.getValue().equals(gearList.get(i-1))) {
-                    System.out.println("gear" + j++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-            i++;
-        }
-        i = 1;
-        j=1;
-        while (i <= attributeList.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(attributeList.get(i-1))) {
-                    System.out.println("vattribute" + j++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-            i++;
-        }
-    }
-
     /**
     * Leírás:
     * A felhasználó mozgásműveletét valósítja meg egy szomszédos mezőre.
@@ -532,5 +470,15 @@ public class Virologist implements Timeable
         for(VAttribute va : attributeList) {
             va.Step(this);
         }
+    }
+
+    public int GetNumOFGeneticCodes() {
+        return geneticCodeList.size();
+    }
+
+    public Field GetMyField() {return f1;}
+
+    public boolean notStunned() {
+        return !attributeList.stream().anyMatch(x -> x instanceof Stunned);
     }
 }

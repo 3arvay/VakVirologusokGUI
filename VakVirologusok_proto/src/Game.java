@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 
 /**
 * Leírás:
@@ -6,8 +7,8 @@ import java.util.List;
 */
 public class Game
 {
-    private int nPlayers;
-    private List<Virologist> playersInGame;
+    private int nPlayers = 0;
+    public List<Virologist> playersInGame;
     private List<Field> fieldsInGame;
 
     /**
@@ -15,6 +16,8 @@ public class Game
     */
     public void StartGame()
     {
+
+
         for(int i = 0; i < nPlayers; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
             fieldsInGame.add(new Field());
             fieldsInGame.add(new Shelter());
@@ -28,15 +31,44 @@ public class Game
         for (Virologist v : playersInGame) { // minden játékos a kezdő mezőre
             v.SetInitialField(fieldsInGame.get(0));
         }
+
+        SetFields();
+
+        int currentIndex = 0;
+        Virologist currentVirologist;
+        Field currentField;
+
+        while (!CheckWin()) {
+            currentVirologist = playersInGame.get(currentIndex);
+            currentField = currentVirologist.GetMyField();
+
+            if(currentVirologist.notStunned() && !currentField.equals(null)) {
+
+                // TODO soronlévő játékos dolgai
+
+            }
+
+            if(currentIndex == playersInGame.size() - 1) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+        }
+
     }
     
     /**
     * Leírás:
     * véget vet a játéknak
     */
-    public void Win()
+    public boolean CheckWin()
     {
-
+        for(Virologist v: playersInGame) {
+            if (v.GetNumOFGeneticCodes() == 4) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -48,11 +80,26 @@ public class Game
         Field last = new Field();
         last.AddNeighbour(fieldsInGame.get(fieldsInGame.size() -1));
         fieldsInGame.get(fieldsInGame.size() -1).AddNeighbour(last);
+        Field temp = last;
 
         for(Field current : fieldsInGame) {
             last.AddNeighbour(current);
             current.AddNeighbour(last);
             last = current;
         }
+
+        fieldsInGame.add(temp);
+
+        for(Field current : fieldsInGame) {
+            int nNeighbours = new Random().nextInt(5);
+            for(int i = 0; i < nNeighbours; i++) {
+                int randomIndex = new Random().nextInt(fieldsInGame.size());
+                if (!current.Neighbours.contains(fieldsInGame.get(randomIndex))) {
+                    current.AddNeighbour(fieldsInGame.get(randomIndex));
+                    fieldsInGame.get(randomIndex).AddNeighbour(current);
+                }
+            }
+        }
+
     }
 }
