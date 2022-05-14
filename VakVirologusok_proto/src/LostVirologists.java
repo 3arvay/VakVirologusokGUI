@@ -15,6 +15,8 @@ import java.awt.*;
  * @author unknown
  */
 public class LostVirologists extends JFrame {
+
+
     public LostVirologists() {
         initComponents();
         initSettings();
@@ -23,6 +25,8 @@ public class LostVirologists extends JFrame {
     private void initSettings(){
 
     }
+
+
     
     private void moveButtonEvent(ActionEvent e) {
         // TODO add your code here
