@@ -1,3 +1,4 @@
+import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -16,7 +17,43 @@ import java.awt.*;
 public class LostVirologists extends JFrame {
     public LostVirologists() {
         initComponents();
+        initSettings();
+    }
 
+    private void initSettings(){
+
+    }
+    
+    private void moveButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void attackButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void craftButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void stealButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void agentsButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void gearsButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void materialsButtonEvent(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void dropButtonEvent(ActionEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -24,7 +61,11 @@ public class LostVirologists extends JFrame {
         // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
         mailPanel = new JPanel();
         leftPanel = new JPanel();
-        panel23 = new JPanel();
+        leftHeaderPanel = new JPanel();
+        fieldsLabel = new JLabel();
+        virologistsLabel = new JLabel();
+        fieldsComboBox = new JComboBox();
+        playersComboBox = new JComboBox();
         fieldPanel = new JPanel();
         fieldLabel = new JLabel();
         rightPanel = new JPanel();
@@ -47,7 +88,7 @@ public class LostVirologists extends JFrame {
         detailsPane = new JScrollPane();
         detailTable = new JTable();
         buttonPanel = new JPanel();
-        button8 = new JButton();
+        moveButton = new JButton();
         attackButton = new JButton();
         craftButton = new JButton();
         stealButton = new JButton();
@@ -55,13 +96,11 @@ public class LostVirologists extends JFrame {
 
         //======== mailPanel ========
         {
-            mailPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-            awt.Font.BOLD,12),java.awt.Color.red),mailPanel. getBorder()))
-            ;mailPanel. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            mailPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+            0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+            . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+            red) ,mailPanel. getBorder( )) ); mailPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+            beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
             mailPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,alignx center",
                 // columns
@@ -82,28 +121,52 @@ public class LostVirologists extends JFrame {
                     "[147]" +
                     "[400,fill]"));
 
-                //======== panel23 ========
+                //======== leftHeaderPanel ========
                 {
-                    panel23.setLayout(new MigLayout(
+                    leftHeaderPanel.setBackground(new Color(102, 102, 102));
+                    leftHeaderPanel.setLayout(new MigLayout(
                         "fill,hidemode 3",
                         // columns
                         "[300,fill]" +
                         "[300,fill]",
                         // rows
-                        "[33]" +
-                        "[40]"));
+                        "[12]" +
+                        "[31]"));
+
+                    //---- fieldsLabel ----
+                    fieldsLabel.setText("Neighbour fields");
+                    fieldsLabel.setForeground(Color.black);
+                    fieldsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                    fieldsLabel.setFont(fieldsLabel.getFont().deriveFont(fieldsLabel.getFont().getStyle() | Font.BOLD));
+                    leftHeaderPanel.add(fieldsLabel, "cell 0 0");
+
+                    //---- virologistsLabel ----
+                    virologistsLabel.setText("Other players here");
+                    virologistsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                    virologistsLabel.setForeground(Color.black);
+                    virologistsLabel.setFont(virologistsLabel.getFont().deriveFont(virologistsLabel.getFont().getStyle() | Font.BOLD));
+                    leftHeaderPanel.add(virologistsLabel, "cell 1 0");
+
+                    //---- fieldsComboBox ----
+                    fieldsComboBox.setForeground(Color.white);
+                    leftHeaderPanel.add(fieldsComboBox, "cell 0 1");
+
+                    //---- playersComboBox ----
+                    playersComboBox.setForeground(Color.white);
+                    leftHeaderPanel.add(playersComboBox, "cell 1 1");
                 }
-                leftPanel.add(panel23, "cell 0 0");
+                leftPanel.add(leftHeaderPanel, "cell 0 0");
 
                 //======== fieldPanel ========
                 {
-                    fieldPanel.setBackground(Color.gray);
+                    fieldPanel.setBackground(Color.darkGray);
                     fieldPanel.setLayout(new BorderLayout());
 
                     //---- fieldLabel ----
                     fieldLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Fields/Laboratory.jpg")));
-                    fieldLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     fieldLabel.setBackground(new Color(153, 153, 153));
+                    fieldLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+                    fieldLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     fieldPanel.add(fieldLabel, BorderLayout.CENTER);
                 }
                 leftPanel.add(fieldPanel, "cell 0 1,dock center");
@@ -236,18 +299,21 @@ public class LostVirologists extends JFrame {
                     agentsButton.setText("Agents");
                     agentsButton.setForeground(Color.white);
                     agentsButton.setBackground(new Color(153, 153, 153));
+                    agentsButton.addActionListener(e -> agentsButtonEvent(e));
                     itemsPanel.add(agentsButton);
 
                     //---- gearsButton ----
                     gearsButton.setText("Gears");
                     gearsButton.setForeground(Color.white);
                     gearsButton.setBackground(new Color(153, 153, 153));
+                    gearsButton.addActionListener(e -> gearsButtonEvent(e));
                     itemsPanel.add(gearsButton);
 
                     //---- materialsButton ----
                     materialsButton.setText("Materials");
                     materialsButton.setForeground(Color.white);
                     materialsButton.setBackground(new Color(153, 153, 153));
+                    materialsButton.addActionListener(e -> materialsButtonEvent(e));
                     itemsPanel.add(materialsButton);
                 }
                 rightPanel.add(itemsPanel, "cell 0 1,aligny center,growy 0");
@@ -255,7 +321,7 @@ public class LostVirologists extends JFrame {
                 //======== detailsPane ========
                 {
                     detailsPane.setForeground(Color.black);
-                    detailsPane.setBackground(new Color(153, 153, 153));
+                    detailsPane.setBackground(Color.lightGray);
 
                     //---- detailTable ----
                     detailTable.setBorder(LineBorder.createBlackLineBorder());
@@ -290,6 +356,7 @@ public class LostVirologists extends JFrame {
                         }
                     });
                     detailTable.setSelectionForeground(Color.white);
+                    detailTable.setGridColor(Color.black);
                     detailsPane.setViewportView(detailTable);
                 }
                 rightPanel.add(detailsPane, "cell 0 2,align center center,grow 0 0");
@@ -308,34 +375,39 @@ public class LostVirologists extends JFrame {
                         "[]" +
                         "[]"));
 
-                    //---- button8 ----
-                    button8.setText("Move");
-                    button8.setBackground(new Color(153, 153, 153));
-                    button8.setForeground(Color.white);
-                    buttonPanel.add(button8, "cell 0 0 2 1");
+                    //---- moveButton ----
+                    moveButton.setText("Move");
+                    moveButton.setBackground(new Color(153, 153, 153));
+                    moveButton.setForeground(Color.white);
+                    moveButton.addActionListener(e -> moveButtonEvent(e));
+                    buttonPanel.add(moveButton, "cell 0 0 2 1");
 
                     //---- attackButton ----
                     attackButton.setText("Attack");
                     attackButton.setBackground(new Color(153, 153, 153));
                     attackButton.setForeground(Color.white);
+                    attackButton.addActionListener(e -> attackButtonEvent(e));
                     buttonPanel.add(attackButton, "cell 0 1");
 
                     //---- craftButton ----
                     craftButton.setText("Craft");
                     craftButton.setBackground(new Color(153, 153, 153));
                     craftButton.setForeground(Color.white);
+                    craftButton.addActionListener(e -> craftButtonEvent(e));
                     buttonPanel.add(craftButton, "cell 1 1");
 
                     //---- stealButton ----
                     stealButton.setText("Steal");
                     stealButton.setBackground(new Color(153, 153, 153));
                     stealButton.setForeground(Color.white);
+                    stealButton.addActionListener(e -> stealButtonEvent(e));
                     buttonPanel.add(stealButton, "cell 0 2");
 
                     //---- dropButton ----
                     dropButton.setText("Drop");
                     dropButton.setBackground(new Color(153, 153, 153));
                     dropButton.setForeground(Color.white);
+                    dropButton.addActionListener(e -> dropButtonEvent(e));
                     buttonPanel.add(dropButton, "cell 1 2");
                 }
                 rightPanel.add(buttonPanel, "cell 0 3");
@@ -349,7 +421,11 @@ public class LostVirologists extends JFrame {
     // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
     private JPanel mailPanel;
     private JPanel leftPanel;
-    private JPanel panel23;
+    private JPanel leftHeaderPanel;
+    private JLabel fieldsLabel;
+    private JLabel virologistsLabel;
+    private JComboBox fieldsComboBox;
+    private JComboBox playersComboBox;
     private JPanel fieldPanel;
     private JLabel fieldLabel;
     private JPanel rightPanel;
@@ -372,7 +448,7 @@ public class LostVirologists extends JFrame {
     private JScrollPane detailsPane;
     private JTable detailTable;
     private JPanel buttonPanel;
-    private JButton button8;
+    private JButton moveButton;
     private JButton attackButton;
     private JButton craftButton;
     private JButton stealButton;
