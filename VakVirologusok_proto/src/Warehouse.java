@@ -17,6 +17,7 @@ public class Warehouse extends Field
     /**
     * Leírás: A Warehouse konstruktora
     */
+    
     public Warehouse(){
         amount=1000;
         material=new String[]{"nucleotid","aminoacid"}[new Random().nextInt(2)];
