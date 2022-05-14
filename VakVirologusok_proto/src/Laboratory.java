@@ -16,14 +16,18 @@ public class Laboratory extends Field
     }
 
     /**
+     * @param type 0: stun, 1: dance, 2:immunity, 3:amnesia
+     */
+    public Laboratory(int type) {
+        geneticCode = new Agent[] {new Stun(), new Dance(), new Immunity(), new Amnesia()} [type];
+        infecting = new Random().nextBoolean();
+    }
+
+    /**
     * Leírás: Virológus lépését valósítja meg a labor mezőre, és ha még számára ismeretlen az ott található genetikai kód, akkor megtanulja.
     *
-    * @param value: Az a virológus aki rálép erre a raktár mezőre
+    * @param v: Az a virológus aki rálép erre a raktár mezőre
     */
-
-    public void setter(String value){
-        infecting=value.equals("true");
-    }
     @Override
     public void AddVirologist(Virologist v)
     {
@@ -33,52 +37,10 @@ public class Laboratory extends Field
         if(this.infecting)
         {
             BearVirus bv = new BearVirus();
-            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-                if (entry.getValue().equals(this)) {
-                    Main.varMap.put("bv"+entry.getKey().substring(1), bv);
-                }
-            }
             v.SpecialAttack(bv);
         }
     }
 
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        int i = 1;
-        while (i <= Neighbours.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(Neighbours.get(i-1))) {
-                    System.out.println("neighbour" + i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-        i = 1;
-        while (i <= standsHere.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(standsHere.get(i-1))) {
-                    System.out.println("virologist" +i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-        System.out.println( "infecting:"+infecting);
-
-        String geneticCode_temp = null;
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(geneticCode)) {
-                geneticCode_temp=entry.getKey();
-                break;
-            }
-        }
-        System.out.println("geneticCode" + ":"+geneticCode_temp);
-
-    }
     /**
     * Leírás:  Inicializáláskor egy adott genetikai kódot jelentő ágenst helyez el a laboratóriumban.
     *

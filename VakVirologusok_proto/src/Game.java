@@ -6,7 +6,9 @@ import java.util.List;
 */
 public class Game
 {
+    private int nPlayers;
     private int numOfAgents;
+    private List<Virologist> playersInGame;
     private List<Field> fieldsInGame;
 
     /**
@@ -15,7 +17,12 @@ public class Game
     */
     public void StartGame()
     {
-
+        for(int i = 0; i < nPlayers; i++) {
+            fieldsInGame.add(new Field());
+        }
+        for(int i = 0; i < 4; i++) {
+            fieldsInGame.add(new Laboratory(i));
+        }
     }
     
     /**

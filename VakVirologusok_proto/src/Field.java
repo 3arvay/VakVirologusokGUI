@@ -19,33 +19,6 @@ public class Field
         Neighbours = new ArrayList<Field>();
     }
 
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        int i = 1;
-        while (i <= Neighbours.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(Neighbours.get(i-1))) {
-                    System.out.println("neighbour" + i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-        i = 1;
-        while (i <= standsHere.size()) {
-            for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-                if (entry.getValue().equals(standsHere.get(i-1))) {
-                    System.out.println("virologist" +i++ + ":" + entry.getKey());
-                    break;
-                }
-            }
-        }
-    }
-
     /**
     * Leírás:
     * Adott mezőhöz szomszédos mezőket rendel hozzá.

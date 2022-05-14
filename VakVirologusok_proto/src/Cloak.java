@@ -16,24 +16,7 @@ public class Cloak extends Gear
         id = 1;
         chance = 82.3;
     }
-    public void setter(String value){
-        double newChance=Double.parseDouble(value);
-        if(newChance>=0&&newChance<=100){
-            chance=newChance;
-        }
-        else{System.out.println("Hibás értéket adtál meg.");}
-    }
 
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        System.out.println( "id:"+id+"\r\n"+
-                            "chance:"+chance);
-    }
     /**
      * Leírás: Egy kenhető ágenst hoz létre a meglévő ágenst tudástárából.
      *

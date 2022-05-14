@@ -18,16 +18,6 @@ public class Gloves extends Gear
         this.id = 0;
     }
 
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        System.out.println( "id:"+id+"\r\n"+
-                            "durability:"+durability);
-    }
     /**
     * Leírás:
     * visszakenés műveletét valósítja meg akkor, ha egy virológus visel kesztyűt és megtámadják, azaz a támadón érvényesül a támadó ágensének hatása.
@@ -70,11 +60,4 @@ public class Gloves extends Gear
         return v.RemoveGear(this);
     }
 
-    public void setter(String value){
-        int newDurability=Integer.parseInt(value);
-        if(newDurability>=0&&newDurability<=3) {
-            durability=newDurability;
-        }
-        else{System.out.println("Hibás értéket adtál meg.");}
-    }
 }

@@ -9,16 +9,6 @@ public abstract class Agent
     protected int nucleotidCost;
     protected int aminoacidCost;
     private VAttribute vAttribute;
-
-
-    public void setter(String value){
-        try{
-            useTime=Integer.parseInt(value);
-        }
-        catch(NumberFormatException e){
-            System.out.println("Hibás számformátumot adtál meg");
-        }
-    }
     /**
      * Leírás: Ágens hatásának kezdetét kiváltó metódus
      *
@@ -68,19 +58,6 @@ public abstract class Agent
     public int GetAminoacidCost()
     {
         return aminoacidCost;
-    }
-
-    public void listAttributes(Map<String, Object> _varMap)
-    {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        System.out.println( "useTime:"+useTime+"\r\n"+
-                            "nucleotidCost:"+nucleotidCost+"\r\n"+
-                            "aminoacidCost:"+aminoacidCost);
     }
 
     /**

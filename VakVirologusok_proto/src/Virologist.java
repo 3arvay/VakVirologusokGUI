@@ -134,17 +134,8 @@ public class Virologist implements Timeable
             Field f3 = f1.GetRandomNeighbour(f2);
             List<Virologist> attackThese = f3.AddBear(this);
             BearVirus bv = new BearVirus();
-            String temp = "-";
             for(Virologist v :  attackThese){
                 if(!v.equals(this)){
-                    for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-                        if (entry.getValue().equals(this)) {
-                            temp = "bv"+entry.getKey().substring(1);
-                        }
-                    }
-                    if(!Main.varMap.containsValue(bv)) {
-                        Main.varMap.put(temp, bv);
-                    }
                     v.UnderAttack(bv, this);
                 }
             }
@@ -175,30 +166,6 @@ public class Virologist implements Timeable
         if((v.amountAminoacid - a.GetAminoacidCost()>=0) && (v.amountNucleotid - a.GetNucleotidCost()>=0))
         {
             Agent asd = a.Clone(v,a);
-            String Name = "";
-            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-                if (entry.getValue().equals(a)) {
-                    Name  = entry.getKey().substring(0,entry.getKey().length()-2)+"_"+
-                            (Character.getNumericValue(entry.getKey().charAt(entry.getKey().length()-1))+1);
-                    /*char temp = entry.getKey().charAt(0);
-                    switch (temp) {
-                        case 's':
-                            Name  = entry.getKey().substring(0,entry.getKey().length()-2)+
-                                    (Character.getNumericValue(entry.getKey().charAt(entry.getKey().length()-1))+1);
-                            break;
-                        case 'd':
-                            Name  = temp+entry.getKey().substring(1);
-                            break;
-                        case 'i':
-                            Name  = temp+entry.getKey().substring(1);
-                            break;
-                        default:
-                            Name  = temp+entry.getKey().substring(1);
-                            break;
-                    }*/
-                }
-            }
-            Main.varMap.put(Name, asd);
             agentList.add(asd);
         }
     }
@@ -281,10 +248,6 @@ public class Virologist implements Timeable
     */
     public Gear RemoveGear(Gear gear)
     {
-        if (gear.GetID()==2)
-        {
-            gear.Use(this,null);
-        }
         return gearList.remove(gear.GetID());
     }
 
@@ -326,35 +289,8 @@ public class Virologist implements Timeable
                 return;
             }
             VAttribute asd = a.AllotAttribute(a);
-            String VAname = "";
-            for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-                if (entry.getValue().equals(a)) {
-                    char temp = entry.getKey().charAt(0);
-                    switch (temp) {
-                        case 's':
-                            VAname  = temp+"t"+entry.getKey().substring(1);
-                            break;
-                        case 'd':
-                            VAname  = temp+"i"+entry.getKey().substring(1);
-                            break;
-                        case 'i':
-                            VAname  = temp+"m"+entry.getKey().substring(1);
-                            break;
-                        default:
-                            VAname  = temp+"m"+entry.getKey().substring(2);
-                            break;
-                    }
-                }
-            }
+
             if (asd != null) {
-                if(!Main.varMap.containsKey(VAname)) {
-                    Main.varMap.put(VAname, asd);
-                }
-                else{
-                    int lastIndex=Character.getNumericValue(VAname.charAt(VAname.length()-1))+1;
-                    VAname=VAname.substring(0,VAname.length()-1)+lastIndex;
-                    Main.varMap.put(VAname,asd);
-                }
                 this.attributeList.add(asd);
             } else {
                 this.geneticCodeList.clear();
@@ -423,27 +359,6 @@ public class Virologist implements Timeable
     public void SpecialAttack(Agent a)
     {
         VAttribute asd = a.AllotAttribute(a);
-        String VAname = "";
-        for (Map.Entry<String, Object> entry : Main.varMap.entrySet()) {
-            if (entry.getValue().equals(a)) {
-                char temp = entry.getKey().charAt(0);
-                switch (temp) {
-                    case 's':
-                        VAname  = temp+"t"+entry.getKey().substring(1);
-                        break;
-                    case 'd':
-                        VAname  = temp+"i"+entry.getKey().substring(1);
-                        break;
-                    case 'i':
-                        VAname  = temp+"m"+entry.getKey().substring(1);
-                        break;
-                    default:
-                        VAname  = temp+"m"+entry.getKey().substring(2);
-                        break;
-                }
-            }
-        }
-        Main.varMap.put(VAname, asd);
         attributeList.add(asd);
     }
 

@@ -15,25 +15,6 @@ public class Axe extends Gear {
         id = 3;
     }
 
-    public void setter(String value){
-        int newDurability=Integer.parseInt(value);
-        if(newDurability>=0&&newDurability<=1) {
-            durability=newDurability;
-        }
-        else{System.out.println("Hibás értéket adtál meg.");}
-    }
-
-    public void listAttributes(Map<String, Object> _varMap) {
-        for (Map.Entry<String, Object> entry : _varMap.entrySet()) {
-            if (entry.getValue().equals(this)) {
-                System.out.println(entry.getKey()+":");
-                break;
-            }
-        }
-        System.out.println( "id:"+id+"\r\n"+
-                            "durability:"+durability);
-    }
-
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
