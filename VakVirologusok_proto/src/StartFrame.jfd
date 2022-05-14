@@ -39,16 +39,30 @@ new FormModel {
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 1 1 2,wmin 50"
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "optionButton"
-						"text": "Options"
-						"foreground": sfield java.awt.Color lightGray
-						"borderPainted": false
-						"background": new java.awt.Color( 0, 0, 0, 0 )
-						"font": new java.awt.Font( "Snap ITC", 0, 15 )
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "optionButtonEvent", true ) )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Number of players"
+						"font": new java.awt.Font( "Snap ITC", 0, 12 )
+						"horizontalAlignment": 0
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 3,wmin 50"
+						"value": "cell 0 3"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "optionComboBox"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "Select"
+							addElement( "Select" )
+							addElement( "2" )
+							addElement( "3" )
+							addElement( "4" )
+							addElement( "5" )
+							addElement( "6" )
+							addElement( "7" )
+							addElement( "8" )
+						}
+						"font": new java.awt.Font( "Snap ITC", 0, 12 )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 4"
 					} )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 1,alignx center,growx 0"

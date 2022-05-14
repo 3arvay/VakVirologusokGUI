@@ -12,7 +12,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "fill,hidemode 3,align center center"
 				"$columnConstraints": "[600:600]"
-				"$rowConstraints": "[83][400,fill]"
+				"$rowConstraints": "[89][400,fill]"
 			} ) {
 				name: "leftPanel"
 				"foreground": new java.awt.Color( 0, 0, 0, 255 )
@@ -253,39 +253,40 @@ new FormModel {
 						"background": new java.awt.Color( 102, 102, 102, 255 )
 						"foreground": sfield java.awt.Color black
 						"cellSelectionEnabled": true
-						"autoResizeMode": 4
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 							add( new java.util.Vector {
-								add( null )
-								add( null )
+								add( "0x" )
+								add( "Amnesia" )
 							} )
 							add( new java.util.Vector {
-								add( null )
-								add( null )
+								add( "0x" )
+								add( "Dance" )
 							} )
 							add( new java.util.Vector {
-								add( null )
-								add( null )
+								add( "0x" )
+								add( "Immunity" )
 							} )
 							add( new java.util.Vector {
-								add( null )
-								add( null )
+								add( "0x" )
+								add( "Stun" )
 							} )
 						}, new java.util.Vector {
 							add( "Amount" )
 							add( "Agent" )
 						}, new java.util.Vector {
-							add( class java.lang.Integer )
+							add( class java.lang.String )
 							add( null )
 						}, new java.util.Vector {
-							add( null )
+							add( false )
 							add( false )
 						}, new java.util.Vector {
-							add( null )
-							add( null )
+							add( new com.jformdesigner.model.SwingTableColumn( new java.lang.Object[ "0x" ], 0, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( new java.lang.Object[ "Immunity", "Stun", "Dance", "Amnesia" ], 0, 0, 0, true ) )
 						} )
 						"selectionForeground": new java.awt.Color( 255, 255, 255, 255 )
 						"gridColor": sfield java.awt.Color black
+						"autoResizeMode": 3
+						addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "detailTablePropertyChange", true ) )
 					} )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 2,align center center,grow 0 0"
@@ -355,3 +356,4 @@ new FormModel {
 		} )
 	}
 }
+

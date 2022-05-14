@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -7,18 +8,32 @@ import java.util.Random;
 */
 public class Game
 {
+    enum Players{
+        Red,
+        Blue,
+        Orange,
+        Purple,
+        Yellow,
+        Green,
+        Cian,
+        Pink
+    }
     private int nPlayers = 0;
-    public List<Virologist> playersInGame;
     private List<Field> fieldsInGame;
-    public View new_view;
-
-
-
+    public List<Virologist> playersInGame;
+    public HashMap<Players,Virologist> players =new HashMap<Players,Virologist>();
     public Virologist currentVirologist;
     public Field currentField;
 
+    public Game (){
+        nPlayers=0;
+        fieldsInGame=null;
+        playersInGame = null;
+
+    }
+
     /**
-     * Leírás: pályaelemek létrhozása
+     * Leírás: pályaelemek létrehozása
      */
     public void StartGame()
     {

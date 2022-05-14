@@ -13,18 +13,33 @@ import net.miginfocom.swing.*;
 /**
  * @author Porkoláb Zoltán
  */
-public class StartFrame extends JPanel {
+public class StartFrame extends JFrame {
+
+    public int playerNum = 0;
+
     public StartFrame() {
         initComponents();
     }
 
     private void optionButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        if (optionComboBox.getSelectedItem().equals("Select")){
+            JOptionPane.showMessageDialog(new Frame(), "Please select a valid player number");
+            return;
+        }
+        playerNum=(int)optionComboBox.getSelectedItem();
     }
 
     private void startButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        if (!optionComboBox.getSelectedItem().equals("Select")){
+            setVisible(false);
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(new Frame(), "Please select a valid player number");
+        }
+
     }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -34,7 +49,8 @@ public class StartFrame extends JPanel {
         titleLabel = new JLabel();
         buttonsPanel = new JPanel();
         startButton = new JButton();
-        optionButton = new JButton();
+        label1 = new JLabel();
+        optionComboBox = new JComboBox<>();
         backgroundPanel = new JPanel();
         backgroundLabel = new JLabel();
 
@@ -45,13 +61,11 @@ public class StartFrame extends JPanel {
             //======== topLayer ========
             {
                 topLayer.setBackground(new Color(0, 0, 0, 32));
-                topLayer.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-                . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
-                .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-                Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-                ) ,topLayer. getBorder () ) ); topLayer. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-                public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
-                ) ) )throw new RuntimeException( ) ;} } );
+                topLayer.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+                0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+                . BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+                red) ,topLayer. getBorder( )) ); topLayer. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+                beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
                 topLayer.setLayout(new MigLayout(
                     "insets 0,hidemode 3,gap 0 0",
                     // columns
@@ -90,14 +104,25 @@ public class StartFrame extends JPanel {
                     startButton.addActionListener(e -> startButtonEvent(e));
                     buttonsPanel.add(startButton, "cell 0 1 1 2,wmin 50");
 
-                    //---- optionButton ----
-                    optionButton.setText("Options");
-                    optionButton.setForeground(Color.lightGray);
-                    optionButton.setBorderPainted(false);
-                    optionButton.setBackground(new Color(0, 0, 0, 0));
-                    optionButton.setFont(new Font("Snap ITC", Font.PLAIN, 15));
-                    optionButton.addActionListener(e -> optionButtonEvent(e));
-                    buttonsPanel.add(optionButton, "cell 0 3,wmin 50");
+                    //---- label1 ----
+                    label1.setText("Number of players");
+                    label1.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+                    label1.setHorizontalAlignment(SwingConstants.CENTER);
+                    buttonsPanel.add(label1, "cell 0 3");
+
+                    //---- optionComboBox ----
+                    optionComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+                        "Select",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8"
+                    }));
+                    optionComboBox.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+                    buttonsPanel.add(optionComboBox, "cell 0 4");
                 }
                 topLayer.add(buttonsPanel, "cell 0 1,alignx center,growx 0");
             }
@@ -125,7 +150,8 @@ public class StartFrame extends JPanel {
     private JLabel titleLabel;
     private JPanel buttonsPanel;
     private JButton startButton;
-    private JButton optionButton;
+    private JLabel label1;
+    private JComboBox<String> optionComboBox;
     private JPanel backgroundPanel;
     private JLabel backgroundLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

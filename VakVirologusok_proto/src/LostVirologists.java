@@ -1,15 +1,16 @@
 import java.awt.event.*;
+import java.beans.*;
+import javax.swing.table.*;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.lang.reflect.Field;
 /*
  * Created by JFormDesigner on Thu May 12 10:08:46 CEST 2022
  */
-
-
 
 /**
  * @author unknown
@@ -23,17 +24,60 @@ public class LostVirologists extends JFrame {
     }
 
     private void initSettings(){
+        detailTable.setForeground(Color.white);
+    }
+
+    public void WinDialogShow()
+    {
 
     }
 
+    public void DrawAll(Field f, Virologist v)
+    {
 
-    
+    }
+
+    public void DrawField(Object f)
+    {
+        //tudni milyen mezon all a virologus
+        //ez alapjan megjelenítnei a hatteret
+        if(f instanceof Warehouse){
+
+        }
+        else if(f instanceof Shelter){
+
+        }
+        else if(f instanceof Laboratory){
+
+        }
+        else{
+
+        }
+
+    }
+    public void DrawVirologist(Virologist v)
+    {
+    }
+    public void DrawGenCode(Virologist v)
+    {
+
+    }
+    public void DrawAgent(Virologist v)
+    {
+
+    }
+    public void DrawVAttribute(Virologist v)
+    {
+    }
+    public void DrawGear(Virologist v)
+    {
+    }
     private void moveButtonEvent(ActionEvent e) {
-
+        // TODO add your code here
     }
 
     private void attackButtonEvent(ActionEvent e) {
-        
+        // TODO add your code here
     }
 
     private void craftButtonEvent(ActionEvent e) {
@@ -58,6 +102,11 @@ public class LostVirologists extends JFrame {
 
     private void dropButtonEvent(ActionEvent e) {
         // TODO add your code here
+    }
+
+    private void detailTablePropertyChange(PropertyChangeEvent e) {
+        detailTable.getValueAt(detailTable.getSelectedRow(),2);
+
     }
 
     private void initComponents() {
@@ -104,13 +153,11 @@ public class LostVirologists extends JFrame {
 
         //======== mailPanel ========
         {
-            mailPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
-            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
-            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,mailPanel. getBorder
-            ( )) ); mailPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-            .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
-            ( ); }} );
+            mailPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
+            , 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+            mailPanel. getBorder( )) ); mailPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
             mailPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,alignx center",
                 // columns
