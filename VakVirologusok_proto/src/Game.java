@@ -10,10 +10,16 @@ public class Game
     private int nPlayers = 0;
     public List<Virologist> playersInGame;
     private List<Field> fieldsInGame;
+    public View new_view;
+
+
+
+    public Virologist currentVirologist;
+    public Field currentField;
 
     /**
-    * Leírás: pályaelemek létrhozása
-    */
+     * Leírás: pályaelemek létrhozása
+     */
     public void StartGame()
     {
 
@@ -35,8 +41,7 @@ public class Game
         SetFields();
 
         int currentIndex = 0;
-        Virologist currentVirologist;
-        Field currentField;
+
 
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);

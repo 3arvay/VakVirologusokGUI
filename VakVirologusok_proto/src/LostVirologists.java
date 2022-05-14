@@ -29,11 +29,11 @@ public class LostVirologists extends JFrame {
 
     
     private void moveButtonEvent(ActionEvent e) {
-        // TODO add your code here
+
     }
 
     private void attackButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        
     }
 
     private void craftButtonEvent(ActionEvent e) {
