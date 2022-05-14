@@ -1,66 +1,58 @@
+import java.lang.reflect.Field;
+
 /**
  * Leírás:
  * Létrehozza .
  */
 public class View
 {
-
     public void WinDialogShow()
     {
 
     }
 
-    public void CraftDialogShow()
+    public void DrawAll(Field f, Virologist v)
     {
 
     }
 
-    public void AttackDialogShow()
+    public void DrawField(Field f)
+    {
+        //tudni milyen mezon all a virologus
+        //ez alapjan megjelenítnei a hatteret
+        if(f instanceof Warehouse){
+
+        }else if(f instanceof Shelter){
+
+        }else if(f instanceof Laboratory){
+
+        }else{
+
+        }
+
+    }
+
+    public void DrawVirologist(Virologist v)
     {
 
     }
 
-    public void StealDialogShow()
+    public void DrawGenCode(Virologist v)
     {
 
     }
 
-    public void DropDialogShow()
+    public void DrawAgent(Virologist v)
     {
 
     }
 
-    public void DrawAll()
+    public void DrawVAttribute(Virologist v)
     {
 
     }
 
-    public void DrawField()
-    {
-
-    }
-
-    public void DrawVirologist()
-    {
-
-    }
-
-    public void DrawGenCode()
-    {
-
-    }
-
-    public void DrawAgent()
-    {
-
-    }
-
-    public void DrawVAttribute()
-    {
-
-    }
-
-    public void DrawGear()
+    public void DrawGear(Virologist v)
     {
 
     }
