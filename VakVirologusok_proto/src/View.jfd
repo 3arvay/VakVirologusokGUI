@@ -74,7 +74,6 @@ new FormModel {
 								selectedItem: "Select a field and press \"Move\""
 								addElement( "Select a field and press \"Move\"" )
 							}
-							"editable": true
 							"background": new java.awt.Color( 76, 80, 82, 255 )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "fieldsComboBoxEvent", true ) )
 						}, new FormLayoutConstraints( class java.lang.String ) {
@@ -93,7 +92,6 @@ new FormModel {
 								selectedItem: "Select a player and press \"Attack\" or \"Steal\""
 								addElement( "Select a player and press \"Attack\" or \"Steal\"" )
 							}
-							"editable": true
 							"background": new java.awt.Color( 76, 80, 82, 255 )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "playersComboBoxChanged", true ) )
 						}, new FormLayoutConstraints( class java.lang.String ) {

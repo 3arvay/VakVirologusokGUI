@@ -44,9 +44,11 @@ public class View extends JFrame {
         craftButton.setBackground(new Color(76,80,82));
         fieldsComboBox.setBackground(new Color(76,80,82));
         playersComboBox.setBackground(new Color(76,80,82));
-        this.setBackground(new Color(60,63,65));
+        fieldsComboBox.setEditable(false);
+        playersComboBox.setEditable(false);
         fieldsComboBox.setSelectedIndex(0);
-
+        playersComboBox.setSelectedIndex(0);
+        this.setBackground(new Color(60,63,65));
     }
 
     public void WinDialogShow()
@@ -203,13 +205,13 @@ public class View extends JFrame {
             leftPanel.setForeground(Color.black);
             leftPanel.setBorder(null);
             leftPanel.setBackground(new Color(102, 102, 102));
-            leftPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,leftPanel. getBorder( )) ); leftPanel. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            leftPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
+            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
+            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,leftPanel. getBorder
+            ( )) ); leftPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+            .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
+            ( ); }} );
             leftPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,align center center",
                 // columns
@@ -270,7 +272,6 @@ public class View extends JFrame {
                     fieldsComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a field and press \"Move\""
                     }));
-                    fieldsComboBox.setEditable(true);
                     fieldsComboBox.setBackground(new Color(76, 80, 82));
                     fieldsComboBox.addActionListener(e -> fieldsComboBoxEvent(e));
                     fieldsPanel.add(fieldsComboBox, BorderLayout.CENTER);
@@ -287,7 +288,6 @@ public class View extends JFrame {
                     playersComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a player and press \"Attack\" or \"Steal\""
                     }));
-                    playersComboBox.setEditable(true);
                     playersComboBox.setBackground(new Color(76, 80, 82));
                     playersComboBox.addActionListener(e -> playersComboBoxChanged(e));
                     playersPanel.add(playersComboBox, BorderLayout.CENTER);
