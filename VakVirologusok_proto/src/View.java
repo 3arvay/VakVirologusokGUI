@@ -29,12 +29,6 @@ public class View extends JFrame {
 
     public void initFill(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        BasicLookAndFeel darcula = new DarculaLaf();
-        try {
-            UIManager.setLookAndFeel(darcula);
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
         detailTable.getTableHeader().setBackground(new Color(76,80,82));
         detailTable.getTableHeader().setForeground(Color.white);
         agentsButton.setBackground(new Color(76,80,82));
