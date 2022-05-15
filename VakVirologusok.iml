@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/darcula-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/darcula-2021.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
