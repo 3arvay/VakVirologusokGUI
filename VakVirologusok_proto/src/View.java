@@ -43,10 +43,10 @@ public class View extends JFrame {
         materialsButton.setBackground(new Color(76,80,82));
         craftButton.setBackground(new Color(76,80,82));
         fieldsComboBox.setBackground(new Color(76,80,82));
+        fieldsComboBox.setEditable(false);
         playersComboBox.setBackground(new Color(76,80,82));
         this.setBackground(new Color(60,63,65));
         fieldsComboBox.setSelectedIndex(0);
-
     }
 
     public void WinDialogShow()
@@ -134,6 +134,8 @@ public class View extends JFrame {
     }
 
     private void fieldsComboBoxEvent(ActionEvent e) {
+        fieldsComboBox.setSelectedIndex(fieldsComboBox.getSelectedIndex());
+        System.out.println(fieldsComboBox.getSelectedIndex());
         // TODO add your code here
     }
 

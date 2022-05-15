@@ -27,6 +27,7 @@ public class Start extends JFrame {
             e.printStackTrace();
         }
         pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -45,7 +46,7 @@ public class Start extends JFrame {
             JOptionPane.showMessageDialog(new Frame(), "Please select a valid player number");
             return;
         }
-        playerNum=Integer.parseInt(playersComboBox.getSelectedItem().toString());
+        playerNum= Integer.parseInt(playersComboBox.getSelectedItem().toString());
     }
 
     private void initComponents() {
