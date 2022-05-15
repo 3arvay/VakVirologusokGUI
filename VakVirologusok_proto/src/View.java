@@ -19,6 +19,9 @@ import net.miginfocom.swing.*;
  * @author Porkoláb Zoltán
  */
 public class View extends JFrame {
+
+    public boolean activePlayersturn = true;
+
     public View() {
         initComponents();
         initFill();
@@ -45,7 +48,7 @@ public class View extends JFrame {
         fieldsComboBox.setBackground(new Color(76,80,82));
         fieldsComboBox.setEditable(false);
         playersComboBox.setBackground(new Color(76,80,82));
-        this.setBackground(new Color(60,63,65));
+        playersComboBox.setEditable(false);
         fieldsComboBox.setSelectedIndex(0);
         playersComboBox.setSelectedIndex(0);
         this.setBackground(new Color(60,63,65));
@@ -116,22 +119,27 @@ public class View extends JFrame {
     }
 
     private void moveButtonEvent(ActionEvent e) {
+        activePlayersturn = false;
         // TODO add your code here
     }
 
     private void attackButtonEvent(ActionEvent e) {
+        activePlayersturn = false;
         // TODO add your code here
     }
 
     private void craftButtonEvent(ActionEvent e) {
+        activePlayersturn = false;
         // TODO add your code here
     }
 
     private void stealButtonEvent(ActionEvent e) {
+        activePlayersturn = false;
         // TODO add your code here
     }
 
     private void dropButtonEvent(ActionEvent e) {
+        activePlayersturn = false;
         // TODO add your code here
     }
 
@@ -269,7 +277,9 @@ public class View extends JFrame {
                     fieldsPanel.setBackground(new Color(204, 204, 204));
                     fieldsPanel.setLayout(new BorderLayout());
 
+
                     //---- fieldsComboBox ----
+                    fieldsComboBox.setEditable(true);
                     fieldsComboBox.setForeground(Color.white);
                     fieldsComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a field and press \"Move\""
@@ -286,6 +296,7 @@ public class View extends JFrame {
                     playersPanel.setLayout(new BorderLayout());
 
                     //---- playersComboBox ----
+                    playersComboBox.setEditable(true);
                     playersComboBox.setForeground(Color.white);
                     playersComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a player and press \"Attack\" or \"Steal\""

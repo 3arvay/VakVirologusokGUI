@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +9,8 @@ import java.util.Random;
 */
 public class Game
 {
+    private View mainview = new View();
+
     String[] players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cian","Purple"};
     private int nPlayers;
     private List<Field> fieldsInGame;
@@ -31,20 +32,29 @@ public class Game
      */
     public void StartGame()
     {
-        //StartFrame start= new StartFrame();
-        Start start = new Start();
-        start.pack();
-        start.setVisible(true);
-        while(start.isVisible()){}
+       Start startView = new Start();
+       startView.pack();
+       startView.setVisible(true);
 
-       /* for(int i = 0; i < start.playerNum; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
+       while (startView.isVisible()) { // Várunk amíg nem választ játékosszámot (lehetne szebben is)
+           try {
+               Thread.sleep(100);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+       }
+
+
+
+        for(int i = 0; i < startView.playerNum; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
+       //for(int i = 0; i < 2; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
             fieldsInGame.add(new Field());
             fieldsInGame.add(new Shelter());
             fieldsInGame.add(new Warehouse());
             Virologist v = new Virologist();
             playersInGame.add(v);
             playersPlaying.put(players[i],v);
-        }*/
+        }
 
         for(int i = 0; i < 4; i++) { // 4db labor, különböző ágensekkel
             fieldsInGame.add(new Laboratory(i));
@@ -56,8 +66,10 @@ public class Game
 
         SetFields();
 
-        int currentIndex = 0;
 
+        mainview.pack();
+        mainview.setVisible(true);
+        int currentIndex = 0;
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);
             currentField = currentVirologist.GetMyField();
@@ -65,6 +77,18 @@ public class Game
             if(currentVirologist.notStunned() && !currentField.equals(null)) {
 
                 // TODO soronlévő játékos dolgai
+                System.out.println(currentVirologist); // for debug
+
+                // mainview.DrawAll(currentField, currentVirologist); // újonnan sorrakerült jétékos, mindet rajzolhatunk
+
+                while (mainview.activePlayersturn) { // Várunk az 5 fő gomb valamelyikére
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                mainview.activePlayersturn = true;
 
             }
 
