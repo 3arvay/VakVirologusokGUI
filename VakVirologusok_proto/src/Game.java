@@ -9,20 +9,21 @@ import java.util.Random;
 */
 public class Game
 {
-    private View mainview = new View();
+    private View mainview;
 
-    String[] players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cyan","Purple"};
-    private int nPlayers;
+    String[] players;
     private List<Field> fieldsInGame;
     public List<Virologist> playersInGame;
-    public HashMap<Virologist,String> playersPlaying =new HashMap<>();
+    public HashMap<Virologist,String> playersPlaying;
     public Virologist currentVirologist;
     public Field currentField;
 
     public Game (){
-        nPlayers=0;
+        mainview = new View();
+        players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cyan","Purple"};
         fieldsInGame = new ArrayList<Field>();
         playersInGame = new ArrayList<Virologist>();
+        playersPlaying = new HashMap<>();
         currentVirologist = null;
         currentField = null;
     }

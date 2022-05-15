@@ -1,20 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.table.*;
 
-import com.bulenkov.darcula.DarculaLaf;
 import net.miginfocom.swing.*;
 /*
  * Created by JFormDesigner on Sun May 15 12:50:26 CEST 2022
  */
-
-
 
 /**
  * @author Porkoláb Zoltán
@@ -158,7 +153,7 @@ public class View extends JFrame {
     }
 
     private void moveButtonEvent(ActionEvent e) {
-        //currentVirologist.Move();
+        currentVirologist.Move(currentVirologist.GetMyField().Neighbours.get(fieldsComboBox.getSelectedIndex()-1));
         activePlayersturn = false;
         // TODO add your code here
     }

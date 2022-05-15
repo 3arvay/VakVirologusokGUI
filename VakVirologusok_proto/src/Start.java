@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicLookAndFeel;
-
-import com.bulenkov.darcula.DarculaLaf;
 import net.miginfocom.swing.*;
 /*
  * Created by JFormDesigner on Sun May 15 00:44:15 CEST 2022
@@ -20,7 +17,7 @@ public class Start extends JFrame {
 
     public Start() {
         initComponents();
-        
+
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
