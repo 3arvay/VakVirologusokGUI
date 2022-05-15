@@ -11,7 +11,7 @@ public class Game
 {
     private View mainview = new View();
 
-    String[] players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cian","Purple"};
+    String[] players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cyan","Purple"};
     private int nPlayers;
     private List<Field> fieldsInGame;
     public List<Virologist> playersInGame;

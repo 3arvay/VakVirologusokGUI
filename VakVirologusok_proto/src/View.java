@@ -60,24 +60,58 @@ public class View extends JFrame {
     {
         currentVirologist = v;
         DrawVirologist(v, playersPlaying);
+        DrawField(v.GetMyField());
+
+        switch (playersPlaying.get(v)) {
+            case "Blue":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/blueVirologist_icon.png")));
+                break;
+            case "Red":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/redVirologist_icon.png")));
+                break;
+            case "Pink":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/pinkVirologist_icon.png")));
+                break;
+            case "Yellow":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/yellowVirologist_icon.png")));
+                break;
+            case "Purple":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/purpleVirologist_icon.png")));
+                break;
+            case "Cyan":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/cyanVirologist_icon.png")));
+                break;
+            case "Green":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/greenVirologist_icon.png")));
+                break;
+            case "Orange":
+                playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/orangeVirologist_icon.png")));
+                break;
+        }
         // TODO
     }
 
     public void DrawField(Object f)
     {
-        //tudni milyen mezon all a virologus
-        //ez alapjan megjelenítnei a hatteret
-        if(f instanceof Warehouse){
+        fieldsComboBox.removeAllItems();
+        fieldsComboBox.addItem("\"Select a field and press \"Move\"");
 
+        for(int i = 0; i < currentVirologist.GetMyField().Neighbours.size(); i++) {
+            fieldsComboBox.addItem("Neighbour" + String.valueOf(i+1));
+        }
+
+
+        if(f instanceof Warehouse){
+            fieldLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Fields/Warehouse.jpg")));
         }
         else if(f instanceof Shelter){
-
+            fieldLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Fields/Shelter.jpg")));
         }
         else if(f instanceof Laboratory){
-
+            fieldLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Fields/Laboratory.jpg")));
         }
         else{
-
+            fieldLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Fields/Field.png")));
         }
 
     }
