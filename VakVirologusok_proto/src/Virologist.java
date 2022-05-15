@@ -33,6 +33,11 @@ public class Virologist implements Timeable
         f1=null;
     }
 
+    public List<Agent> getAgentList(){return agentList;}
+    public List<Agent> getGeneticCodeList(){return geneticCodeList;}
+    public Gear[] getGearList(){return gearList;}
+    public List<VAttribute> getAttributeList(){return attributeList;}
+
     public void SetF1 (Field f) {
         f1 = f;
     }

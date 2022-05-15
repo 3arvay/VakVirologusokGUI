@@ -121,31 +121,53 @@ public class View extends JFrame {
     }
     public void DrawGenCode(Virologist v)
     {
-
+        for(int i=0; i<currentVirologist.GetNumOFGeneticCodes(); i++){
+            currentVirologist.getGeneticCodeList().get(i);
+        }
     }
     public void DrawAgent(Virologist v)
     {
-
+        for(int i=0; i<currentVirologist.getAgentList().size(); i++){
+            currentVirologist.getAgentList().get(i);
+        }
     }
     public void DrawVAttribute(Virologist v)
     {
+        //ez szar
+        for(int i=0; i<currentVirologist.getAttributeList().size(); i++){
+            if(currentVirologist.getAttributeList().get(i).toString() == "BearVirus"){
+                //itt kell atallítani a képet
+            }
+        }
     }
     public void DrawGear(Virologist v)
     {
+        for(int i=0; i<currentVirologist.getGearList().length; i++){
+            //TODO
+        }
+    }
+
+    public void DrawMaterial(Virologist v)
+    {
+        for(int i=0; i<currentVirologist.getGearList().length; i++){
+            //TODO
+        }
     }
 
 
 
     private void agentsButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        DrawGenCode(currentVirologist);
+        DrawAgent(currentVirologist);
+
     }
 
     private void gearsButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        DrawGear(currentVirologist);
     }
 
     private void materialsButtonEvent(ActionEvent e) {
-        // TODO add your code here
+        DrawMaterial(currentVirologist);
     }
 
     private void detailTablePropertyChange(PropertyChangeEvent e) {
