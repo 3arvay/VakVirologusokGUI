@@ -15,7 +15,7 @@ public class Game
     private int nPlayers;
     private List<Field> fieldsInGame;
     public List<Virologist> playersInGame;
-    public HashMap<String,Virologist> playersPlaying =new HashMap<String,Virologist>();
+    public HashMap<Virologist,String> playersPlaying =new HashMap<>();
     public Virologist currentVirologist;
     public Field currentField;
 
@@ -53,7 +53,7 @@ public class Game
             fieldsInGame.add(new Warehouse());
             Virologist v = new Virologist();
             playersInGame.add(v);
-            playersPlaying.put(players[i],v);
+            playersPlaying.put(v,players[i]);
         }
 
         for(int i = 0; i < 4; i++) { // 4db labor, különböző ágensekkel
@@ -79,7 +79,7 @@ public class Game
                 // TODO soronlévő játékos dolgai
                 System.out.println(currentVirologist); // for debug
 
-                // mainview.DrawAll(currentField, currentVirologist); // újonnan sorrakerült jétékos, mindet rajzolhatunk
+                mainview.DrawAll(currentVirologist, playersPlaying); // újonnan sorrakerült jétékos, mindet rajzolhatunk
 
                 while (mainview.activePlayersturn) { // Várunk az 5 fő gomb valamelyikére
                     try {

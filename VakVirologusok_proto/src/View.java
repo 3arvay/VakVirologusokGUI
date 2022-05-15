@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
@@ -21,6 +22,8 @@ import net.miginfocom.swing.*;
 public class View extends JFrame {
 
     public boolean activePlayersturn = true;
+    private Virologist currentVirologist;
+
 
     public View() {
         initComponents();
@@ -53,9 +56,11 @@ public class View extends JFrame {
 
     }
 
-    public void DrawAll(Field f, Virologist v)
+    public void DrawAll(Virologist v, HashMap<Virologist, String> playersPlaying)
     {
-
+        currentVirologist = v;
+        DrawVirologist(v, playersPlaying);
+        // TODO
     }
 
     public void DrawField(Object f)
@@ -76,8 +81,14 @@ public class View extends JFrame {
         }
 
     }
-    public void DrawVirologist(Virologist v)
+    public void DrawVirologist(Virologist v, HashMap<Virologist, String> playersPlaying)
     {
+        playersComboBox.removeAllItems();
+        playersComboBox.addItem("Select a player and press \"Attack\" or \"Steal\"");
+
+        for(Virologist v1 : currentVirologist.GetMyField().standsHere) {
+            playersComboBox.addItem(playersPlaying.get(v1));
+        }
     }
     public void DrawGenCode(Virologist v)
     {
@@ -113,6 +124,7 @@ public class View extends JFrame {
     }
 
     private void moveButtonEvent(ActionEvent e) {
+        //currentVirologist.Move();
         activePlayersturn = false;
         // TODO add your code here
     }
