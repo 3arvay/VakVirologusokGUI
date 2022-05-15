@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,28 +10,20 @@ import java.util.Random;
 */
 public class Game
 {
-    enum Players{
-        Red,
-        Blue,
-        Orange,
-        Purple,
-        Yellow,
-        Green,
-        Cian,
-        Pink
-    }
-    private int nPlayers = 0;
+    String[] players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cian","Purple"};
+    private int nPlayers;
     private List<Field> fieldsInGame;
     public List<Virologist> playersInGame;
-    public HashMap<Players,Virologist> players =new HashMap<Players,Virologist>();
+    public HashMap<String,Virologist> playersPlaying =new HashMap<String,Virologist>();
     public Virologist currentVirologist;
     public Field currentField;
 
     public Game (){
         nPlayers=0;
-        fieldsInGame=null;
-        playersInGame = null;
-
+        fieldsInGame = new ArrayList<Field>();
+        playersInGame = new ArrayList<Virologist>();
+        currentVirologist = null;
+        currentField = null;
     }
 
     /**
@@ -38,13 +31,20 @@ public class Game
      */
     public void StartGame()
     {
+        //StartFrame start= new StartFrame();
+        Start start = new Start();
+        start.pack();
+        start.setVisible(true);
+        while(start.isVisible()){}
 
-
-        for(int i = 0; i < nPlayers; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
+       /* for(int i = 0; i < start.playerNum; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
             fieldsInGame.add(new Field());
             fieldsInGame.add(new Shelter());
             fieldsInGame.add(new Warehouse());
-        }
+            Virologist v = new Virologist();
+            playersInGame.add(v);
+            playersPlaying.put(players[i],v);
+        }*/
 
         for(int i = 0; i < 4; i++) { // 4db labor, különböző ágensekkel
             fieldsInGame.add(new Laboratory(i));

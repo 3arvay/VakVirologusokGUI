@@ -28,18 +28,6 @@ public class Virologist implements Timeable
         maxAmount=100;
         geneticCodeList=new ArrayList<Agent>();
         gearList = new Gear[]{null, null, null, null};
-
-        /*
-        gearList=new ArrayList<Gear>()
-        {
-            {
-                add(null);
-                add(null);
-                add(null);
-                add(null);
-            }
-        };*/
-
         attributeList=new ArrayList<VAttribute>();
         agentList = new ArrayList<Agent>();
         f1=null;
