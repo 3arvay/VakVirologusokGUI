@@ -6,8 +6,6 @@ import java.util.Map;
 */
 public class Gloves extends Gear
 {
-    private int durability;
-
     /**
     * Leírás:
     * Gloves konstruktora

@@ -41,7 +41,7 @@ public class Start extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+        // Generated using JFormDesigner Evaluation license - Sailors Knot
         multiLayerPane = new JLayeredPane();
         topPanel = new JPanel();
         titleLabel = new JLabel();
@@ -67,14 +67,13 @@ public class Start extends JFrame {
             //======== topPanel ========
             {
                 topPanel.setBackground(new Color(60, 63, 65, 0));
-                topPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-                new javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-                ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-                ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12)
-                ,java.awt.Color.red),topPanel. getBorder()));topPanel. addPropertyChangeListener(
-                new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-                ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-                ;}});
+                topPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+                javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
+                . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+                .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
+                . Color. red) ,topPanel. getBorder( )) ); topPanel. addPropertyChangeListener (new java. beans.
+                PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
+                equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
                 topPanel.setLayout(new MigLayout(
                     "fill,hidemode 3",
                     // columns
@@ -156,7 +155,7 @@ public class Start extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+    // Generated using JFormDesigner Evaluation license - Sailors Knot
     private JLayeredPane multiLayerPane;
     private JPanel topPanel;
     private JLabel titleLabel;

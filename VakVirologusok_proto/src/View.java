@@ -47,6 +47,7 @@ public class View extends JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         detailTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        detailTable.getTableHeader().setReorderingAllowed(false);
         this.setBackground(new Color(60,63,65));
     }
 
@@ -73,6 +74,7 @@ public class View extends JFrame {
         currentVirologist = v;
         DrawVirologist(v, playersPlaying);
         DrawField(v.GetMyField());
+        //DrawGear(v);
 
         switch (playersPlaying.get(v)) {
             case "Blue":
@@ -154,8 +156,30 @@ public class View extends JFrame {
     }
     public void DrawGear(Virologist v)
     {
-        for(int i=0; i<currentVirologist.getGearList().length; i++){
-            //TODO
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Durability");
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Gear");
+        detailTable.getTableHeader().repaint();
+
+        detailTable.setValueAt("", 0, 0);
+        detailTable.setValueAt("", 1, 0);
+        detailTable.setValueAt("", 2, 0);
+        detailTable.setValueAt("", 3, 0);
+        detailTable.setValueAt("", 0, 1);
+        detailTable.setValueAt("", 1, 1);
+        detailTable.setValueAt("", 2, 1);
+        detailTable.setValueAt("", 3, 1);
+
+        for(int i = 0; i < 4; i++) {
+            if(v.gearList[i] != null) {
+                if(v.gearList[i].GetDurability() == -1) {
+                    detailTable.setValueAt("inf.", i, 0);
+                    detailTable.setValueAt(v.gearList[i].getClass().getSimpleName(), i, 1);
+
+                } else {
+                    detailTable.setValueAt(String.valueOf(v.gearList[i].GetDurability()), i, 0);
+                    detailTable.setValueAt(v.gearList[i].getClass().getSimpleName(), i, 1);
+                }
+            }
         }
     }
 

@@ -5,6 +5,7 @@
 public abstract class Gear
 {
     protected int id;
+    protected int durability = -1;
 
     /**
     * Leírás:
@@ -50,4 +51,11 @@ public abstract class Gear
     {
         id = i;
     }
+
+    /**
+     * Leírás:
+     * visszadja az id durability értékét
+     * @return int durability
+     */
+    public int GetDurability() {return durability;}
 }

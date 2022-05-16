@@ -4,8 +4,6 @@ import java.util.Map;
  * Leírás: Balta felszerelés megvalósítása
  */
 public class Axe extends Gear {
-    private int durability;
-
     /**
      *
      */
@@ -49,5 +47,9 @@ public class Axe extends Gear {
         Gear temp = v2.gearList[3];
         v2.gearList[3] = null;
         return temp;
+    }
+
+    public int GetDurability() {
+        return durability;
     }
 }
