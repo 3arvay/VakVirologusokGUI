@@ -23,6 +23,10 @@ public class Laboratory extends Field
         infecting = new Random().nextBoolean();
     }
 
+    public boolean getInfecting(){
+        return infecting;
+    }
+
     /**
     * Leírás: Virológus lépését valósítja meg a labor mezőre, és ha még számára ismeretlen az ott található genetikai kód, akkor megtanulja.
     *

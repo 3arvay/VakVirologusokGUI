@@ -27,12 +27,13 @@ public class Virologist implements Timeable
         maxAmount=100;
         geneticCodeList=new ArrayList<Agent>();
         geneticCodeList.add(new Stun());
-        geneticCodeList.add(new Amnesia());
-        geneticCodeList.add(new Immunity());
         geneticCodeList.add(new Dance());
+        geneticCodeList.add(new Immunity());
         gearList = new Gear[]{null, null, null, null};
         attributeList=new ArrayList<VAttribute>();
         agentList = new ArrayList<Agent>();
+        agentList.add(new Amnesia());
+        agentList.add(new Stun());
         f1=null;
     }
 

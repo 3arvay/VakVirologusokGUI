@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.14.1" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.13" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -270,7 +270,6 @@ new FormModel {
 						"border": #LineBorder0
 						"background": new java.awt.Color( 153, 153, 153, 255 )
 						"foreground": sfield java.awt.Color white
-						"cellSelectionEnabled": true
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 							add( new java.util.Vector {
 								add( "0x" )

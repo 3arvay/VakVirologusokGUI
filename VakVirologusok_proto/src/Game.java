@@ -105,6 +105,7 @@ public class Game
                 currentIndex++;
             }
         }
+        mainview.DrawAll(currentVirologist,playersPlaying);
         JOptionPane.showMessageDialog(mainview,playersPlaying.get(currentVirologist) + " player won!","Game over!",JOptionPane.INFORMATION_MESSAGE);
         mainview.setVisible(false);
         mainview.dispose();
