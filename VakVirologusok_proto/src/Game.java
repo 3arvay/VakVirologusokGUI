@@ -69,6 +69,7 @@ public class Game
         mainview.setVisible(true);
 
         int currentIndex = 0;
+        currentVirologist = playersInGame.get(currentIndex);
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);
             currentField = currentVirologist.GetMyField();
@@ -104,6 +105,9 @@ public class Game
                 currentIndex++;
             }
         }
+        JOptionPane.showMessageDialog(mainview,playersPlaying.get(currentVirologist) + " player won!","Game over!",JOptionPane.INFORMATION_MESSAGE);
+        mainview.setVisible(false);
+        mainview.dispose();
     }
     
     /**
