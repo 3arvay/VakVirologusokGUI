@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Game
        startView.pack();
        startView.setVisible(true);
 
-       while (startView.isVisible()) { // Várunk amíg nem választ játékosszámot (lehetne szebben is)
+       while (startView.isVisible()) { // Várunk amíg nem választ játékosszámot
            try {
                Thread.sleep(100);
            } catch (InterruptedException e) {
@@ -45,10 +46,7 @@ public class Game
            }
        }
 
-
-
         for(int i = 0; i < startView.playerNum; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
-       //for(int i = 0; i < 2; i++) { // annyi raktár és óvóhely ahány játékos, +1 field
             fieldsInGame.add(new Field());
             fieldsInGame.add(new Shelter());
             fieldsInGame.add(new Warehouse());
@@ -67,33 +65,42 @@ public class Game
 
         SetFields();
 
-
         mainview.pack();
         mainview.setVisible(true);
+
         int currentIndex = 0;
         while (!CheckWin()) {
             currentVirologist = playersInGame.get(currentIndex);
             currentField = currentVirologist.GetMyField();
 
-            if(currentVirologist.notStunned() && !currentField.equals(null)) {
-
-                // TODO soronlévő játékos dolgai
-                System.out.println(currentVirologist); // for debug
+            if( !currentField.equals(null)) {
 
                 mainview.DrawAll(currentVirologist, playersPlaying); // újonnan sorrakerült jétékos, mindet rajzolhatunk
 
+
+
                 while (mainview.activePlayersturn) { // Várunk az 5 fő gomb valamelyikére
+
+                    if(currentVirologist.Stunned()) {
+                        JOptionPane.showMessageDialog(mainview, "You're stunned!");
+                        mainview.activePlayersturn = false;
+                    }
+
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
                 mainview.activePlayersturn = true;
 
             }
 
             if(currentIndex == playersInGame.size() - 1) {
+                for(Virologist v : playersInGame) {
+                    v.Time();
+                }
                 currentIndex = 0;
             } else {
                 currentIndex++;
@@ -138,7 +145,7 @@ public class Game
             int nNeighbours = new Random().nextInt(5);
             for(int i = 0; i < nNeighbours; i++) {
                 int randomIndex = new Random().nextInt(fieldsInGame.size());
-                if (!current.Neighbours.contains(fieldsInGame.get(randomIndex))) {
+                if (!current.Neighbours.contains(fieldsInGame.get(randomIndex)) && !current.equals(fieldsInGame.get(randomIndex))) {
                     current.AddNeighbour(fieldsInGame.get(randomIndex));
                     fieldsInGame.get(randomIndex).AddNeighbour(current);
                 }

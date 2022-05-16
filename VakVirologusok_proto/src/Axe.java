@@ -44,8 +44,8 @@ public class Axe extends Gear {
      */
     @Override
     public Gear StealAway(Virologist v, Virologist v2) {
-        Gear temp = v2.gearList[3];
-        v2.gearList[3] = null;
+        Gear temp = v2.getGearList()[3];
+        v2.getGearList()[3] = null;
         return temp;
     }
 

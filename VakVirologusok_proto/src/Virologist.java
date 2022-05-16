@@ -14,7 +14,7 @@ public class Virologist implements Timeable
     private List<Agent> geneticCodeList;
     private List<Agent> agentList;
     // private List<Gear> gearList;
-    Gear[] gearList;
+    private Gear[] gearList;
     private List<VAttribute> attributeList;
     private Field f1;
 
@@ -23,8 +23,8 @@ public class Virologist implements Timeable
     * Virológus konstruktora
     */
     public Virologist(){
-        amountNucleotid=0;
-        amountAminoacid=0;
+        amountNucleotid=75;
+        amountAminoacid=75;
         maxAmount=100;
         geneticCodeList=new ArrayList<Agent>();
         gearList = new Gear[]{null, null, null, null};
@@ -32,8 +32,6 @@ public class Virologist implements Timeable
         agentList = new ArrayList<Agent>();
         f1=null;
     }
-
-
 
     public List<Agent> getAgentList(){return agentList;}
     public List<Agent> getGeneticCodeList(){return geneticCodeList;}
@@ -71,7 +69,7 @@ public class Virologist implements Timeable
             f3.AddVirologist(this);
             return;
         }
-        if (/*!attributeList.stream().anyMatch(x->x instanceof Dancing) && */!attributeList.stream().anyMatch(x->x instanceof Stunned))
+        if (!attributeList.stream().anyMatch(x->x instanceof Stunned))
         {
             f1.RemoveVirologist(this);
             f2.AddVirologist(this);
@@ -157,14 +155,6 @@ public class Virologist implements Timeable
                     return gearList[i].StealAway(v, this);
                 }
             }
-            /*
-            for(Gear g : v.gearList)
-            {
-                if (g != null)
-                {
-                    return g.StealAway(this, v);
-                }
-            }*/
         }
         return null;
     }
@@ -199,6 +189,7 @@ public class Virologist implements Timeable
     public void YourKilled()
     {
         this.f1.VirologistKilled(this);
+        f1 = null;
     }
 
     /**
@@ -257,20 +248,6 @@ public class Virologist implements Timeable
                 gearList[gear.GetID()] = gear.PickUp(this);
             }
         }
-    }
-
-    public void ReceiveAgent(Agent agent)
-    {
-        if(!HasThisAgent(agent))
-        {
-            agentList.add(agent);
-        }
-    }
-    public void ReceiveAttribute(VAttribute attribute){
-        if(!attributeList.contains(attribute)){
-            //attributeList.add(attribute);
-        }
-        attributeList.add(attribute);
     }
 
     /**
@@ -341,18 +318,6 @@ public class Virologist implements Timeable
     public Boolean HasThisGear(Gear g)
     {
         return gearList[g.GetID()] != null;
-        /*
-        for (Gear gear: gearList)
-        {
-            if (gear!= null)
-            {
-                if(gear.GetID()==g.GetID())
-                {
-                    return true;
-                }
-            }
-        }
-        return false;*/
     }
 
     /**
@@ -448,29 +413,17 @@ public class Virologist implements Timeable
         f1.AddVirologist(this);
     }
 
-    /**
-     * Leírás:
-     * Visszaadja a virológus felszerelését
-     * @param id
-     * @return gear
-     */
-    public Gear GetGear(int id)
-    {
-        return gearList[id];
-        //return this.gearList.get(id);
-    }
-
     public void RemoveAgent(Agent a) {
         agentList.remove(a);
     }
 
     @Override
     public void Time() {
-        for(Agent a : agentList) {
-            a.Step(this);
+        for(int i = 0; i < agentList.size(); i++) {
+            agentList.get(i).Step(this);
         }
-        for(VAttribute va : attributeList) {
-            va.Step(this);
+        for(int i = 0; i < attributeList.size(); i++) {
+            attributeList.get(i).Step(this);
         }
     }
 
@@ -480,7 +433,7 @@ public class Virologist implements Timeable
 
     public Field GetMyField() {return f1;}
 
-    public boolean notStunned() {
-        return !attributeList.stream().anyMatch(x -> x instanceof Stunned);
+    public boolean Stunned() {
+        return attributeList.stream().anyMatch(x -> x instanceof Stunned);
     }
 }

@@ -4,6 +4,8 @@ import java.beans.*;
 import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 import net.miginfocom.swing.*;
@@ -18,8 +20,8 @@ public class View extends JFrame {
 
     public boolean activePlayersturn = true;
     private Virologist currentVirologist;
-    private Agent selectedAgent;
-    private Gear selectedGear;
+    private String selectedAgent;
+    private String selectedGear;
     public View() {
         initComponents();
         initFill();
@@ -48,6 +50,19 @@ public class View extends JFrame {
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         detailTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         detailTable.getTableHeader().setReorderingAllowed(false);
+        detailTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(detailTable.getTableHeader().getColumnModel().getColumn(1).getHeaderValue().equals("Agent")) {
+                    selectedAgent = detailTable.getValueAt(detailTable.getSelectedRow(), 1).toString();
+                    selectedGear = "";
+                }
+                else if(detailTable.getTableHeader().getColumnModel().getColumn(1).getHeaderValue().equals("Gears")) {
+                    selectedGear = detailTable.getValueAt(detailTable.getSelectedRow(), 1).toString();
+                    selectedAgent = "";
+                }
+            }
+        });
         this.setBackground(new Color(60,63,65));
     }
 
@@ -72,8 +87,11 @@ public class View extends JFrame {
     public void DrawAll(Virologist v, HashMap<Virologist, String> playersPlaying)
     {
         currentVirologist = v;
+
         DrawVirologist(v, playersPlaying);
         DrawField(v.GetMyField());
+        DrawAgent(v);
+        DrawVAttribute(v);
 
         switch (playersPlaying.get(v)) {
             case "Blue":
@@ -101,10 +119,6 @@ public class View extends JFrame {
                 playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/orangeVirologist_icon.png")));
                 break;
         }
-        // TODO
-
-        DrawAgent(currentVirologist);
-        DrawVAttribute(currentVirologist);
     }
 
     public void DrawField(Object f)
@@ -131,6 +145,7 @@ public class View extends JFrame {
         }
 
     }
+
     public void DrawVirologist(Virologist v, HashMap<Virologist, String> playersPlaying)
     {
         playersComboBox.removeAllItems();
@@ -142,14 +157,53 @@ public class View extends JFrame {
     }
     public void DrawAgent(Virologist v)
     {
+        detailTable.setValueAt("", 0, 0);
+        detailTable.setValueAt("", 1, 0);
+        detailTable.setValueAt("", 2, 0);
+        detailTable.setValueAt("", 3, 0);
+        detailTable.setValueAt("", 0, 1);
+        detailTable.setValueAt("", 1, 1);
+        detailTable.setValueAt("", 2, 1);
+        detailTable.setValueAt("", 3, 1);
+
         detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Amount");
         detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Agent");
         detailTable.getTableHeader().repaint();
 
-        for(int i=0; i < currentVirologist.getGeneticCodeList().size(); i++){
-            detailTable.setValueAt(v.getAgentList(), i,0);
+        int nStun=0, nImmunity=0, nAmnesia=0, nDi=0;
+
+        for(Agent a : v.getAgentList()) {
+            if(a instanceof Stun) {
+                nStun++;
+            }
+            else if(a instanceof Immunity) {
+                nImmunity++;
+            }
+            else if(a instanceof Amnesia) {
+                nAmnesia++;
+            }
+            else {
+                nDi++;
+            }
+        }
+
+        for(int i = 0; i < v.getGeneticCodeList().size(); i++) {
+            detailTable.setValueAt(v.getGeneticCodeList().get(i).getClass().getSimpleName(), i, 1);
+            if(v.getGeneticCodeList().get(i) instanceof Stun) {
+                detailTable.setValueAt(nStun, i, 0);
+            }
+            else if(v.getGeneticCodeList().get(i) instanceof Immunity) {
+                detailTable.setValueAt(nImmunity, i, 0);
+            }
+            else if(v.getGeneticCodeList().get(i) instanceof Amnesia) {
+                detailTable.setValueAt(nAmnesia, i, 0);
+            }
+            else {
+                detailTable.setValueAt(nDi, i, 0);
+            }
         }
     }
+
     public void DrawVAttribute(Virologist v)
     {
         stunnedLabel.setEnabled(checkVirologist("stunned"));
@@ -157,6 +211,7 @@ public class View extends JFrame {
         dancingLabel.setEnabled(checkVirologist("dancing"));
         immuneLabel.setEnabled(checkVirologist("immune"));
     }
+
     public void DrawGear(Virologist v)
     {
         detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Durability");
@@ -173,14 +228,14 @@ public class View extends JFrame {
         detailTable.setValueAt("", 3, 1);
 
         for(int i = 0; i < 4; i++) {
-            if(v.gearList[i] != null) {
-                if(v.gearList[i].GetDurability() == -1) {
+            if(v.getGearList()[i] != null) {
+                if(v.getGearList()[i].GetDurability() == -1) {
                     detailTable.setValueAt("inf.", i, 0);
-                    detailTable.setValueAt(v.gearList[i].getClass().getSimpleName(), i, 1);
+                    detailTable.setValueAt(v.getGearList()[i].getClass().getSimpleName(), i, 1);
 
                 } else {
-                    detailTable.setValueAt(String.valueOf(v.gearList[i].GetDurability()), i, 0);
-                    detailTable.setValueAt(v.gearList[i].getClass().getSimpleName(), i, 1);
+                    detailTable.setValueAt(String.valueOf(v.getGearList()[i].GetDurability()), i, 0);
+                    detailTable.setValueAt(v.getGearList()[i].getClass().getSimpleName(), i, 1);
                 }
             }
         }
@@ -215,10 +270,6 @@ public class View extends JFrame {
         DrawMaterial(currentVirologist);
     }
 
-    private void detailTablePropertyChange(PropertyChangeEvent e) {
-        // TODO add your code here
-    }
-
     private void moveButtonEvent(ActionEvent e) {
         if(fieldsComboBox.getSelectedIndex()==0){
             JOptionPane.showMessageDialog(this,"Please select a field first!","Notice",JOptionPane.INFORMATION_MESSAGE);
@@ -226,17 +277,20 @@ public class View extends JFrame {
         }
         activePlayersturn = false;
         currentVirologist.Move(currentVirologist.GetMyField().Neighbours.get(fieldsComboBox.getSelectedIndex()-1));
-
-        // TODO add your code here
     }
 
     private void attackButtonEvent(ActionEvent e) {
-        if(playersComboBox.getSelectedIndex()==0||selectedAgent==null){
+        if(playersComboBox.getSelectedIndex()==0 || selectedAgent.equals("")) {
             JOptionPane.showMessageDialog(this,"Please select a player and an agent first!","Notice",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        currentVirologist.UseAgent(selectedAgent,currentVirologist.GetMyField().standsHere.get(playersComboBox.getSelectedIndex()-1));
-        activePlayersturn = false;
+        for(Agent a : currentVirologist.getAgentList()) {
+            if(a.getClass().getSimpleName().equals(selectedAgent)) {
+                currentVirologist.UseAgent(a,currentVirologist.GetMyField().standsHere.get(playersComboBox.getSelectedIndex()-1));
+                activePlayersturn = false;
+                break;
+            }
+        }
     }
 
     private void craftButtonEvent(ActionEvent e) {
@@ -244,40 +298,48 @@ public class View extends JFrame {
             JOptionPane.showMessageDialog(this,"Please select an agent first!","Notice",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        else if(selectedAgent.GetAminoacidCost()>currentVirologist.GetAmountAminoacid()||selectedAgent.GetNucleotidCost()>currentVirologist.GetAmountNucleotid()){
-            JOptionPane.showMessageDialog(this,"You don't have enough materials, do something else.","Notice",JOptionPane.INFORMATION_MESSAGE);
-            return;
+        for(Agent a : currentVirologist.getAgentList()) {
+            if(a.getClass().getSimpleName().equals(selectedAgent)) {
+                if(a.GetAminoacidCost()>currentVirologist.GetAmountAminoacid() || a.GetNucleotidCost()>currentVirologist.GetAmountNucleotid()){
+                    JOptionPane.showMessageDialog(this,"You don't have enough materials, do something else.","Notice",JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                } else {
+                    currentVirologist.CraftAgent(currentVirologist, a);
+                    break;
+                }
+            }
         }
-        currentVirologist.CraftAgent(currentVirologist,selectedAgent);
         activePlayersturn = false;
     }
 
     private void stealButtonEvent(ActionEvent e) {
-        if(playersComboBox.getSelectedIndex()==0){
 
+        if(detailTable.getTableHeader().getColumnModel().getColumn(1).getHeaderValue().equals("Gear")){
+            currentVirologist.Steal(currentVirologist.GetMyField().standsHere.get(playersComboBox.getSelectedIndex()-1), "gear");
+        } else if (detailTable.getTableHeader().getColumnModel().getColumn(1).getHeaderValue().equals("Material")) {
+            currentVirologist.Steal(currentVirologist.GetMyField().standsHere.get(playersComboBox.getSelectedIndex()-1), "material");
         }
         activePlayersturn = false;
     }
 
     private void dropButtonEvent(ActionEvent e) {
+        if(detailTable.getTableHeader().getColumnModel().getColumn(1).getHeaderValue().equals("Gear")){
+            currentVirologist.RemoveGear(currentVirologist.getGearList()[detailTable.getSelectedRow()]);
+        }
         activePlayersturn = false;
-        // TODO add your code here
     }
 
     private void fieldsComboBoxEvent(ActionEvent e) {
         fieldsComboBox.setSelectedIndex(fieldsComboBox.getSelectedIndex());
-        System.out.println(fieldsComboBox.getSelectedIndex());
-        // TODO add your code here
     }
 
     private void playersComboBoxChanged(ActionEvent e) {
         playersComboBox.setSelectedIndex(playersComboBox.getSelectedIndex());
-        // TODO add your code here
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+        // Generated using JFormDesigner Evaluation license - Sailors Knot
         leftPanel = new JPanel();
         leftHeaderPanel = new JPanel();
         neighboursLabelPanel = new JPanel();
@@ -338,12 +400,13 @@ public class View extends JFrame {
             leftPanel.setForeground(Color.black);
             leftPanel.setBorder(null);
             leftPanel.setBackground(new Color(102, 102, 102));
-            leftPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-            ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-            .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,leftPanel. getBorder () ) ); leftPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-            propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-            ;} } );
+            leftPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,leftPanel. getBorder( )) ); leftPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
             leftPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,align center center",
                 // columns
@@ -650,7 +713,6 @@ public class View extends JFrame {
                 detailTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
                 detailTable.setRowHeight(25);
                 detailTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                detailTable.addPropertyChangeListener(e -> detailTablePropertyChange(e));
                 detailsPane.setViewportView(detailTable);
             }
             rightPanel.add(detailsPane, "cell 0 2,dock center");
@@ -713,7 +775,7 @@ public class View extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+    // Generated using JFormDesigner Evaluation license - Sailors Knot
     private JPanel leftPanel;
     private JPanel leftHeaderPanel;
     private JPanel neighboursLabelPanel;

@@ -52,8 +52,8 @@ public class Cloak extends Gear
     @Override
     public Gear StealAway(Virologist v, Virologist v2)
     {
-        Gear temp = v2.gearList[1];
-        v2.gearList[1] = null;
+        Gear temp = v2.getGearList()[1];
+        v2.getGearList()[1] = null;
         return temp;
     }
 

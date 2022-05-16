@@ -9,7 +9,8 @@ public class Stun extends Agent
      * Leírás: Stun ágens konstruktora
      */
     Stun() {
-        useTime = 7;
+        // TODO
+        useTime = 3;
         nucleotidCost = 65;
         aminoacidCost = 30;
     }
