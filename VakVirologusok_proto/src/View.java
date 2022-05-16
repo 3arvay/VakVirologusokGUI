@@ -18,8 +18,8 @@ public class View extends JFrame {
 
     public boolean activePlayersturn = true;
     private Virologist currentVirologist;
-
-
+    private Agent selectedAgent;
+    private Gear selectedGear;
     public View() {
         initComponents();
         initFill();
@@ -43,12 +43,29 @@ public class View extends JFrame {
         playersComboBox.setEditable(false);
         fieldsComboBox.setSelectedIndex(0);
         playersComboBox.setSelectedIndex(0);
+        detailTable.getColumnModel().getColumn(0).setMaxWidth(60);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        detailTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         this.setBackground(new Color(60,63,65));
     }
 
     public void WinDialogShow()
     {
 
+    }
+
+    public boolean checkVirologist(String caseString){
+        switch(caseString){
+            case "stunned":
+                return currentVirologist.getAttributeList().stream().anyMatch(x->x instanceof Stunned);
+            case "immune":
+                return currentVirologist.getAttributeList().stream().anyMatch(x->x instanceof Immune);
+            case "bearmode":
+                return currentVirologist.getAttributeList().stream().anyMatch(x->x instanceof BearMode);
+            default:
+                return currentVirologist.getAttributeList().stream().anyMatch(x->x instanceof Dancing);
+        }
     }
 
     public void DrawAll(Virologist v, HashMap<Virologist, String> playersPlaying)
@@ -84,6 +101,9 @@ public class View extends JFrame {
                 break;
         }
         // TODO
+
+        DrawAgent(currentVirologist);
+        DrawVAttribute(currentVirologist);
     }
 
     public void DrawField(Object f)
@@ -119,12 +139,6 @@ public class View extends JFrame {
             playersComboBox.addItem(playersPlaying.get(v1));
         }
     }
-    public void DrawGenCode(Virologist v)
-    {
-        for(int i=0; i<currentVirologist.GetNumOFGeneticCodes(); i++){
-            currentVirologist.getGeneticCodeList().get(i);
-        }
-    }
     public void DrawAgent(Virologist v)
     {
         for(int i=0; i<currentVirologist.getAgentList().size(); i++){
@@ -133,12 +147,10 @@ public class View extends JFrame {
     }
     public void DrawVAttribute(Virologist v)
     {
-        //ez szar
-        for(int i=0; i<currentVirologist.getAttributeList().size(); i++){
-            if(currentVirologist.getAttributeList().get(i).toString() == "BearVirus"){
-                //itt kell atallítani a képet
-            }
-        }
+        stunnedLabel.setEnabled(checkVirologist("stunned"));
+        bearModeLabel.setEnabled(checkVirologist("bearMode"));
+        dancingLabel.setEnabled(checkVirologist("dancing"));
+        immuneLabel.setEnabled(checkVirologist("immune"));
     }
     public void DrawGear(Virologist v)
     {
@@ -157,9 +169,7 @@ public class View extends JFrame {
 
 
     private void agentsButtonEvent(ActionEvent e) {
-        DrawGenCode(currentVirologist);
         DrawAgent(currentVirologist);
-
     }
 
     private void gearsButtonEvent(ActionEvent e) {
@@ -175,24 +185,43 @@ public class View extends JFrame {
     }
 
     private void moveButtonEvent(ActionEvent e) {
-        currentVirologist.Move(currentVirologist.GetMyField().Neighbours.get(fieldsComboBox.getSelectedIndex()-1));
+        if(fieldsComboBox.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this,"Please select a field first!","Notice",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         activePlayersturn = false;
+        currentVirologist.Move(currentVirologist.GetMyField().Neighbours.get(fieldsComboBox.getSelectedIndex()-1));
+
         // TODO add your code here
     }
 
     private void attackButtonEvent(ActionEvent e) {
+        if(playersComboBox.getSelectedIndex()==0||selectedAgent==null){
+            JOptionPane.showMessageDialog(this,"Please select a player and an agent first!","Notice",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        currentVirologist.UseAgent(selectedAgent,currentVirologist.GetMyField().standsHere.get(playersComboBox.getSelectedIndex()-1));
         activePlayersturn = false;
-        // TODO add your code here
     }
 
     private void craftButtonEvent(ActionEvent e) {
+        if(selectedAgent==null){
+            JOptionPane.showMessageDialog(this,"Please select an agent first!","Notice",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        else if(selectedAgent.GetAminoacidCost()>currentVirologist.GetAmountAminoacid()||selectedAgent.GetNucleotidCost()>currentVirologist.GetAmountNucleotid()){
+            JOptionPane.showMessageDialog(this,"You don't have enough materials, do something else.","Notice",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        currentVirologist.CraftAgent(currentVirologist,selectedAgent);
         activePlayersturn = false;
-        // TODO add your code here
     }
 
     private void stealButtonEvent(ActionEvent e) {
+        if(playersComboBox.getSelectedIndex()==0){
+
+        }
         activePlayersturn = false;
-        // TODO add your code here
     }
 
     private void dropButtonEvent(ActionEvent e) {
@@ -207,6 +236,7 @@ public class View extends JFrame {
     }
 
     private void playersComboBoxChanged(ActionEvent e) {
+        playersComboBox.setSelectedIndex(playersComboBox.getSelectedIndex());
         // TODO add your code here
     }
 
@@ -258,6 +288,7 @@ public class View extends JFrame {
         setBackground(new Color(51, 51, 51));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+        setMinimumSize(new Dimension(925, 570));
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "fill,hidemode 3",
@@ -272,19 +303,18 @@ public class View extends JFrame {
             leftPanel.setForeground(Color.black);
             leftPanel.setBorder(null);
             leftPanel.setBackground(new Color(102, 102, 102));
-            leftPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
-            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
-            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,leftPanel. getBorder
-            ( )) ); leftPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-            .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
-            ( ); }} );
+            leftPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
+            ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
+            .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+            . Color .red ) ,leftPanel. getBorder () ) ); leftPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
+            propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+            ;} } );
             leftPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,align center center",
                 // columns
                 "[600:600]",
                 // rows
-                "[94]" +
+                "[81]" +
                 "[400,fill]"));
 
             //======== leftHeaderPanel ========
@@ -334,9 +364,7 @@ public class View extends JFrame {
                     fieldsPanel.setBackground(new Color(204, 204, 204));
                     fieldsPanel.setLayout(new BorderLayout());
 
-
                     //---- fieldsComboBox ----
-                    fieldsComboBox.setEditable(true);
                     fieldsComboBox.setForeground(Color.white);
                     fieldsComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a field and press \"Move\""
@@ -353,7 +381,6 @@ public class View extends JFrame {
                     playersPanel.setLayout(new BorderLayout());
 
                     //---- playersComboBox ----
-                    playersComboBox.setEditable(true);
                     playersComboBox.setForeground(Color.white);
                     playersComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
                         "Select a player and press \"Attack\" or \"Steal\""
@@ -435,6 +462,7 @@ public class View extends JFrame {
                         //---- bearModeLabel ----
                         bearModeLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/VAttributes/BearMode.png")));
                         bearModeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        bearModeLabel.setEnabled(false);
                         bearModePanel.add(bearModeLabel, BorderLayout.CENTER);
                     }
                     vattributePanel.add(bearModePanel, "cell 0 0,alignx center,growx 0,width 50::50,height 50::50");
@@ -449,6 +477,7 @@ public class View extends JFrame {
                         //---- dancingLabel ----
                         dancingLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/VAttributes/Dancing.png")));
                         dancingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        dancingLabel.setEnabled(false);
                         dancingPanel.add(dancingLabel, BorderLayout.CENTER);
                     }
                     vattributePanel.add(dancingPanel, "cell 0 1,alignx center,growx 0,width 50::50,height 50::50");
@@ -463,6 +492,7 @@ public class View extends JFrame {
                         //---- stunnedLabel ----
                         stunnedLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/VAttributes/Stunned.png")));
                         stunnedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        stunnedLabel.setEnabled(false);
                         stunnedPanel.add(stunnedLabel, BorderLayout.CENTER);
                     }
                     vattributePanel.add(stunnedPanel, "cell 0 2,alignx center,growx 0,width 50::50,height 50::50");
@@ -477,6 +507,7 @@ public class View extends JFrame {
                         //---- immuneLabel ----
                         immuneLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/VAttributes/Immune.png")));
                         immuneLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                        immuneLabel.setEnabled(false);
                         immunePanel.add(immuneLabel, BorderLayout.CENTER);
                     }
                     vattributePanel.add(immunePanel, "cell 0 3,alignx center,growx 0,width 50::50,height 50::50");
@@ -490,7 +521,7 @@ public class View extends JFrame {
                     playerIconPanel.setLayout(new BorderLayout());
 
                     //---- playerIconLabel ----
-                    playerIconLabel.setIcon(new ImageIcon(getClass().getResource("/pictures/Virologists/purpleVirologist_icon.png")));
+                    playerIconLabel.setIcon(null);
                     playerIconLabel.setHorizontalAlignment(SwingConstants.CENTER);
                     playerIconPanel.add(playerIconLabel, BorderLayout.CENTER);
                 }
@@ -582,7 +613,7 @@ public class View extends JFrame {
                 detailTable.setSelectionForeground(Color.white);
                 detailTable.setGridColor(Color.black);
                 detailTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-                detailTable.setRowHeight(23);
+                detailTable.setRowHeight(25);
                 detailTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 detailTable.addPropertyChangeListener(e -> detailTablePropertyChange(e));
                 detailsPane.setViewportView(detailTable);
@@ -641,7 +672,7 @@ public class View extends JFrame {
             rightPanel.add(buttonPanel, "cell 0 3");
         }
         contentPane.add(rightPanel, "cell 1 0,dock center");
-        setSize(925, 575);
+        setSize(925, 570);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

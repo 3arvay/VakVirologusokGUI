@@ -16,6 +16,7 @@ new FormModel {
 			"background": new java.awt.Color( 51, 51, 51, 255 )
 			"defaultCloseOperation": 3
 			"cursor": new java.awt.Cursor( 1 )
+			"minimumSize": new java.awt.Dimension( 925, 570 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "fill,hidemode 3,align center center"
 				"$columnConstraints": "[600:600]"
@@ -156,6 +157,7 @@ new FormModel {
 								name: "bearModeLabel"
 								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/BearMode.png" )
 								"horizontalAlignment": 0
+								"enabled": false
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "Center"
 							} )
@@ -171,6 +173,7 @@ new FormModel {
 								name: "dancingLabel"
 								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Dancing.png" )
 								"horizontalAlignment": 0
+								"enabled": false
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "Center"
 							} )
@@ -186,6 +189,7 @@ new FormModel {
 								name: "stunnedLabel"
 								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Stunned.png" )
 								"horizontalAlignment": 0
+								"enabled": false
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "Center"
 							} )
@@ -201,6 +205,7 @@ new FormModel {
 								name: "immuneLabel"
 								"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/VAttributes/Immune.png" )
 								"horizontalAlignment": 0
+								"enabled": false
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "Center"
 							} )
@@ -216,7 +221,7 @@ new FormModel {
 						"border": #LineBorder0
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "playerIconLabel"
-							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pictures/Virologists/purpleVirologist_icon.png" )
+							"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
 							"horizontalAlignment": 0
 						}, new FormLayoutConstraints( class java.lang.String ) {
 							"value": "Center"
@@ -299,7 +304,7 @@ new FormModel {
 						"selectionForeground": new java.awt.Color( 255, 255, 255, 255 )
 						"gridColor": sfield java.awt.Color black
 						"autoResizeMode": 3
-						"rowHeight": 23
+						"rowHeight": 25
 						"selectionMode": 0
 						addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "detailTablePropertyChange", true ) )
 					} )
@@ -367,7 +372,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 5 )
-			"size": new java.awt.Dimension( 925, 575 )
+			"size": new java.awt.Dimension( 925, 570 )
 		} )
 	}
 }

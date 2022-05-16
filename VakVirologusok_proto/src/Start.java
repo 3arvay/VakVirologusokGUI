@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 import net.miginfocom.swing.*;
 /*
  * Created by JFormDesigner on Sun May 15 00:44:15 CEST 2022
@@ -17,10 +18,7 @@ public class Start extends JFrame {
 
     public Start() {
         initComponents();
-
-        pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
     }
 
     private void startButtonEvent(ActionEvent e) {
@@ -29,13 +27,13 @@ public class Start extends JFrame {
             dispose();
         }
         else{
-            JOptionPane.showMessageDialog(new Frame(), "Please select a valid player number");
+            JOptionPane.showMessageDialog(this, "Please select a valid number of players","Notice",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     private void playersComboBoxEvent(ActionEvent e) {
         if (playersComboBox.getSelectedItem().equals("Select")){
-            JOptionPane.showMessageDialog(new Frame(), "Please select a valid player number");
+            JOptionPane.showMessageDialog(this, "Please select a valid number of players ","Notice",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         playerNum= Integer.parseInt(playersComboBox.getSelectedItem().toString());
@@ -43,7 +41,7 @@ public class Start extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Sailors Knot
+        // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
         multiLayerPane = new JLayeredPane();
         topPanel = new JPanel();
         titleLabel = new JLabel();
@@ -59,6 +57,7 @@ public class Start extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(650, 330));
+        setIconImage(new ImageIcon(getClass().getResource("/pictures/Virologists/turkizVirologist.png")).getImage());
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -68,12 +67,14 @@ public class Start extends JFrame {
             //======== topPanel ========
             {
                 topPanel.setBackground(new Color(60, 63, 65, 0));
-                topPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-                EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-                . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-                java. awt. Color. red) ,topPanel. getBorder( )) ); topPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-                { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-                throw new RuntimeException( ); }} );
+                topPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+                new javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
+                ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+                ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12)
+                ,java.awt.Color.red),topPanel. getBorder()));topPanel. addPropertyChangeListener(
+                new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+                ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
+                ;}});
                 topPanel.setLayout(new MigLayout(
                     "fill,hidemode 3",
                     // columns
@@ -155,7 +156,7 @@ public class Start extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Sailors Knot
+    // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
     private JLayeredPane multiLayerPane;
     private JPanel topPanel;
     private JLabel titleLabel;
