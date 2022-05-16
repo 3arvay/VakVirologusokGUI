@@ -74,7 +74,6 @@ public class View extends JFrame {
         currentVirologist = v;
         DrawVirologist(v, playersPlaying);
         DrawField(v.GetMyField());
-        //DrawGear(v);
 
         switch (playersPlaying.get(v)) {
             case "Blue":
@@ -143,8 +142,12 @@ public class View extends JFrame {
     }
     public void DrawAgent(Virologist v)
     {
-        for(int i=0; i<currentVirologist.getAgentList().size(); i++){
-            currentVirologist.getAgentList().get(i);
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Amount");
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Agent");
+        detailTable.getTableHeader().repaint();
+
+        for(int i=0; i < currentVirologist.getGeneticCodeList().size(); i++){
+            detailTable.setValueAt(v.getAgentList(), i,0);
         }
     }
     public void DrawVAttribute(Virologist v)
@@ -185,11 +188,19 @@ public class View extends JFrame {
 
     public void DrawMaterial(Virologist v)
     {
-        for(int i=0; i<currentVirologist.getGearList().length; i++){
-            //TODO
-        }
-    }
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Amount");
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Material");
+        detailTable.getTableHeader().repaint();
 
+        detailTable.setValueAt(currentVirologist.GetAmountAminoacid() + "x", 0,0);
+        detailTable.setValueAt(currentVirologist.GetAmountNucleotid() + "x", 1,0);
+        detailTable.setValueAt("Aminoacid", 0,1);
+        detailTable.setValueAt("Nucleotid", 1,1);
+        detailTable.setValueAt("", 2,0);
+        detailTable.setValueAt("", 2,1);
+        detailTable.setValueAt("", 3,0);
+        detailTable.setValueAt("", 3,1);
+    }
 
 
     private void agentsButtonEvent(ActionEvent e) {
