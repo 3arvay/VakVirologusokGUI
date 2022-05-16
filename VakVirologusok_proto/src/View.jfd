@@ -270,7 +270,6 @@ new FormModel {
 						"border": #LineBorder0
 						"background": new java.awt.Color( 153, 153, 153, 255 )
 						"foreground": sfield java.awt.Color white
-						"cellSelectionEnabled": true
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 							add( new java.util.Vector {
 								add( "0x" )

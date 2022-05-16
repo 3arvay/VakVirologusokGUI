@@ -47,6 +47,8 @@ public class View extends JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         detailTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        detailTable.getTableHeader().setReorderingAllowed(false);
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("FASZ");
         this.setBackground(new Color(60,63,65));
     }
 
@@ -170,14 +172,23 @@ public class View extends JFrame {
 
     private void agentsButtonEvent(ActionEvent e) {
         DrawAgent(currentVirologist);
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Agent name");
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Amount");
+        detailTable.getTableHeader().repaint();
     }
 
     private void gearsButtonEvent(ActionEvent e) {
         DrawGear(currentVirologist);
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Gear name");
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Durability");
+        detailTable.getTableHeader().repaint();
     }
 
     private void materialsButtonEvent(ActionEvent e) {
         DrawMaterial(currentVirologist);
+        detailTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Material name");
+        detailTable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Amount");
+        detailTable.getTableHeader().repaint();
     }
 
     private void detailTablePropertyChange(PropertyChangeEvent e) {
@@ -303,12 +314,14 @@ public class View extends JFrame {
             leftPanel.setForeground(Color.black);
             leftPanel.setBorder(null);
             leftPanel.setBackground(new Color(102, 102, 102));
-            leftPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-            ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-            .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,leftPanel. getBorder () ) ); leftPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-            propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-            ;} } );
+            leftPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+            new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e"
+            ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+            ,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12)
+            ,java.awt.Color.red),leftPanel. getBorder()));leftPanel. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException()
+            ;}});
             leftPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,align center center",
                 // columns
@@ -568,7 +581,6 @@ public class View extends JFrame {
                 detailTable.setBorder(LineBorder.createBlackLineBorder());
                 detailTable.setBackground(new Color(153, 153, 153));
                 detailTable.setForeground(Color.white);
-                detailTable.setCellSelectionEnabled(true);
                 detailTable.setModel(new DefaultTableModel(
                     new Object[][] {
                         {"0x", "Amnesia"},
