@@ -13,7 +13,6 @@ public class Virologist implements Timeable
     private int maxAmount;
     private List<Agent> geneticCodeList;
     private List<Agent> agentList;
-    // private List<Gear> gearList;
     private Gear[] gearList;
     private List<VAttribute> attributeList;
     private Field f1;

@@ -47,7 +47,7 @@ public class Bag extends Gear
     public Gear PickUp(Virologist v)
     {
         v.ExtendCapacity(size);
-        return this;
+        return new Bag();
     }
 
     /**

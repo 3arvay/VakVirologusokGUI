@@ -43,7 +43,7 @@ public class Gloves extends Gear
     @Override
     public Gear PickUp(Virologist v)
     {
-        return this;
+        return new Gloves();
     }
 
     /**

@@ -187,6 +187,27 @@ public class View extends JFrame {
             }
         }
 
+        int counter = 0;
+        if(v.getGeneticCodeList().size() < v.getAgentList().size()) {
+            if(nStun != 0) {
+                detailTable.setValueAt(nStun, counter, 0);
+                detailTable.setValueAt(v.getGeneticCodeList().get(counter).getClass().getSimpleName(), counter++, 1);
+            }
+            if(nImmunity != 0) {
+                detailTable.setValueAt(nImmunity, counter, 0);
+                detailTable.setValueAt(v.getGeneticCodeList().get(counter).getClass().getSimpleName(), counter++, 1);
+            }
+            if(nAmnesia != 0) {
+                detailTable.setValueAt(nAmnesia, counter, 0);
+                detailTable.setValueAt(v.getGeneticCodeList().get(counter).getClass().getSimpleName(), counter++, 1);
+            }
+            if(nDi != 0) {
+                detailTable.setValueAt(nDi, counter, 0);
+                detailTable.setValueAt(v.getGeneticCodeList().get(counter).getClass().getSimpleName(), counter++, 1);
+            }
+            return;
+        }
+
         for(int i = 0; i < v.getGeneticCodeList().size(); i++) {
             detailTable.setValueAt(v.getGeneticCodeList().get(i).getClass().getSimpleName(), i, 1);
             if(v.getGeneticCodeList().get(i) instanceof Stun) {
@@ -232,7 +253,6 @@ public class View extends JFrame {
                 if(v.getGearList()[i].GetDurability() == -1) {
                     detailTable.setValueAt("inf.", i, 0);
                     detailTable.setValueAt(v.getGearList()[i].getClass().getSimpleName(), i, 1);
-
                 } else {
                     detailTable.setValueAt(String.valueOf(v.getGearList()[i].GetDurability()), i, 0);
                     detailTable.setValueAt(v.getGearList()[i].getClass().getSimpleName(), i, 1);
@@ -294,8 +314,12 @@ public class View extends JFrame {
     }
 
     private void craftButtonEvent(ActionEvent e) {
-        if(selectedAgent==null){
+        if(selectedAgent.equals("")){
             JOptionPane.showMessageDialog(this,"Please select an agent first!","Notice",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        else if (selectedAgent.equals("???")){
+            JOptionPane.showMessageDialog(this,"You forgot that agent","Notice",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         for(Agent a : currentVirologist.getAgentList()) {

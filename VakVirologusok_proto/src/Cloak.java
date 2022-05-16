@@ -40,7 +40,7 @@ public class Cloak extends Gear
     @Override
     public Cloak PickUp(Virologist v)
     {
-        return this;
+        return new Cloak();
     }
 
     /**

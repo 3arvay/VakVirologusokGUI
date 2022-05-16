@@ -33,7 +33,7 @@ public class Axe extends Gear {
      */
     @Override
     public Gear PickUp(Virologist v) {
-        return this;
+        return new Axe();
     }
 
     /**

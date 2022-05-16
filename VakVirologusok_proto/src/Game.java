@@ -77,8 +77,6 @@ public class Game
 
                 mainview.DrawAll(currentVirologist, playersPlaying); // újonnan sorrakerült jétékos, mindet rajzolhatunk
 
-
-
                 while (mainview.activePlayersturn) { // Várunk az 5 fő gomb valamelyikére
 
                     if(currentVirologist.Stunned()) {
