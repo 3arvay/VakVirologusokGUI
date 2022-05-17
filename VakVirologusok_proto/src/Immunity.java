@@ -41,7 +41,7 @@ public class Immunity extends Agent
     @Override
     public Immunity Clone(Virologist v, Agent i)
     {
-        v.CostTakeAway(v,i);
+        v.CostTakeAway(i);
         return new Immunity();
     }
     /**

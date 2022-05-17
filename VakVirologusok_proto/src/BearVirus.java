@@ -24,7 +24,7 @@ public class BearVirus extends Agent{
     @Override
     public Agent Clone(Virologist v, Agent a)
     {
-        v.CostTakeAway(v,a);
+        v.CostTakeAway(a);
         return new BearVirus();
     }
 

@@ -45,7 +45,7 @@ public class Dance extends Agent
     @Override
     public Dance Clone(Virologist v, Agent a)
     {
-        v.CostTakeAway(v,a);
+        v.CostTakeAway(a);
         return new Dance();
     }
 

@@ -45,7 +45,7 @@ public class Amnesia extends Agent
     @Override
     public Amnesia Clone(Virologist v, Agent a)
     {
-        v.CostTakeAway(v,a);
+        v.CostTakeAway(a);
         return new Amnesia();
     }
     

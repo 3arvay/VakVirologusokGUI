@@ -264,7 +264,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "detailsPane"
 					"foreground": new java.awt.Color( 0, 0, 0, 255 )
-					"background": sfield java.awt.Color lightGray
+					"background": sfield java.awt.Color darkGray
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "detailTable"
 						"border": #LineBorder0

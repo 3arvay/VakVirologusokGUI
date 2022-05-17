@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
 * Leírás:
@@ -25,13 +24,13 @@ public class Virologist implements Timeable
         amountNucleotid=75;
         amountAminoacid=75;
         maxAmount=100;
-        geneticCodeList=new ArrayList<Agent>();
+        geneticCodeList=new ArrayList<>();
         geneticCodeList.add(new Stun());
         geneticCodeList.add(new Dance());
         geneticCodeList.add(new Immunity());
         gearList = new Gear[]{null, null, null, null};
-        attributeList=new ArrayList<VAttribute>();
-        agentList = new ArrayList<Agent>();
+        attributeList=new ArrayList<>();
+        agentList = new ArrayList<>();
         agentList.add(new Amnesia());
         agentList.add(new Stun());
         f1=null;
@@ -49,7 +48,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * A felhasználó mozgásműveletét valósítja meg egy szomszédos mezőre.
-    * @param  f2
+    * @param  f2 a mező, amelyre lépünk
     */
     public void Move(Field f2)
     {
@@ -83,8 +82,8 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * A felhasználó által kiválasztott ágenst készíti el, feltéve, hogy ismeri annak az ágensnek a genetikai kódját és van elég alapanyaga.
-    * @param  v
-    * @param  a
+    * @param  v a craftoló virológus
+    * @param  a a crafolandó ágens
     */
     public void CraftAgent(Virologist v,Agent a)
     {
@@ -98,8 +97,8 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * A virológus ágenst ken egy másik virológusra.
-    * @param  a
-    * @param  v
+    * @param  a a kenésre használt ágens
+    * @param  v az a virológus, akire kenjük
     */
     public void UseAgent(Agent a, Virologist v)
     {
@@ -110,8 +109,8 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Másik virológustól lop, miközben az le van bénítva.
-    * @param  v2
-    * @param  opt
+    * @param  v2 a virológus akitől lopunk
+    * @param  opt a választott lopási opció
     */
     public void Steal(Virologist v2, String opt)
     {
@@ -133,7 +132,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Alapanyagot lop egy lebénult virológustól.
-    * @param  v
+    * @param  v az a virológus, akitól lopunk
     */
     public void StealMaterial(Virologist v)
     {
@@ -148,7 +147,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Felszerelést lop egy lebénult virológustól.
-    * @param  v
+    * @param  v a lebénult virológus
     */
     public Gear StealGear(Virologist v)
     {
@@ -164,22 +163,9 @@ public class Virologist implements Timeable
     }
 
     /**
-    * Leírás:
-    * Kiveszi a felszerelést a virológus felszerelései közül.
-    * @param  gear
-    * @return Gear geartemp
-    */
-    public Gear RemoveGear(Gear gear)
-    {
-        Gear temp = gearList[gear.GetID()];
-        gearList[gear.GetID()] = null;
-        return temp;
-    }
-
-    /**
      * Leírás:
      * Eldobja a virológus a felszerelését ha elhasználódott
-     * @param gear
+     * @param gear az eldopott felszerelés
      */
     public void ThrowGear(Gear gear)
     {
@@ -199,8 +185,8 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     *  Egy ágenst kenését valósítja meg egy másik virológusra.
-    * @param  a
-    * @param  v
+    * @param  a a vírus amivel támad a virológus
+    * @param  v a támadó virológus
     */
     public void UnderAttack(Agent a, Virologist v)
     {
@@ -227,7 +213,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Átadja a virológusnak a letapogatott genetikai kódot.
-    * @param  geneticCode
+    * @param  geneticCode a letapogatott genetikai kód
     */
     public void ReceiveGeneticCode(Agent geneticCode)
     {
@@ -239,7 +225,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Átadja a virológusnak a felvenni kívánt felszerelést.
-    * @param  gear
+    * @param  gear a felvenni kívánt felszerelés
     */
     public void ReceiveGear(Gear gear)
     {
@@ -258,8 +244,8 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Átadja a virológusnak az adott mezőről felszedett alapanyagot.
-    * @param  material
-    * @param  amount
+    * @param  material nyersanyagtípus amelyet felvesz
+    * @param  amount adott mennyiség a nyersanyagból
     */
     public void MaterialPickedUp(String material, int amount)
     {
@@ -273,7 +259,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * A visszakenés műveletét valósítja meg, azaz a rákent ágenst visszakeni a kenőjére.
-    * @param  a
+    * @param  a a speciális támadáshoz felhasznált ágens
     */
     public void SpecialAttack(Agent a)
     {
@@ -284,7 +270,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Megtanulja a virológus paraméterül kapott genetikai kódot.
-    * @param  geneticCode
+    * @param  geneticCode a megtanulandó genetikai kód
     */
     public void LearnGeneticCode(Agent geneticCode)
     {
@@ -294,10 +280,9 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Levonja az ágens előállításához szükséges nyersanyagok számát a virológustól, ha az rendelkezésre áll.
-    * @param  v
-    * @param  a
+    * @param  a ágens, ennek a költségét kell levonni a nyersanyagmennyiségekből
     */
-    public void CostTakeAway(Virologist v,Agent a)
+    public void CostTakeAway(Agent a)
     {
         amountNucleotid -= a.GetNucleotidCost();
         amountAminoacid -= a.GetAminoacidCost();
@@ -306,7 +291,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Megvizsgálja, hogy van-e az adott ágense.
-    * @param  a
+    * @param  a ágens, ellenőrzésere kerül, hogy ismeri-e
     * @return Boolean
     */
     public Boolean HasThisAgent(Agent a)
@@ -320,7 +305,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Megvizsgálja, hogy van-e az adott felszerelése.
-    * @param  g
+    * @param  g felszerelés, ellenőrzésre kerül, hogy birtokolja-e
     * @return Boolean
     */
     public Boolean HasThisGear(Gear g)
@@ -331,7 +316,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Ha egy adott ágens felhasználhatóságának ideje lejár, ez a metódus távolítja el azt a virológus megfelelő listájából.
-    * @param  va
+    * @param  va tulajdonság, melynek lejárt a hatása, eltávolításra kerül
     */
     public void RemoveAttribute(VAttribute va)
     {
@@ -341,7 +326,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Megnöveli a virológust nyersanyag kapacitását.
-    * @param  bSize
+    * @param  bSize táskaméret, annyival változik a virológus tárhelye
     */
     public void ExtendCapacity(int bSize)
     {
@@ -351,7 +336,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Csökkenti a virológust nyersanyag kapacitását
-    * @param  bSize
+    * @param  bSize táskaméret, annyival változik a virológus tárhelye
     */
     public void LowerCapacity(int bSize)
     {
@@ -383,7 +368,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Beállítja az aminoacid értékét.
-    * @param  aa
+    * @param  aa nukleotid mennyiség,
     */
     public void SetAmountAminoacid(int aa)
     {
@@ -393,7 +378,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Beállítja nukleotid értékét
-    * @param  an
+    * @param  an új amount
     */
     public void SetAmountNucleotid(int an)
     {
@@ -413,7 +398,7 @@ public class Virologist implements Timeable
     /**
     * Leírás:
     * Beállítja azt a kezdő mezőt amin a Virológus áll.
-    * @param  f1_
+    * @param  f1_ kezdeti pályamező, ahonnan indul a virológus
     */
     public void SetInitialField(Field f1_)
     {

@@ -1,4 +1,4 @@
-import java.util.Map;
+
 
 /**
  * Ez valósítja meg a Stun ágenst, ez kenhető virológusokra. Amelyik virológust ezzel megkenik az lebénul
@@ -48,7 +48,7 @@ public class Stun extends Agent
     @Override
     public Stun Clone(Virologist v,Agent s)
     {
-        v.CostTakeAway(v,s);
+        v.CostTakeAway(s);
         return new Stun();
 
     }
