@@ -69,7 +69,10 @@ public class View extends JFrame {
 
     public void WinDialogShow(String playerColor)
     {
+        DrawAgent(currentVirologist);
         JOptionPane.showMessageDialog(this,playerColor+ " won!","Game over",JOptionPane.INFORMATION_MESSAGE);
+        setVisible(false);
+        dispose();
     }
 
     public boolean checkVirologist(String caseString){
@@ -131,7 +134,7 @@ public class View extends JFrame {
         fieldsComboBox.addItem("\"Select a field and press \"Move\"");
 
         for(int i = 0; i < currentVirologist.GetMyField().Neighbours.size(); i++) {
-            fieldsComboBox.addItem("Neighbour" + String.valueOf(i+1));
+            fieldsComboBox.addItem("Neighbour" + (i+1));
         }
 
 
@@ -425,7 +428,7 @@ public class View extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+        // Generated using JFormDesigner Evaluation license - Sailors Knot
         leftPanel = new JPanel();
         leftHeaderPanel = new JPanel();
         neighboursLabelPanel = new JPanel();
@@ -486,12 +489,12 @@ public class View extends JFrame {
             leftPanel.setForeground(Color.black);
             leftPanel.setBorder(null);
             leftPanel.setBackground(new Color(102, 102, 102));
-            leftPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-            border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
-            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
-            .BOLD,12),java.awt.Color.red),leftPanel. getBorder()));leftPanel. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
-            .equals(e.getPropertyName()))throw new RuntimeException();}});
+            leftPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,leftPanel. getBorder( )) ); leftPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
             leftPanel.setLayout(new MigLayout(
                 "fill,hidemode 3,align center center",
                 // columns
@@ -859,7 +862,7 @@ public class View extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán
+    // Generated using JFormDesigner Evaluation license - Sailors Knot
     private JPanel leftPanel;
     private JPanel leftHeaderPanel;
     private JPanel neighboursLabelPanel;

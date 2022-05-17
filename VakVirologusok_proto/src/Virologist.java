@@ -231,8 +231,9 @@ public class Virologist implements Timeable
     */
     public void ReceiveGeneticCode(Agent geneticCode)
     {
-        if(!HasThisAgent(geneticCode))
+        if(!HasThisAgent(geneticCode)){
             LearnGeneticCode(geneticCode);
+        }
     }
 
     /**
@@ -310,7 +311,10 @@ public class Virologist implements Timeable
     */
     public Boolean HasThisAgent(Agent a)
     {
-        return geneticCodeList.contains(a);
+        for(Agent a1 : geneticCodeList) {
+            if(a1.getClass().getSimpleName().equals(a.getClass().getSimpleName())) return true;
+        }
+        return false;
     }
 
     /**
