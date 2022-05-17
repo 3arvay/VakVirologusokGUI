@@ -1,13 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
 import net.miginfocom.swing.*;
 /*
  * Created by JFormDesigner on Sun May 15 00:44:15 CEST 2022
  */
-
-
 
 /**
  * @author Porkoláb Zoltán
@@ -16,11 +13,18 @@ public class Start extends JFrame {
 
     public int playerNum;
 
+    /**
+     * Konstruktor
+     */
     public Start() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * START
+     * @param e ActionEvent
+     */
     private void startButtonEvent(ActionEvent e) {
         if (!playersComboBox.getSelectedItem().equals("Select")){
             setVisible(false);
@@ -31,6 +35,10 @@ public class Start extends JFrame {
         }
     }
 
+    /**
+     * Játékosok legördülő menü
+     * @param e ActionEvent
+     */
     private void playersComboBoxEvent(ActionEvent e) {
         if (playersComboBox.getSelectedItem().equals("Select")){
             JOptionPane.showMessageDialog(this, "Please select a valid number of players ","Notice",JOptionPane.INFORMATION_MESSAGE);
@@ -39,6 +47,9 @@ public class Start extends JFrame {
         playerNum= Integer.parseInt(playersComboBox.getSelectedItem().toString());
     }
 
+    /**
+     * INIT
+     */
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Porkoláb Zoltán

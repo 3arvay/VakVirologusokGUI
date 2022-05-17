@@ -1,5 +1,3 @@
-
-
 /**
  * Ez valósítja meg a Stun ágenst, ez kenhető virológusokra. Amelyik virológust ezzel megkenik az lebénul
  */
@@ -9,21 +7,9 @@ public class Stun extends Agent
      * Leírás: Stun ágens konstruktora
      */
     Stun() {
-        // TODO
-        useTime = 3;
+        useTime = 6;
         nucleotidCost = 65;
         aminoacidCost = 30;
-    }
-
-    /**
-    * Leírás: Az ágens felhasználható idejét adja vissza
-    *
-    * @return int UseTime: Az ágens felhasználható ideje
-    */
-    @Override
-    public int GetUseTime()
-    {
-        return useTime;
     }
     
     /**

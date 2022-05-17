@@ -11,6 +11,10 @@ public class Immune extends VAttribute
         durationtime = 5;
     }
 
+    /**
+     * Tulajdonság elmúlása
+     * @param v Aki jobban lesz...
+     */
     @Override
     public void AttributeChanges(Virologist v)
     {

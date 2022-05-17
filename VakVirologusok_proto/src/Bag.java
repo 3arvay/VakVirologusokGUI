@@ -1,5 +1,3 @@
-import java.util.Map;
-
 /**
 * Leírás: A virológus egyik felszerelését, a zsákot valósítja meg.
 */
@@ -14,21 +12,12 @@ public class Bag extends Gear
         id = 2;
         size = 50;
     }
-    /**
-     * Leírás: visszadja a size tagváltozó értékét
-     *
-     * @return int: a size tagváltozó értéke
-     */
-    public int GetSize()
-    {
-        return size;
-    }
 
     /**
      * Leírás: Felvételkor megnöveli az nyersanyagok férőhelyét a virológusnál.
      *
      * @param  v: Aki a zsákot felveszi
-     * @param  a:
+     * @param  a: null
      * @return Boolean
      */
     @Override

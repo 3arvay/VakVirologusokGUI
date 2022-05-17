@@ -10,23 +10,35 @@ import java.util.Random;
 */
 public class Game
 {
-    private View mainview;
+    private View mainview; // GUI
+    private Timeable time;
 
-    String[] players;
+    String[] players; // player colors
     private List<Field> fieldsInGame;
     public List<Virologist> playersInGame;
-    public HashMap<Virologist,String> playersPlaying;
+    public HashMap<Virologist,String> playersPlaying; // player -> unique color Map
     public Virologist currentVirologist;
     public Field currentField;
 
+    /**
+     * Game osztály konstrukor
+     */
     public Game (){
         mainview = new View();
         players = new String[]{"Blue","Red","Pink","Yellow","Green","Orange","Cyan","Purple"};
-        fieldsInGame = new ArrayList<Field>();
-        playersInGame = new ArrayList<Virologist>();
+        fieldsInGame = new ArrayList<>();
+        playersInGame = new ArrayList<>();
         playersPlaying = new HashMap<>();
         currentVirologist = null;
         currentField = null;
+        time = new Timeable() {
+            @Override
+            public void Tick() {
+                for (Virologist v : playersInGame) {
+                    v.Tick();
+                }
+            }
+        };
     }
 
     /**
@@ -97,9 +109,7 @@ public class Game
             }
 
             if(currentIndex == playersInGame.size() - 1) {
-                for(Virologist v : playersInGame) {
-                    v.Time();
-                }
+                time.Tick();
                 currentIndex = 0;
             } else {
                 currentIndex++;
@@ -107,11 +117,12 @@ public class Game
         }
         mainview.WinDialogShow(playersPlaying.get(currentVirologist));
     }
-    
+
     /**
-    * Leírás:
-    * véget vet a játéknak
-    */
+     * Leírás:
+     * Ha egy játékos összegyűjtötte az összes lehetséges genetikai kódot, nyer
+     * @return true: ha van nyertes; false: ha nincs
+     */
     public boolean CheckWin()
     {
         for(Virologist v: playersInGame) {

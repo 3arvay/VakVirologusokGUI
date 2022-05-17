@@ -13,17 +13,6 @@ public class Dance extends Agent
     }
 
     /**
-    * Leírás: visszadja a useTime tagváltozó értékét
-    *
-    * @return int: a hátralévő felhasználhatósági idő
-    */
-    @Override
-    public int GetUseTime()
-    {
-        return useTime;
-    }
-
-    /**
      * Leírás: Ágens hatásának kezdetét kiváltó metódus
      *
      * @param a: Ágens amivel támadnak

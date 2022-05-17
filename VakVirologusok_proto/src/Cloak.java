@@ -1,9 +1,8 @@
-/**
-* Leírás: A virológus egyik felszerelését, a köpenyt valósítja meg.
-*/
-import java.util.Map;
 import java.util.Random;
 
+/**
+ * Leírás: A virológus egyik felszerelését, a köpenyt valósítja meg.
+ */
 public class Cloak extends Gear
 {
     private double chance;
@@ -55,15 +54,5 @@ public class Cloak extends Gear
         Gear temp = v2.getGearList()[1];
         v2.getGearList()[1] = null;
         return temp;
-    }
-
-    /**
-     * Leírás: visszadja a chance tagváltozó értékét
-     *
-     * @return double: a chance tagváltozó értéke
-     */
-    public double GetChance()
-    {
-        return chance;
     }
 }

@@ -9,18 +9,21 @@ public class BearVirus extends Agent{
         aminoacidCost = 0;
     }
 
-    @Override
-    public int GetUseTime()
-    {
-        return useTime;
-    }
-
+    /**
+     * @param a: Ágens amivel támadnak
+     * @return Az ágens által kiváltott attribútum
+     */
     @Override
     public VAttribute AllotAttribute(Agent a)
     {
         return new BearMode();
     }
 
+    /**
+     * @param v: A kenhető ágenst tároló virológus
+     * @param a: A klónozandó ágens
+     * @return
+     */
     @Override
     public Agent Clone(Virologist v, Agent a)
     {
@@ -28,6 +31,9 @@ public class BearVirus extends Agent{
         return new BearVirus();
     }
 
+    /**
+     * @param v: A kenhető ágenst tároló virológus
+     */
     @Override
     public void KillAgent(Virologist v) {}
 }

@@ -11,6 +11,10 @@ public class Stunned extends VAttribute
         durationtime = 3;
     }
 
+    /**
+     * Az ágens hatásának ideje lejár
+     * @param v Aki jobban lesz...
+     */
     @Override
     public void AttributeChanges(Virologist v)
     {

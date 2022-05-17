@@ -13,6 +13,10 @@ public class Dancing extends VAttribute
         durationtime = 5;
     }
 
+    /**
+     *
+     * @param v A virológus, aki jobban lesz...
+     */
     @Override
     public void AttributeChanges(Virologist v)
     {

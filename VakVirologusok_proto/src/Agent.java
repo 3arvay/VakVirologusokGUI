@@ -1,5 +1,3 @@
-import java.util.Map;
-
 /**
 * Az ágenst valósítja meg és annak változóit.
 */
@@ -8,7 +6,6 @@ public abstract class Agent
     protected int useTime;
     protected int nucleotidCost;
     protected int aminoacidCost;
-    private VAttribute vAttribute;
     /**
      * Leírás: Ágens hatásának kezdetét kiváltó metódus
      *
@@ -32,13 +29,6 @@ public abstract class Agent
      * @return Agent: Az újonnan létrehozott ágens
      */
     public abstract Agent Clone(Virologist v, Agent a);
-    
-    /**
-    * Leírás: visszadja a useTime tagváltozó értékét
-    *
-    * @return int: a hátralévő felhasználhatósági idő
-    */
-    public abstract int GetUseTime();
         
     /**
     * Leírás: visszadja a nucleotidCost tagváltozó értékét
@@ -62,7 +52,7 @@ public abstract class Agent
 
     /**
      * Leírás: Az ágens felhasználhatósági ideje csökken
-     * @param v
+     * @param v: Ezen virológus ágenseit léptetjük
      */
     public void Step(Virologist v)
     {

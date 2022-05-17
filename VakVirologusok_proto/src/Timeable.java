@@ -4,11 +4,8 @@
 */
 public interface Timeable
 {
-    Timer timeable = null;
-    
     /**
     * Leírás: Az idő folyamatos múlását folytatja.
-    *
     */
-    void Time();
+    void Tick();
 }

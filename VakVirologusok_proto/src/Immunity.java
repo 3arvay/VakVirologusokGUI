@@ -13,40 +13,31 @@ public class Immunity extends Agent
     }
 
     /**
-    * Leírás:   Visszadja az ősosztálybeli useTime tagváltozó értékét
-    *
-    * @return useTime, a fennmaradt felhasználhatósági idő
-    */
-    @Override
-    public int GetUseTime()
-    {
-        return useTime;
-    }
-    
-    /**
-    * Leírás:   Immune ágens hatásának kezdetét kiváltó metódus
-    *
-    * @return agent, az immunitás ágens
-    */
+     * Leírás:   Immune ágens hatásának kezdetét kiváltó metódus
+     * @param a: Ágens amivel támadnak
+     * @return A kiváltott hatás
+     */
     @Override
     public Immune AllotAttribute(Agent a)
     {
         return new Immune();
     }
-     /**
-    * Leírás:   Immune ágens hatásának kezdetét kiváltó metódus
-    *
-    * @return agent, az immunitás ágens
-    */
+
+    /**
+     * Ágens másolat készítése főként kraftoláshoz
+     * @param v: A kenhető ágenst tároló virológus
+     * @param i Ezt klónozzuk
+     * @return Az új ágens
+     */
     @Override
     public Immunity Clone(Virologist v, Agent i)
     {
         v.CostTakeAway(i);
         return new Immunity();
     }
+
     /**
     * Leírás: Az Immunity ágens hatása lejár
-    *   
     * @param v Virológus, az ágenslistájából eltűnik ez a Immunity
     */
     @Override

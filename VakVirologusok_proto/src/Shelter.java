@@ -1,4 +1,3 @@
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -8,6 +7,9 @@ public class Shelter extends Field
 {
     private Gear gear;
 
+    /**
+     * Konstruktor, véletlenszerűen felszerelést helyez el az óvóhelyen
+     */
     public Shelter() {
         gear = new Gear[] {new Gloves(), new Cloak(), new Bag(), new Axe()} [new Random().nextInt(4)];
     }
@@ -23,25 +25,5 @@ public class Shelter extends Field
         standsHere.add(v);
         v.SetF1(this);
         v.ReceiveGear(gear);
-    }
-
-    /**
-     * Leírás: visszadja a gear tagváltozó másolatát.
-     *
-     * @return Gear: a gear tagváltozó másolata
-     */
-    public Gear GetGear()
-    {
-        return gear;
-    }
-
-    /**
-     * Leírás: Inicializáláskor egy adott felszerelést helyez el az óvóhelyen.
-     *
-     * @param g: A Shelterre helyezendő Gear objektum
-     */
-    public void SetGear(Gear g)
-    {
-        gear=g;
     }
 }

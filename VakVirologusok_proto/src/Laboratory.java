@@ -1,4 +1,3 @@
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -10,6 +9,9 @@ public class Laboratory extends Field
     private Agent geneticCode;
     private boolean infecting;
 
+    /**
+     * Default konstruktor, random ágens és fertőzés
+     */
     public Laboratory() {
         geneticCode = new Agent[] {new Stun(), new Dance(), new Immunity(), new Amnesia()} [new Random().nextInt(4)];
         infecting = new Random().nextBoolean();
@@ -23,13 +25,16 @@ public class Laboratory extends Field
         infecting = new Random().nextBoolean();
     }
 
+    /**
+     * Fertőző-e a labor?
+     * @return Boolean infecting value
+     */
     public boolean getInfecting(){
         return infecting;
     }
 
     /**
     * Leírás: Virológus lépését valósítja meg a labor mezőre, és ha még számára ismeretlen az ott található genetikai kód, akkor megtanulja.
-    *
     * @param v: Az a virológus aki rálép erre a raktár mezőre
     */
     @Override
@@ -43,15 +48,5 @@ public class Laboratory extends Field
             BearVirus bv = new BearVirus();
             v.SpecialAttack(bv);
         }
-    }
-
-    /**
-    * Leírás:  Inicializáláskor egy adott genetikai kódot jelentő ágenst helyez el a laboratóriumban.
-    *
-    * @param a: Beállítja, hogy milyen ágenst lehet megtanulni abban a laborban
-    */
-    public void SetAgent(Agent a)
-    {
-        this.geneticCode = a;
     }
 }

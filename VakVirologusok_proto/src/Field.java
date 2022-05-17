@@ -15,14 +15,14 @@ public class Field
     */
     public Field()
     {
-        standsHere = new ArrayList<Virologist>();
-        Neighbours = new ArrayList<Field>();
+        standsHere = new ArrayList<>();
+        Neighbours = new ArrayList<>();
     }
 
     /**
     * Leírás:
     * Adott mezőhöz szomszédos mezőket rendel hozzá.
-    * @param f
+    * @param f jövendő szomszéd
     */
     public void AddNeighbour(Field f)
     {
@@ -32,7 +32,7 @@ public class Field
     /**
     * Leírás:
     * Már létező mezőhöz ad hozzá egy virológust. Ez a függvény hívódik ha a játékos lépteti a virológust.
-    * @param v
+    * @param v ide lépő virologist
     */
     public void AddVirologist(Virologist v)
     {
@@ -43,7 +43,7 @@ public class Field
     /**
      * Leírás:
      * Már létező mezőhöz ad hozzá egy medve virológust. Ez a függvény hívódik ha a játékos lépteti a medve ágens hatása alatt levő virológust.
-     * @param v
+     * @param v ide lépő virologist
      */
     public List<Virologist> AddBear(Virologist v)
     {
@@ -54,7 +54,7 @@ public class Field
     /**
     * Leírás:
     * Eltávolítja a virológust a mezőről, ha a játékos átlépett egy másik mezőre.
-    * @param v
+    * @param v el lépő virologist
     */
     public void RemoveVirologist(Virologist v)
     {
@@ -64,26 +64,22 @@ public class Field
     /**
     * Leírás:
     * Vissza ad egy szomszédos mezőt ami nem a paraméterben levő mező.
-    * @param f1
+    * @param f1 nem ezt a mezőt várjuk vissza!
     * @return Field temp
     */
     public Field GetRandomNeighbour(Field f1) {
-        Random rand = new Random();
-        Field temp=Neighbours.get(rand.nextInt(Neighbours.size()));
         for(Field f : Neighbours) {
             if(!f.equals(f1) && !f.equals(this)) {
                 return f;
             }
         }
         return f1;
-        /*
-        while ( temp != f1 && temp != this)
-        {
-            temp=Neighbours.get(rand.nextInt(Neighbours.size()));
-        }
-        return temp;*/
     }
 
+    /**
+     *
+     * @param v1 RIP
+     */
     public void VirologistKilled(Virologist v1)
     {
         standsHere.remove(v1);

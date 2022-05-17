@@ -25,14 +25,9 @@ public class Virologist implements Timeable
         amountAminoacid=75;
         maxAmount=100;
         geneticCodeList=new ArrayList<>();
-        geneticCodeList.add(new Stun());
-        geneticCodeList.add(new Dance());
-        geneticCodeList.add(new Immunity());
         gearList = new Gear[]{null, null, null, null};
         attributeList=new ArrayList<>();
         agentList = new ArrayList<>();
-        agentList.add(new Amnesia());
-        agentList.add(new Stun());
         f1=null;
     }
 
@@ -411,7 +406,7 @@ public class Virologist implements Timeable
     }
 
     @Override
-    public void Time() {
+    public void Tick() {
         for(int i = 0; i < agentList.size(); i++) {
             agentList.get(i).Step(this);
         }

@@ -1,11 +1,9 @@
-import java.util.Map;
-
 /**
  * Leírás: Balta felszerelés megvalósítása
  */
 public class Axe extends Gear {
     /**
-     *
+     * Konstruktor
      */
     public Axe()
     {
@@ -13,6 +11,12 @@ public class Axe extends Gear {
         id = 3;
     }
 
+    /**
+     *
+     * @param  v Virologist akivel szemben használják a felszerelést
+     * @param  a Ágens ami ellen védekezni kell
+     * @return
+     */
     @Override
     public Boolean Use(Virologist v, Agent a)
     {
@@ -49,6 +53,10 @@ public class Axe extends Gear {
         return temp;
     }
 
+    /**
+     *
+     * @return durability value
+     */
     public int GetDurability() {
         return durability;
     }
